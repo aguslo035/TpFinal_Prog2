@@ -1,7 +1,7 @@
 package Jdbc;
 import java.sql.*;
 
-public class Conexion {
+public abstract class Conexion {
 
     private static final String url = "";
     private static final String user = "";
