@@ -1,4 +1,5 @@
 package Jdbc;
+
 import java.sql.*;
 
 public abstract class Conexion {
@@ -27,4 +28,5 @@ public abstract class Conexion {
             throw new RuntimeException(e);
         }
     }
+
 }

@@ -35,7 +35,7 @@ public final class RoboDeVida extends HabilidadDanio{
 
         objetivo.recibirDanio(danioARealizarDeHabilidad);
         usuario.curar(danioARealizarDeHabilidad);
-        
+
         return danioARealizarDeHabilidad;
     }
 
