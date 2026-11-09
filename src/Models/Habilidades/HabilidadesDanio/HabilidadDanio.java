@@ -23,9 +23,4 @@ public abstract class HabilidadDanio extends Habilidad {
         this.danio = danio;
     }
 
-    public int calcularDanio(Entidad usuario) //este es el comportamiento default, PERO no sé si convenga siquiera esté acá porque algunos no necesitan este parametro
-    { //esto porque en mi mente el daño que provocan algunas habilidad dependen de la estadística de daño de la habilidad, no del ataque del usuario. Entonces en esos casos el "calcularDanio" no usaría parametros del usuario
-        return getDanio(); //^ explicame y/o cambiar en caso de no ser lo que pensabas
-    }
-
 }
