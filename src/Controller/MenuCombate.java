@@ -38,9 +38,9 @@ public class MenuCombate {
     {
         StringBuilder sb = new StringBuilder();
         sb.append("===");
-        sb.append(jugador.mostrarEfecto());
+        sb.append(jugador.mostrarEstado());
         sb.append("===");
-        sb.append(enemigo.mostrarEfecto());
+        sb.append(enemigo.mostrarEstado());
         sb.append("\n\n");
 
         return sb.toString();

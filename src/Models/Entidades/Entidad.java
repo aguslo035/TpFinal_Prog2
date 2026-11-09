@@ -14,20 +14,20 @@ public abstract class Entidad implements IHabilidad {
     private int manaActual;
     private int manaMaximo;
     private int ataque;
-    private int defensa;
+    private int escudo;
     private List<Habilidad> habilidades;
 
     public Entidad(String nombre, int vidaActual, int vidaMaxima,
                    int manaActual, int manaMaximo, int ataque,
-                   int defensa) {
+                   int escudo) {
 
         this.nombre = nombre;
-        this.vidaActual = vidaActual;
+        this.vidaActual = vidaActual; //hay que poner checks de que la vida y maná actual no pueda superar a la maxima acá. Por ahora los pongo en los setters
         this.vidaMaxima = vidaMaxima;
         this.manaActual = manaActual;
         this.manaMaximo = manaMaximo;
         this.ataque = ataque;
-        this.defensa = defensa;
+        this.escudo = escudo;
         habilidades = new ArrayList<>(); // Las habilidades son especificas de cada clase/enemigo. Se llena la lista con sus respectivas habildades en sus constructores
     }
 
@@ -44,14 +44,17 @@ public abstract class Entidad implements IHabilidad {
     }
 
     public void setVidaActual(int vidaActual) {
-        this.vidaActual = vidaActual;
+        if(vidaActual <= this.vidaMaxima)
+        {
+            this.vidaActual = vidaActual;
+        }
     }
 
     public int getVidaMaxima() {
         return vidaMaxima;
     }
 
-    public void setVidaMaxima(int vidaMaxima) {
+    public void setVidaMaxima(int vidaMaxima) { //tal vez checks de que la vida máxima no pueda ser menor a 1, pero no quiero engorrarme en los detalles ahora mismo. Solo dejo constancia.
         this.vidaMaxima = vidaMaxima;
     }
 
@@ -60,7 +63,10 @@ public abstract class Entidad implements IHabilidad {
     }
 
     public void setManaActual(int manaActual) {
-        this.manaActual = manaActual;
+        if(manaActual <= this.manaMaximo)
+        {
+            this.manaActual = manaActual;
+        }
     }
 
     public int getManaMaximo() {
@@ -79,12 +85,12 @@ public abstract class Entidad implements IHabilidad {
         this.ataque = ataque;
     }
 
-    public int getDefensa() {
-        return defensa;
+    public int getEscudo() {
+        return escudo;
     }
 
-    public void setDefensa(int defensa) {
-        this.defensa = defensa;
+    public void setEscudo(int escudo) {
+        this.escudo = escudo;
     }
 
     @Override
@@ -114,16 +120,17 @@ public abstract class Entidad implements IHabilidad {
         return habilidades.add(habilidad);
     }
 
-    public int atacar(Entidad objetivo) //no sé qué quiere que devuelva, el daño ocasionado?
+    public int atacar(Entidad objetivo)
     {
-        int danioARealizar = this.ataque - objetivo.getDefensa();
+        int danioARealizar = this.ataque - objetivo.getEscudo();
         if(danioARealizar < 0) {
             objetivo.recibirDanio(0); //es un ataque normal, el objetivo pierde daño acorde a la cantidad de ataque de esta entidad
-            objetivo.setDefensa(danioARealizar * (-1));
+            //^ nos podemos ahorrar esta linea
+            objetivo.setEscudo(danioARealizar * (-1));
             return 0;
         }
         objetivo.recibirDanio(danioARealizar);
-        objetivo.setDefensa(0);
+        objetivo.setEscudo(0); //si el escudo ya está en 0 se continúa setteando en 0? puede ser preferible un if preguntando si escudo 0 para evitar eso
         return danioARealizar;
     }
 
@@ -164,6 +171,13 @@ public abstract class Entidad implements IHabilidad {
         return false;
     }
 
+    public String mostrarEstado()
+    {
+        StringBuilder sb = new StringBuilder(getNombre() + " | Vida Restante: "+ vidaActual + ", Maná restante: "+ manaActual);
+
+        return sb.toString(); //quedaría ejemplo: Guerrero Tomás | Vida restante: 10, Maná restante: 5, Efecto activo: PotenciarAtaque
+    }
+
     @Override
     public String toString() {
         return "Entidad{" +
@@ -173,7 +187,7 @@ public abstract class Entidad implements IHabilidad {
                 ", manaActual=" + manaActual +
                 ", manaMaximo=" + manaMaximo +
                 ", ataque=" + ataque +
-                ", defensa=" + defensa +
+                ", escudo=" + escudo +
                 '}';
     }
 }

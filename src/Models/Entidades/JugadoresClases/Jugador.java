@@ -15,8 +15,8 @@ public abstract class Jugador extends Entidad {
     private final TipoArma tipoArma;
     private GestoraDeItems inventario;
 
-    public Jugador(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int defensa, TipoArma tipoArma) {
-        super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, defensa);
+    public Jugador(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma) {
+        super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo);
         this.tipoArma = tipoArma;
         id = idAux;
         idAux++;
@@ -24,8 +24,8 @@ public abstract class Jugador extends Entidad {
         inventario = new GestoraDeItems();
     }
 
-    public Jugador(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int defensa, TipoArma tipoArma, int id) {
-        super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, defensa);
+    public Jugador(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma, int id) {
+        super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo);
         this.tipoArma = tipoArma;
         this.id = id;
 
@@ -67,7 +67,7 @@ public abstract class Jugador extends Entidad {
         return Objects.hashCode(id);
     }
 
-    //no queres imprimir más datos de entidad? ej, ataque, vida, defensa, etc?
+    //no queres imprimir más datos de entidad? ej, ataque, vida, escudo, etc?
     //por ahora saco el jugador{ para llamar el toString en los hijos y quede lindo (sino queda Guerrero{Jugador{(datos)}} )
     @Override
     public String toString() {

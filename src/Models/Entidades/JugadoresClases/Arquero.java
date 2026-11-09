@@ -10,8 +10,8 @@ public final class Arquero extends Jugador{
     private static final Random random = new Random();
     // lo mismo que en enemigo con el numero random, se usara nextDouble() que es un numero random entre 0 y 1
 
-    public Arquero(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int defensa, TipoArma tipoArma) {
-        super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, defensa, tipoArma);
+    public Arquero(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma) {
+        super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo, tipoArma);
         this.probabilidadCritica = 0.35;
     }
 
@@ -31,13 +31,13 @@ public final class Arquero extends Jugador{
         }
 
         // danio con critico
-        danioARealizar = danioARealizar - objetivo.getDefensa();
+        danioARealizar = danioARealizar - objetivo.getEscudo();
         if (danioARealizar < 0) {
-            objetivo.setDefensa(danioARealizar * (-1));
+            objetivo.setEscudo(danioARealizar * (-1));
             return 0;
         }
         objetivo.recibirDanio(danioARealizar);
-        objetivo.setDefensa(0);
+        objetivo.setEscudo(0);
         return danioARealizar;
         //la logica es la misma que atacar de todos despues de lo del critico
     }

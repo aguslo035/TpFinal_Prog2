@@ -10,14 +10,14 @@ public abstract class Enemigo extends Entidad {
     private final int id;
     private static final Random random = new Random(); // Random es una clase de java
     // static porque pertenece a la clase, no a sus instancias. Y final porque quiero q no haya nuevos new Random()
-    public Enemigo(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int defensa) {
-        super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, defensa);
+    public Enemigo(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo) {
+        super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo);
         id = idAux;
         idAux++;
     }
 
-    public Enemigo(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int defensa, int id) {
-        super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, defensa);
+    public Enemigo(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, int id) {
+        super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo);
         this.id = id;
     } // para traer enemigos de la base de datos que ya tienen una id y no utilicen el idAux, ya que seria incorrecto y seria el mismo enemigo con otra id cada vez que se trae de la base de datos.
 

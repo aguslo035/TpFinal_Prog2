@@ -27,8 +27,6 @@ public final class RoboDeVida extends HabilidadDanio{
     }
 
     //metodos
-
-
     @Override
     public int usar(Entidad usuario, Entidad objetivo) {
         int danioARealizarDeHabilidad = this.getDanio();

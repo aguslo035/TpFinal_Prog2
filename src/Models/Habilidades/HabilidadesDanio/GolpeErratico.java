@@ -13,9 +13,8 @@ public final class GolpeErratico extends HabilidadDanio {
         super(nombre, descripcion, costoMana, danio);
         this.danioFijo = 10 + this.getDanio();
     }
-    //metodos
 
-
+    //getters y setters
     public int getDanioFijo() {
         return danioFijo;
     }
@@ -24,12 +23,14 @@ public final class GolpeErratico extends HabilidadDanio {
         this.danioFijo = danioFijo;
     }
 
+    //metodos
     @Override
     public int usar(Entidad usuario, Entidad objetivo) {
 
         int danioFijoSigGolpe = danioFijo;
         int danioARealizarDeHabilidad = this.getDanio() + danioFijo;
         // pensando que es para algun guerrero o caballero, se le suma el danio del personaje + (el danio de la habilidad y el extra del golpe erratico)
+        // ^^ no entiendo la primera variable ni dónde se agregaría el daño del usuario
 
         objetivo.recibirDanio(danioARealizarDeHabilidad);
         return danioARealizarDeHabilidad;
@@ -41,7 +42,6 @@ public final class GolpeErratico extends HabilidadDanio {
         return "Habilidad: " +
                 "nombre='" + getNombre() + '\'' +
                 ", descripcion='" + getDescripcion() + '\'' +
-                ", danio=" + " varía según el daño" +
                 ", costoMana=" + getCostoMana() +
                 ", danioFijo=" + getDanioFijo();
     }
