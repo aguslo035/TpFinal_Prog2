@@ -17,29 +17,24 @@ public class MenuCombate {
     }
 
     //métodos
-    public void menuAtaque(Jugador jugador, Enemigo enemigo) //este metodo lo llaman en el turno usuario, así que ya se sabe qué entidad es cada uno (por eso especifico Jugador y Enemigo)
+    public int menuAtaque(Jugador jugador, Enemigo enemigo) //este metodo lo llaman en el turno usuario, así que ya se sabe qué entidad es cada uno (por eso especifico Jugador y Enemigo)
     {
-        boolean flag = true;
         int decision = 0;
 
-        while (flag)
-        {
-            System.out.println(mostrarOpciones());
-            sc.nextInt(decision);
-            sc.nextLine();
+//        System.out.println(estadoPelea(jugador, enemigo)); esto conviene esté en BatallaPorTurnos
 
-            switch (decision) {
-                case 0:
+        System.out.println(mostrarOpciones());
 
-            }
+        sc.nextInt(decision);
+        sc.nextLine();
 
-        }
-
+        return decision;
 
 
     }
 
-    public String estadoPelea(Jugador jugador, Enemigo enemigo)
+    //este conviene esté en BatallaPorTurnos
+    public String estadoPelea(Jugador jugador, Enemigo enemigo) //muestra la vida, MP y efectos actuales de ambos
     {
         StringBuilder sb = new StringBuilder();
         sb.append("===");
@@ -63,10 +58,6 @@ public class MenuCombate {
         return sb.toString();
     }
 
-    public void atacarEnemigo(Jugador jugador, Enemigo enemigo)
-    {
-
-    }
 
 
 }
