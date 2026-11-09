@@ -72,17 +72,8 @@ public abstract class Jugador extends Entidad {
     @Override
     public String toString() {
         return "id=" + id +
+                super.toString() +
                 ", tipoArma=" + tipoArma +
-                ", inventario=" + inventario; //acá imprimimos todo el array del inventario?
+                ", inventario=" + inventario.listar(); //acá imprimimos todo el array del inventario?
     }
-
-    //tomo lo de wsp como que lo revierta
-    //no quiero modificar este metodo con instance of/ifs cada vez que se agrega un tipo de objeto
-//    public void usarItem(int indice)
-//    {
-//        Pocion p = Pocion.esPocion(inventario.obtener(1));
-//        if(p == null)
-//            //exception
-//
-//    }
 }
