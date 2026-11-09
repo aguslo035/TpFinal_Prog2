@@ -1,13 +1,15 @@
-package Models.Habilidades.HabilidadesEfecto;
+package Models.NoUtilizar.HabilidadesEfecto;
 
 import Models.Entidades.Entidad;
 
 public final class PotenciarAtaque extends HabilidadEfecto{
     private int bonusAtaque;
+    private int danioOriginal;
 
     public PotenciarAtaque(String nombre, String descripcion, int danio, int costoMana, int turnosDuracion, int turnosRestantes, int bonusAtaque) {
         super(nombre, descripcion, danio, costoMana, turnosDuracion, turnosRestantes);
         this.bonusAtaque = bonusAtaque;
+        danioOriginal = 0;
     }
 
     public PotenciarAtaque()
@@ -25,9 +27,25 @@ public final class PotenciarAtaque extends HabilidadEfecto{
     }
 
     @Override
-    public int alLanzarHabilidad(Entidad usuario, Entidad enemigo) {
-        //sé que hace pero a la vez no sé como representarlo
-        //hasta puede que no convenga esté este metodo acá, por ahora lo puse en el padre "Habilidad" para poder ejecutar habilidades en el arraylist de habilidades en Entidad
+    public int lanzarHabilidadEfecto(Entidad obj) {
+        int danioOriginalDeEntidad = obj.getAtaque();
+        int danioAumentadoPorHabilidad = getBonusAtaque() + obj.getAtaque();
+
+        obj.setAtaque(danioAumentadoPorHabilidad);
+        setTurnosDuracion(2);
+        setTurnosRestantes(getTurnosDuracion());
+
+        danioOriginal = danioOriginalDeEntidad;
+
+        obj.setEfecto(this);
+
+        return danioAumentadoPorHabilidad;
+    }
+
+    @Override
+    public void quitarEfectoActivo(Entidad obj) {
+        obj.setAtaque(danioOriginal);
+        obj.quitarEfecto();
     }
 
     @Override

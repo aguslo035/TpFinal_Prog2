@@ -5,14 +5,11 @@ import Models.Entidades.Entidad;
 public abstract class Habilidad {
     private String nombre;
     private String descripcion;
-    //no entendí pq pasaste daño aca
-    private int danio;
     private int costoMana;
 
-    public Habilidad(String nombre, String descripcion, int danio, int costoMana) {
+    public Habilidad(String nombre, String descripcion, int costoMana) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.danio = danio;
         this.costoMana = costoMana;
     }
 
@@ -32,14 +29,6 @@ public abstract class Habilidad {
         this.descripcion = descripcion;
     }
 
-    public int getDanio() {
-        return danio;
-    }
-
-    public void setDanio(int danio) {
-        this.danio = danio;
-    }
-
     public int getCostoMana() {
         return costoMana;
     }
@@ -48,18 +37,19 @@ public abstract class Habilidad {
         this.costoMana = costoMana;
     }
 
-    //metodo
-    //este metodo está en habilidadDanio, tal vez convenga esté acá
-    public abstract int alLanzarHabilidad(Entidad usuario, Entidad enemigo); //devuelve un valor int que puede resultar útil
-//
-//
+    public boolean sePuedeUsar(Entidad obj)
+    {
+        return obj.getManaActual() >= this.costoMana;
+    }
+
+    public abstract int usar(Entidad usuario, Entidad objetivo); //Las hijas deciden como actuaran
+    //devuelve el danio causado ^^^^^
 
     @Override
     public String toString() {
         return "Habilidad: " +
                 "nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                ", danio=" + danio +
                 ", costoMana=" + costoMana; //le saqué la "cola" (}) porque puede haber habilidades con más datos
     }
 }

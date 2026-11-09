@@ -5,10 +5,22 @@ import Models.Habilidades.Habilidad;
 
 public abstract class HabilidadDanio extends Habilidad {
 
+    private int danio;
     //creemoslo nosotros por defecto a las habilidades, para ir poniendola en los personajes/enemigos
     //mando números random en todas las habilidades (y te dejo esta nota en todas para que no se pierda)
-    public HabilidadDanio(String nombre, String descripcion, int danio, int costoMana) {
-        super(nombre, descripcion, danio, costoMana);
+
+
+    public HabilidadDanio(String nombre, String descripcion, int costoMana, int danio) {
+        super(nombre, descripcion, costoMana);
+        this.danio = danio;
+    }
+
+    public int getDanio() {
+        return danio;
+    }
+
+    public void setDanio(int danio) {
+        this.danio = danio;
     }
 
     public int calcularDanio(Entidad usuario) //este es el comportamiento default, PERO no sé si convenga siquiera esté acá porque algunos no necesitan este parametro
@@ -16,10 +28,4 @@ public abstract class HabilidadDanio extends Habilidad {
         return getDanio(); //^ explicame y/o cambiar en caso de no ser lo que pensabas
     }
 
-    public abstract int alLanzarHabilidad (Entidad usuario, Entidad objetivo); //cada habilidad decide qué consecuencias produce, devuevle daño
-    //lo pongo abstracto para obligar a que se use
-    //no todas las habilidades necesitan al usuario para cálculos:
-    //lo pongo para que todas las clases tengan un mismo metodo que venga de una clase padre (temporal)
-    //y para potencialmente eventualmente devolver texto de relleno (el "(nombre) dispara una flecha certera a (nombre), haciendo (danio) daño!")
-    //que es lógica puede terminemos no poniendo acá
 }

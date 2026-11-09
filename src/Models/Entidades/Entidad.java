@@ -1,9 +1,7 @@
 package Models.Entidades;
 
 import Interface.IHabilidad;
-import Interface.IItem;
 import Models.Habilidades.Habilidad;
-import Models.Habilidades.HabilidadesEfecto.HabilidadEfecto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +16,6 @@ public abstract class Entidad implements IHabilidad {
     private int ataque;
     private int defensa;
     private List<Habilidad> habilidades;
-    private HabilidadEfecto efectoActivo;
-
 
     public Entidad(String nombre, int vidaActual, int vidaMaxima,
                    int manaActual, int manaMaximo, int ataque,
@@ -33,8 +29,6 @@ public abstract class Entidad implements IHabilidad {
         this.ataque = ataque;
         this.defensa = defensa;
         habilidades = new ArrayList<>(); // Las habilidades son especificas de cada clase/enemigo. Se llena la lista con sus respectivas habildades en sus constructores
-        efectoActivo = null; // todas las entidades comienzan sin efectos
-
     }
 
     public String getNombre() {
@@ -93,16 +87,6 @@ public abstract class Entidad implements IHabilidad {
         this.defensa = defensa;
     }
 
-    //agrego getters y setters para efecto activo
-    public void setEfectoActivo(HabilidadEfecto efectoActivo) {
-        this.efectoActivo = efectoActivo;
-    }
-
-    public HabilidadEfecto getEfectoActivo()
-    {
-        return efectoActivo;
-    }
-
     @Override
     public String toString() {
         return "Entidad{" +
@@ -117,9 +101,14 @@ public abstract class Entidad implements IHabilidad {
     }
 
     @Override
-    public int usarHabilidad(int indice, Entidad objetivo) { //por qué devuelve int?
-        habilidades.get(indice).alLanzarHabilidad(this, objetivo); //acá va un try catch, con excepcion de que se eligio un indice nada que ver. Ya existe como exepcion
-        //devuelve daño?
+    public int usarHabilidad(int indice, Entidad objetivo) {
+        Habilidad habilidadAUsar = habilidades.get(indice);
+
+        int danioACausar = habilidadAUsar.getDanio();
+
+        objetivo.setVidaActual(objetivo.getVidaActual() - danioACausar);
+
+        return danioACausar;
     }
 
     @Override
@@ -171,7 +160,7 @@ public abstract class Entidad implements IHabilidad {
     {
         int nuevoMana = getManaActual()+cantidad;
 
-        if (nuevoMana > vidaMaxima)
+        if (nuevoMana > manaMaximo)
         {
             setManaActual(manaMaximo);
         }else {
@@ -186,31 +175,5 @@ public abstract class Entidad implements IHabilidad {
             return true;
         }
         return false;
-    }
-
-    public String mostrarEstado()
-    {
-        //no sé que se refiere a estado. Es como un tostring con datos de vida y eso?
-        //voy a asumir es así, borrá esto sino
-
-        StringBuilder sb = new StringBuilder(getNombre() + " | Vida Restante: "+ vidaActual + ", Maná restante: "+ manaActual);
-
-        if (efectoActivo != null)
-        {
-            sb.append(", Efecto activo: " + getEfectoActivo().getNombre());
-        }
-
-        return sb.toString(); //quedaría ejemplo: Guerrero Tomás | Vida restante: 10, Maná restante: 5, Efecto activo: PotenciarAtaque
-    }
-
-    public void agregarEfectoHabilidad(HabilidadEfecto efecto)
-    {
-        setEfectoActivo(efecto);
-    }
-
-    public void actualizarEfectoHabilidad()
-    {
-        //no estoy seguro a qué refiere
-        //es reducir por 1 el efecto?
     }
 }

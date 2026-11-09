@@ -1,9 +1,9 @@
-package Models.Habilidades.HabilidadesEfecto;
+package Models.NoUtilizar.HabilidadesEfecto;
 
 import Models.Entidades.Entidad;
 import Models.Habilidades.Habilidad;
 
-public abstract class HabilidadEfecto extends Habilidad {
+public abstract class HabilidadEfecto extends Habilidad implements IHabilidadEfecto {
 
     //si la lógica de los efectos se vuelve horrible, diría removerlos
     //veremos
@@ -32,24 +32,11 @@ public abstract class HabilidadEfecto extends Habilidad {
         this.turnosRestantes = turnosRestantes;
     }
 
-    public void aplicarEfecto(Entidad objetivo)
-    {
-
-    }
-
-    public void quitarEfecto()
-    {
-
-    }
+    public abstract void quitarEfectoActivo(Entidad obj);
 
     public void restarUnTurno(){
-        if (getTurnosRestantes() <= 0)
+        if (getTurnosRestantes() > 0)
             setTurnosRestantes(getTurnosRestantes() - 1);
-    }
-
-    @Override
-    public int alLanzarHabilidad(Entidad usuario, Entidad enemigo) {
-        //puede no convenga esté este metodo acá, por ahora lo puse en en padre "Habilidad" para poder ejecutar habilidades en el arraylist de habilidades en Entidad
     }
 
     @Override
