@@ -24,7 +24,7 @@ public abstract class Jugador extends Entidad {
         inventario = new GestoraDeItems();
     }
 
-    public Jugador(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma, int id) {
+    public Jugador(int id, String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma) {
         super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo);
         this.tipoArma = tipoArma;
         this.id = id;

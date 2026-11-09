@@ -10,9 +10,15 @@ public final class Arquero extends Jugador{
     private static final Random random = new Random();
     // lo mismo que en enemigo con el numero random, se usara nextDouble() que es un numero random entre 0 y 1
 
-    public Arquero(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma) {
+
+    public Arquero(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma, double probabilidadCritica) {
         super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo, tipoArma);
-        this.probabilidadCritica = 0.35;
+        this.probabilidadCritica = probabilidadCritica;
+    }
+
+    public Arquero(int id, String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma, double probabilidadCritica) {
+        super(id, nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo, tipoArma);
+        this.probabilidadCritica = probabilidadCritica;
     }
 
     public double getProbabilidadCritica() {
