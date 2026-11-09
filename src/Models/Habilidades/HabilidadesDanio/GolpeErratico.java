@@ -4,35 +4,35 @@ import Models.Entidades.Entidad;
 import java.util.Random;
 
 public final class GolpeErratico extends HabilidadDanio {
-    private int multiplicadorMaximo;
+    private int danioFijo;
 
     //creemoslo nosotros por defecto a las habilidades, para ir poniendola en los personajes/enemigos
     //mando números random en todas las habilidades (y te dejo esta nota en todas para que no se pierda)
-    public GolpeErratico(String nombre, String descripcion, int danio, int costoMana, int multiplicadorMaximo) {
-        super(nombre, descripcion, danio, costoMana);
-        this.multiplicadorMaximo = multiplicadorMaximo;
+
+    public GolpeErratico(String nombre, String descripcion, int costoMana, int danio, int danioFijo) {
+        super(nombre, descripcion, costoMana, danio);
+        this.danioFijo = 10 + this.getDanio();
+    }
+    //metodos
+
+
+    public int getDanioFijo() {
+        return danioFijo;
     }
 
-    //no sé qué es multiplicador máximo, voy con la idea del nro random, cambiar de ser necesario
-    public GolpeErratico()
-    {
-        super("Golpe Errático", "La fuerza de este golpe puede llegar hasta el doble de tu poder de ataque.", 0, 7);
-    } //no menciono el multiplicador maximo pq no sé qué es (son las 3 AM dificil pensar)
-    //cada vez que se usa la habilidad (con alLanzarHabilidad), se genera un danio random ese turno de acorde al ataque de la entidad que lo realiza
-    //entonces le puse al atributo de daño de la habilidad "0" porque no se va a usar (puede que no la mejor solución inicializarlo así, pero es la más fácil que se me ocurrió en el momento)
-
-    //metodos
-    public int alLanzarHabilidad(Entidad usuario, Entidad objetivo)
-    {
-        objetivo.recibirDanio(calcularDanio(usuario));
-        return calcularDanio(usuario);
+    public void setDanioFijo(int danioFijo) {
+        this.danioFijo = danioFijo;
     }
 
     @Override
-    public int calcularDanio(Entidad usuario) { //para usar la habilidad se usa esto
-        Random nroRandom = new Random();
-        int ataque = usuario.getAtaque();
-        return nroRandom.nextInt(ataque, (ataque*2)+1);
+    public int usar(Entidad usuario, Entidad objetivo) {
+
+        int danioFijoSigGolpe = danioFijo;
+        int danioARealizarDeHabilidad = this.getDanio() + danioFijo;
+        // pensando que es para algun guerrero o caballero, se le suma el danio del personaje + (el danio de la habilidad y el extra del golpe erratico)
+
+        objetivo.recibirDanio(danioARealizarDeHabilidad);
+        return danioARealizarDeHabilidad;
     }
 
     //toString reformateado (no llamo al super) por el tema de que el daño es 0
@@ -43,8 +43,7 @@ public final class GolpeErratico extends HabilidadDanio {
                 ", descripcion='" + getDescripcion() + '\'' +
                 ", danio=" + " varía según el daño" +
                 ", costoMana=" + getCostoMana() +
-                ", multiplicadorMaximo=" + multiplicadorMaximo +
-                '}';
+                ", danioFijo=" + getDanioFijo();
     }
 
 }

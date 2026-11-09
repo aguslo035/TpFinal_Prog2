@@ -42,7 +42,7 @@ public abstract class Habilidad {
         return obj.getManaActual() >= this.costoMana;
     }
 
-    public abstract int usar(Entidad usuario, Entidad objetivo); //Las hijas deciden como actuaran
+    public abstract int usar(Entidad usuario, Entidad objetivo); //Las hijas deciden como actuaran, es una opcion de diseño, por eso tambien se le pasa quien la utiliza por parametro si llegara a depender de alguna estadistica propia
     //devuelve el danio causado ^^^^^
 
     @Override

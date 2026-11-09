@@ -26,4 +26,13 @@ public final class BolaDeFuego extends HabilidadDanio{
     public int calcularDanio(Entidad usuario) { //el usuario no se usa para calcular el daño
         return getDanio();
     }
+
+    @Override
+    public int usar(Entidad usuario, Entidad objetivo) {
+
+        int danioARealizarDeHabilidad = this.getDanio();
+
+        objetivo.recibirDanio(danioARealizarDeHabilidad);
+        return danioARealizarDeHabilidad;
+    }
 }

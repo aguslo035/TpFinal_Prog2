@@ -2,6 +2,7 @@ package Models.Entidades.JugadoresClases;
 
 import Controller.GestoraDeItems;
 import Enumerator.TipoArma;
+import Interface.IItem;
 import Models.Entidades.Entidad;
 //import Models.Items.Pociones.Pocion;
 //import Models.Items.Pociones.VerificarItem;
@@ -23,6 +24,14 @@ public abstract class Jugador extends Entidad {
         inventario = new GestoraDeItems();
     }
 
+    public Jugador(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int defensa, TipoArma tipoArma, int id) {
+        super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, defensa);
+        this.tipoArma = tipoArma;
+        this.id = id;
+
+        inventario = new GestoraDeItems();
+    } // lo mismo de la id que enemigo, para que no se repita al traerlos de la base de datos
+
     public int getId() {
         return id;
     }
@@ -30,6 +39,22 @@ public abstract class Jugador extends Entidad {
     public TipoArma getTipoArma() {
         return tipoArma;
     }
+
+    public boolean agregarItem(IItem item)
+    {
+        return inventario.agregar(item);
+    }
+
+    public void eliminarItem(int indice)
+    {
+        inventario.eliminar(indice);
+    }
+
+    public void eliminarItem(IItem item)
+    {
+        inventario.eliminar(item);
+    }
+
 
     @Override
     public boolean equals(Object o) {

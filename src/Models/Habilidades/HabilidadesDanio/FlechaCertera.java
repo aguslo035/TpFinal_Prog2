@@ -3,22 +3,21 @@ package Models.Habilidades.HabilidadesDanio;
 import Models.Entidades.Entidad;
 
 public final class FlechaCertera extends HabilidadDanio{
-    //creemoslo nosotros por defecto a las habilidades, para ir poniendola en los personajes/enemigos
-    //mando números random en todas las habilidades (y te dejo esta nota en todas para que no se pierda)
-    public FlechaCertera(String nombre, String descripcion, int danio, int costoMana) {
-        super(nombre, descripcion, danio, costoMana);
-    }
+    private int multiplicadorCritico;
 
-    public FlechaCertera(Entidad usuarioPoseedor) //o recibe un int con el ataque del arquero (que no sé donde invocar habilidades igual todavía), o también como está ahora que recibe como parametro un arquero e invoque a su .getAtaque para el daño
-    {
-        super("Flecha Certera", "Duplica el daño de tu flecha.", usuarioPoseedor.getAtaque()*2, 10);
+    public FlechaCertera(String nombre, String descripcion, int costoMana, int danio) {
+        super(nombre, descripcion, costoMana, danio);
+        multiplicadorCritico = 2;
     }
-
     //metodos
-    public int alLanzarHabilidad (Entidad usuario, Entidad objetivo)
-    {
-        objetivo.recibirDanio(calcularDanio(usuario));
-        return calcularDanio(usuario);
+    @Override
+    public int usar(Entidad usuario, Entidad objetivo) {
+
+        int probCritica = multiplicadorCritico;
+        int danioARealizarDeHabilidad = this.getDanio() * probCritica;
+
+        objetivo.recibirDanio(danioARealizarDeHabilidad);
+        return danioARealizarDeHabilidad;
     }
 
     //no es necesario poner este metodo en esta clase porque la hereda default del padre y ni se usa, pero lo escribo para mostrar que hay re-ver cómo está el método en la clase padre

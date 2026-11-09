@@ -12,9 +12,9 @@ public class GestoraDeItems {
         elementos = new ArrayList<>();
     }
 
-    public void agregar(IItem o)
+    public boolean agregar(IItem o)
     {
-        elementos.add(o);
+        return elementos.add(o);
     }
 
     public IItem obtener(int indice)
@@ -25,6 +25,10 @@ public class GestoraDeItems {
     public void eliminar(int indice)
     {
         elementos.remove(indice);
+    }
+    public void eliminar(IItem item)
+    {
+        elementos.remove(item);
     }
 
     public String listar()
