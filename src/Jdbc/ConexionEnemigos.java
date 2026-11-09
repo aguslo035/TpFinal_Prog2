@@ -1,8 +1,13 @@
 package Jdbc;
 
+import Models.Entidades.Enemigos.Bestia;
+import Models.Entidades.Enemigos.Demonio;
 import Models.Entidades.Enemigos.Enemigo;
+import Models.Entidades.Enemigos.Orco;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConexionEnemigos extends Conexion {
 
@@ -14,7 +19,7 @@ public class ConexionEnemigos extends Conexion {
                 "    vidaMaxima INT NOT NULL,\n" +
                 "    manaMaximo INT NOT NULL,\n" +
                 "    ataque INT NOT NULL,\n" +
-                "    defensa INT NOT NULL\n" +
+                "    escudo INT NOT NULL\n" +
                 ");";
 
         try (Connection conn = Conexion.createConnection() ; // Try with resources cierra solo por el autocloseable
@@ -29,7 +34,7 @@ public class ConexionEnemigos extends Conexion {
 
     public static int importarEnemigo(Enemigo enemigo)
     {
-        String query = "INSERT INTO enemigo (tipo, nombre, vidaMaxima, manaMaximo, ataque, defensa)\n" +
+        String query = "INSERT INTO enemigo (tipo, nombre, vidaMaxima, manaMaximo, ataque, escudo)\n" +
                 "VALUES (?, ?, ?, ?, ?, ?);";
         try (Connection conn = Conexion.createConnection() ;
             PreparedStatement ps = conn.prepareStatement(query)){
@@ -39,10 +44,49 @@ public class ConexionEnemigos extends Conexion {
             ps.setInt(3, enemigo.getVidaMaxima());
             ps.setInt(4, enemigo.getManaMaximo());
             ps.setInt(5, enemigo.getAtaque());
-            ps.setInt(6, enemigo.getDefensa());
+            ps.setInt(6, enemigo.getEscudo());
 
+            return ps.executeUpdate();
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static List<Enemigo> traerEnemigos()
+    {
+        List<Enemigo> enemigosDeBdd = new ArrayList<>();
+        String query = "SELECT * FROM enemigo ORDER BY id;"; // ya ordenadas vienen
+
+        try(Connection conn = Conexion.createConnection() ;
+            PreparedStatement ps = conn.prepareStatement(query) ;
+            ResultSet rs = ps.executeQuery())
+        {
+            while (rs.next())
+            {
+                String claseEnemiga = rs.getString("tipo");
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                int vidaMaxima = rs.getInt("vidaMaxima");
+                int manaMaximo = rs.getInt("manaMaximo");
+                int ataque = rs.getInt("ataque");
+                int escudo = rs.getInt("escudo");
+
+                switch (claseEnemiga) // dependiendo de la clase con la que se guardo se crea un enemigo de esa clase
+                {
+                    case "Orco":
+                        enemigosDeBdd.add(new Orco(id, nombre, vidaMaxima, vidaMaxima, manaMaximo, manaMaximo, ataque, escudo));
+                        break;
+                    case "Bestia":
+                        enemigosDeBdd.add(new Bestia(id, nombre, vidaMaxima, vidaMaxima, manaMaximo, manaMaximo, ataque, escudo));
+                        break;
+                    case "Demonio":
+                        enemigosDeBdd.add(new Demonio(id, nombre, vidaMaxima, vidaMaxima, manaMaximo, manaMaximo, ataque, escudo));
+                        break;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return enemigosDeBdd;
     }
 }
