@@ -49,10 +49,10 @@ public abstract class Habilidad {
     }
 
     //metodo
-    //lo comento pero en vez de estar en habilidadDanio como hice, tal vez convenga esté acá
-//    public void ejecutarHabilidad(Entidad usuario, Entidad enemigo){
+    //este metodo está en habilidadDanio, tal vez convenga esté acá
+    public abstract void ejecutarHabilidad(Entidad usuario, Entidad enemigo);
 //
-//    }
+//
 
     @Override
     public String toString() {

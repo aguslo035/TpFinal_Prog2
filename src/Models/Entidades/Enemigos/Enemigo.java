@@ -5,7 +5,7 @@ import Models.Entidades.Entidad;
 import java.util.Objects;
 
 public abstract class Enemigo extends Entidad {
-    private static int idAux = 0;
+    private static int idAux = 0; //esto se guarda en la misma base de datos de enemigos?
     private final int id;
 
     public Enemigo(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int defensa) {

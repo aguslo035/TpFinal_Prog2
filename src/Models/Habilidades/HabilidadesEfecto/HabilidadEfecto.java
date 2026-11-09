@@ -48,6 +48,11 @@ public abstract class HabilidadEfecto extends Habilidad {
     }
 
     @Override
+    public void ejecutarHabilidad(Entidad usuario, Entidad enemigo) {
+        //puede no convenga esté este metodo acá, por ahora lo puse en en padre "Habilidad" para poder ejecutar habilidades en el arraylist de habilidades en Entidad
+    }
+
+    @Override
     public String toString() {
         return "HabilidadEfecto{" +
                 "turnosDuracion=" + turnosDuracion +
