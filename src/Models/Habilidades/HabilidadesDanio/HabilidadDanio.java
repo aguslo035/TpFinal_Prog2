@@ -16,10 +16,10 @@ public abstract class HabilidadDanio extends Habilidad {
         return getDanio(); //^ explicame y/o cambiar en caso de no ser lo que pensabas
     }
 
-    public abstract void alLanzarHabilidad (Entidad usuario, Entidad objetivo); //cada habilidad decide qué consecuencias produce
+    public abstract int alLanzarHabilidad (Entidad usuario, Entidad objetivo); //cada habilidad decide qué consecuencias produce, devuevle daño
     //lo pongo abstracto para obligar a que se use
     //no todas las habilidades necesitan al usuario para cálculos:
     //lo pongo para que todas las clases tengan un mismo metodo que venga de una clase padre (temporal)
     //y para potencialmente eventualmente devolver texto de relleno (el "(nombre) dispara una flecha certera a (nombre), haciendo (danio) daño!")
-    //que es lógica que veremos después, y puede que no sea acá
+    //que es lógica puede terminemos no poniendo acá
 }

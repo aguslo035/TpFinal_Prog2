@@ -15,12 +15,13 @@ public final class FlechaCertera extends HabilidadDanio{
     }
 
     //metodos
-    public void alLanzarHabilidad (Entidad usuario, Entidad objetivo)
+    public int alLanzarHabilidad (Entidad usuario, Entidad objetivo)
     {
-        objetivo.recibirDanio(getDanio());
+        objetivo.recibirDanio(calcularDanio(usuario));
+        return calcularDanio(usuario);
     }
 
-    //no es necesario poner este metodo en esta clase porque la hereda default del padre y ni se usa, pero lo escribo para mostrar que tal vez o reeplantear como es esta habilidad, o reconsiderar este metodo en "habilidad danio"
+    //no es necesario poner este metodo en esta clase porque la hereda default del padre y ni se usa, pero lo escribo para mostrar que hay re-ver cómo está el método en la clase padre
     //también está el tema de que pide un parametro que no se usa (al igual que mi parametro de usuario arriba de este metodo)
     public int calcularDanio(Entidad usuario)
     {

@@ -22,9 +22,10 @@ public final class GolpeErratico extends HabilidadDanio {
     //entonces le puse al atributo de daño de la habilidad "0" porque no se va a usar (puede que no la mejor solución inicializarlo así, pero es la más fácil que se me ocurrió en el momento)
 
     //metodos
-    public void alLanzarHabilidad(Entidad usuario, Entidad objetivo)
+    public int alLanzarHabilidad(Entidad usuario, Entidad objetivo)
     {
         objetivo.recibirDanio(calcularDanio(usuario));
+        return calcularDanio(usuario);
     }
 
     @Override

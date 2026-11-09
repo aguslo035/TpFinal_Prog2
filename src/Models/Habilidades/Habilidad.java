@@ -50,7 +50,7 @@ public abstract class Habilidad {
 
     //metodo
     //este metodo está en habilidadDanio, tal vez convenga esté acá
-    public abstract void ejecutarHabilidad(Entidad usuario, Entidad enemigo);
+    public abstract int alLanzarHabilidad(Entidad usuario, Entidad enemigo); //devuelve un valor int que puede resultar útil
 //
 //
 

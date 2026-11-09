@@ -16,9 +16,10 @@ public final class BolaDeFuego extends HabilidadDanio{
     }
 
     //metodos
-    public void alLanzarHabilidad(Entidad usuario, Entidad objetivo) //es lo que ocurre al lanzar la habilidad
+    public int alLanzarHabilidad(Entidad usuario, Entidad objetivo) //es lo que ocurre al lanzar la habilidad
     {
         objetivo.recibirDanio(calcularDanio(usuario)); //le mando el usuario pero no hago nada con él
+        return calcularDanio(usuario);
     }
 
     @Override
