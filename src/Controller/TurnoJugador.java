@@ -1,18 +1,17 @@
 package Controller;
 
 import Models.Entidades.Enemigos.Enemigo;
-import Models.Entidades.Entidad;
 import Models.Entidades.JugadoresClases.Jugador;
 
 import java.util.Scanner;
 
-public class MenuCombate {
+public class TurnoJugador {
 
     //scanner
     Scanner sc;
 
     //constructor
-    public MenuCombate() {
+    public TurnoJugador() {
         sc = new Scanner(System.in);
     }
 
