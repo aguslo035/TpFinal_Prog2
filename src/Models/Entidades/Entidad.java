@@ -118,7 +118,7 @@ public abstract class Entidad implements IHabilidad {
 
     @Override
     public int usarHabilidad(int indice, Entidad objetivo) { //por qué devuelve int?
-        habilidades.get(indice).ejecutarHabilidad(this, objetivo); //acá va un try catch, con excepcion de que se eligio un indice nada que ver. Ya existe como exepcion
+        habilidades.get(indice).alLanzarHabilidad(this, objetivo); //acá va un try catch, con excepcion de que se eligio un indice nada que ver. Ya existe como exepcion
         //devuelve daño?
     }
 

@@ -25,7 +25,7 @@ public final class PotenciarAtaque extends HabilidadEfecto{
     }
 
     @Override
-    public void ejecutarHabilidad(Entidad usuario, Entidad enemigo) {
+    public int alLanzarHabilidad(Entidad usuario, Entidad enemigo) {
         //sé que hace pero a la vez no sé como representarlo
         //hasta puede que no convenga esté este metodo acá, por ahora lo puse en el padre "Habilidad" para poder ejecutar habilidades en el arraylist de habilidades en Entidad
     }

@@ -48,7 +48,7 @@ public abstract class HabilidadEfecto extends Habilidad {
     }
 
     @Override
-    public void ejecutarHabilidad(Entidad usuario, Entidad enemigo) {
+    public int alLanzarHabilidad(Entidad usuario, Entidad enemigo) {
         //puede no convenga esté este metodo acá, por ahora lo puse en en padre "Habilidad" para poder ejecutar habilidades en el arraylist de habilidades en Entidad
     }
 
