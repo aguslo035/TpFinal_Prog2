@@ -14,7 +14,7 @@ public final class RoboDeVida extends HabilidadDanio{
 
     public RoboDeVida() {
         super("Robo de Vida", "Hace daño y recupera la misma cantidad de vida.", 5, 10);
-        this.curacionRecibida = this.getDanio();
+        this.curacionRecibida = this.getDanio(); //recupera el daño que hace
     }
 
     //getters y setters
@@ -27,10 +27,10 @@ public final class RoboDeVida extends HabilidadDanio{
     }
 
     //metodos
-    public void ejecutarHabilidad(Entidad usuario, Entidad enemigo) //me pareció un mejor nombre,
+    public void alLanzarHabilidad(Entidad usuario, Entidad objetivo)
     {
-        enemigo.recibirDanio(getDanio());
-        usuario.curar(getCuracionRecibida());
+        objetivo.recibirDanio(getDanio());
+        usuario.curar(getCuracionRecibida()); //exception si tiene vida máxima
     }
 
     //toString

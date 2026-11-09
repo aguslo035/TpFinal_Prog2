@@ -48,6 +48,12 @@ public abstract class Habilidad {
         this.costoMana = costoMana;
     }
 
+    //metodo
+    //lo comento pero en vez de estar en habilidadDanio como hice, tal vez convenga esté acá
+//    public void ejecutarHabilidad(Entidad usuario, Entidad enemigo){
+//
+//    }
+
     @Override
     public String toString() {
         return "Habilidad: " +

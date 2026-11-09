@@ -18,19 +18,13 @@ public final class GolpeErratico extends HabilidadDanio {
     {
         super("Golpe Errático", "La fuerza de este golpe puede llegar hasta el doble de tu poder de ataque.", 0, 7);
     } //no menciono el multiplicador maximo pq no sé qué es (son las 3 AM dificil pensar)
-    //la forma de invocar esta habilidad es usar el metodo de calcular danio de debajo, que genera un danio random ese turno de acorde al ataque de la entidad
-    //entonces le puse al atributo de daño "0" porque no se va a usar (puede que no la mejor solución inicializarlo así, pero es la más fácil que se me ocurrió en el momento)
+    //cada vez que se usa la habilidad (con alLanzarHabilidad), se genera un danio random ese turno de acorde al ataque de la entidad que lo realiza
+    //entonces le puse al atributo de daño de la habilidad "0" porque no se va a usar (puede que no la mejor solución inicializarlo así, pero es la más fácil que se me ocurrió en el momento)
 
-    //toString reformateado (no llamo al super) por el tema de que el daño es 0
-    @Override
-    public String toString() {
-        return "Habilidad: " +
-                "nombre='" + getNombre() + '\'' +
-                ", descripcion='" + getDescripcion() + '\'' +
-                ", danio=" + " varía" +
-                ", costoMana=" + getCostoMana() +
-                ", multiplicadorMaximo=" + multiplicadorMaximo +
-                '}';
+    //metodos
+    public void alLanzarHabilidad(Entidad usuario, Entidad objetivo)
+    {
+        objetivo.recibirDanio(calcularDanio(usuario));
     }
 
     @Override
@@ -39,4 +33,17 @@ public final class GolpeErratico extends HabilidadDanio {
         int ataque = usuario.getAtaque();
         return nroRandom.nextInt(ataque, (ataque*2)+1);
     }
+
+    //toString reformateado (no llamo al super) por el tema de que el daño es 0
+    @Override
+    public String toString() {
+        return "Habilidad: " +
+                "nombre='" + getNombre() + '\'' +
+                ", descripcion='" + getDescripcion() + '\'' +
+                ", danio=" + " varía según el daño" +
+                ", costoMana=" + getCostoMana() +
+                ", multiplicadorMaximo=" + multiplicadorMaximo +
+                '}';
+    }
+
 }
