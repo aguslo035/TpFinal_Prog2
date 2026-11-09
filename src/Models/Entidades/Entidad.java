@@ -14,12 +14,12 @@ public abstract class Entidad implements IHabilidad {
     private int manaActual;
     private int manaMaximo;
     private int ataque;
-    private int defensa;
+    private int escudo;
     private List<Habilidad> habilidades;
 
     public Entidad(String nombre, int vidaActual, int vidaMaxima,
                    int manaActual, int manaMaximo, int ataque,
-                   int defensa) {
+                   int escudo) {
 
         this.nombre = nombre;
         this.vidaActual = vidaActual; //hay que poner checks de que la vida y maná actual no pueda superar a la maxima acá. Por ahora los pongo en los setters
@@ -27,7 +27,7 @@ public abstract class Entidad implements IHabilidad {
         this.manaActual = manaActual;
         this.manaMaximo = manaMaximo;
         this.ataque = ataque;
-        this.defensa = defensa;
+        this.escudo = escudo;
         habilidades = new ArrayList<>(); // Las habilidades son especificas de cada clase/enemigo. Se llena la lista con sus respectivas habildades en sus constructores
     }
 
@@ -85,12 +85,12 @@ public abstract class Entidad implements IHabilidad {
         this.ataque = ataque;
     }
 
-    public int getDefensa() {
-        return defensa;
+    public int getEscudo() {
+        return escudo;
     }
 
-    public void setDefensa(int defensa) {
-        this.defensa = defensa;
+    public void setEscudo(int escudo) {
+        this.escudo = escudo;
     }
 
     @Override
@@ -122,15 +122,15 @@ public abstract class Entidad implements IHabilidad {
 
     public int atacar(Entidad objetivo)
     {
-        int danioARealizar = this.ataque - objetivo.getDefensa();
+        int danioARealizar = this.ataque - objetivo.getEscudo();
         if(danioARealizar < 0) {
             objetivo.recibirDanio(0); //es un ataque normal, el objetivo pierde daño acorde a la cantidad de ataque de esta entidad
             //^ nos podemos ahorrar esta linea
-            objetivo.setDefensa(danioARealizar * (-1));
+            objetivo.setEscudo(danioARealizar * (-1));
             return 0;
         }
         objetivo.recibirDanio(danioARealizar);
-        objetivo.setDefensa(0); //si la defensa ya está en 0 se continúa setteando en 0? puede ser preferible un if preguntando si defensa 0 para evitar eso
+        objetivo.setEscudo(0); //si el escudo ya está en 0 se continúa setteando en 0? puede ser preferible un if preguntando si escudo 0 para evitar eso
         return danioARealizar;
     }
 
@@ -187,7 +187,7 @@ public abstract class Entidad implements IHabilidad {
                 ", manaActual=" + manaActual +
                 ", manaMaximo=" + manaMaximo +
                 ", ataque=" + ataque +
-                ", defensa=" + defensa +
+                ", escudo=" + escudo +
                 '}';
     }
 }
