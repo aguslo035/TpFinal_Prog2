@@ -11,6 +11,11 @@ public final class PocionMana extends Pocion{
 
     //metodos
     @Override
+    public void consumir(Jugador jugador) {
+        jugador.curar(getCantidad()); //después se elimina del inventario, no sé si ocurre en menuCombate o gestor inventario
+    }
+
+    @Override
     public String verEstadisticasItem() {
         return super.toString() + " MP+";
     }

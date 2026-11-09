@@ -1,7 +1,14 @@
 package Models.Habilidades.HabilidadesDanio;
 
 public final class FlechaCertera extends HabilidadDanio{
+    //creemoslo nosotros por defecto a las habilidades, para ir poniendola en los personajes/enemigos
+    //mando números random en todas las habilidades (y te dejo esta nota en todas para que no se pierda)
     public FlechaCertera(String nombre, String descripcion, int danio, int costoMana) {
         super(nombre, descripcion, danio, costoMana);
+    }
+
+    public FlechaCertera()
+    {
+        super("Flecha Certera", "Golpea duro")
     }
 }

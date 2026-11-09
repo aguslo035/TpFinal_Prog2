@@ -3,8 +3,8 @@ package Models.Entidades.JugadoresClases;
 import Controller.GestoraDeItems;
 import Enumerator.TipoArma;
 import Models.Entidades.Entidad;
-import Models.Items.Pociones.Pocion;
-import Models.Items.Pociones.VerificarItem;
+//import Models.Items.Pociones.Pocion;
+//import Models.Items.Pociones.VerificarItem;
 
 import java.util.Objects;
 
@@ -51,11 +51,13 @@ public abstract class Jugador extends Entidad {
                 '}';
     }
 
-    public void usarItem(int indice)
-    {
-        Pocion p = Pocion.esPocion(inventario.obtener(1));
-        if(p == null)
-            //exception
-            
-    }
+    //tomo lo de wsp como que lo revierta
+    //no quiero modificar este metodo con instance of/ifs cada vez que se agrega un tipo de objeto
+//    public void usarItem(int indice)
+//    {
+//        Pocion p = Pocion.esPocion(inventario.obtener(1));
+//        if(p == null)
+//            //exception
+//
+//    }
 }
