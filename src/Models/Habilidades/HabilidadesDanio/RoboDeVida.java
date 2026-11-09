@@ -27,11 +27,16 @@ public final class RoboDeVida extends HabilidadDanio{
     }
 
     //metodos
-    public int alLanzarHabilidad(Entidad usuario, Entidad objetivo)
-    {
-        objetivo.recibirDanio(getDanio());
-        usuario.curar(getCuracionRecibida()); //exception si tiene vida máxima
-        return getDanio();
+
+
+    @Override
+    public int usar(Entidad usuario, Entidad objetivo) {
+        int danioARealizarDeHabilidad = this.getDanio();
+
+        objetivo.recibirDanio(danioARealizarDeHabilidad);
+        usuario.curar(danioARealizarDeHabilidad);
+        
+        return danioARealizarDeHabilidad;
     }
 
     //toString
