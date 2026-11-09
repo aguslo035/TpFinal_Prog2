@@ -3,6 +3,8 @@ package Models.Entidades.JugadoresClases;
 import Controller.GestoraDeItems;
 import Enumerator.TipoArma;
 import Models.Entidades.Entidad;
+import Models.Items.Pociones.Pocion;
+import Models.Items.Pociones.VerificarItem;
 
 import java.util.Objects;
 
@@ -51,6 +53,9 @@ public abstract class Jugador extends Entidad {
 
     public void usarItem(int indice)
     {
-
+        Pocion p = Pocion.esPocion(inventario.obtener(1));
+        if(p == null)
+            //exception
+            
     }
 }

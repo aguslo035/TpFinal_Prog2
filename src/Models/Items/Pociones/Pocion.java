@@ -36,4 +36,12 @@ public abstract class Pocion implements IItem {
     public String toString() {
         return nombre + " -> " + cantidad;
     }
+
+    public static Pocion esPocion(IItem o)
+    {
+        if(o instanceof Pocion)
+            return (Pocion) o;
+        return null;
+    }
+
 }
