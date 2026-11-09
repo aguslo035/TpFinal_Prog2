@@ -88,27 +88,9 @@ public abstract class Entidad implements IHabilidad {
     }
 
     @Override
-    public String toString() {
-        return "Entidad{" +
-                "nombre='" + nombre + '\'' +
-                ", vidaActual=" + vidaActual +
-                ", vidaMaxima=" + vidaMaxima +
-                ", manaActual=" + manaActual +
-                ", manaMaximo=" + manaMaximo +
-                ", ataque=" + ataque +
-                ", defensa=" + defensa +
-                '}';
-    }
-
-    @Override
     public int usarHabilidad(int indice, Entidad objetivo) {
         Habilidad habilidadAUsar = habilidades.get(indice);
-
-        int danioACausar = habilidadAUsar.getDanio();
-
-        objetivo.setVidaActual(objetivo.getVidaActual() - danioACausar);
-
-        return danioACausar;
+        return habilidadAUsar.usar(this, objetivo);
     }
 
     @Override
@@ -119,25 +101,30 @@ public abstract class Entidad implements IHabilidad {
 
         for (Habilidad h : habilidades)
         {
-            sb.append("#"+ i + " - "); //quedaría ej "#0 - "
+            sb.append("#"+ (i+1) + " - "); //quedaría ej "#1 - "
             sb.append(h.toString())
                     .append("\n"); //y esta magia pq esta así el .append y no da error
             i++;
         }
 
         return sb.toString();
-
     }
 
-    @Override
-    public boolean puedeUsarse(Entidad usuario) { //si esto es pregunta para si una habilidad puede usarse, puede convenga esté en la clase Habilidad. Hasta recibe una entidad cuando no es necesario en su propia clase
-        return false;
+    public boolean agregarHabilidad(Habilidad habilidad) {
+        return habilidades.add(habilidad);
     }
 
     public int atacar(Entidad objetivo) //no sé qué quiere que devuelva, el daño ocasionado?
     {
-        objetivo.recibirDanio(this.getAtaque()); //es un ataque normal, el objetivo pierde daño acorde a la cantidad de ataque de esta entidad
-        return this.getAtaque();
+        int danioARealizar = this.ataque - objetivo.getDefensa();
+        if(danioARealizar < 0) {
+            objetivo.recibirDanio(0); //es un ataque normal, el objetivo pierde daño acorde a la cantidad de ataque de esta entidad
+            objetivo.setDefensa(danioARealizar * (-1));
+            return 0;
+        }
+        objetivo.recibirDanio(danioARealizar);
+        objetivo.setDefensa(0);
+        return danioARealizar;
     }
 
     public void recibirDanio(int danio)
@@ -175,5 +162,18 @@ public abstract class Entidad implements IHabilidad {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Entidad{" +
+                "nombre='" + nombre + '\'' +
+                ", vidaActual=" + vidaActual +
+                ", vidaMaxima=" + vidaMaxima +
+                ", manaActual=" + manaActual +
+                ", manaMaximo=" + manaMaximo +
+                ", ataque=" + ataque +
+                ", defensa=" + defensa +
+                '}';
     }
 }
