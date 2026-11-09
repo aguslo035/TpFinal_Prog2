@@ -30,11 +30,14 @@ public class GestoraDeItems {
     public String listar()
     {
         StringBuilder sb = new StringBuilder();
+        int i = 0; //agrego un contador para el listado (después se decide mediante índice)
 
         for (IItem e : elementos)
         {
+            sb.append("#"+ i + " - "); //quedaría ej "#0 - Poción de Vida -> 10 HP+"
             sb.append(e.toString())
-                    .append("\n");
+                    .append("\n"); //y esta magia pq esta así el .append y no da error
+            i++;
         }
 
         return sb.toString();

@@ -3,7 +3,7 @@ import java.sql.*;
 
 public abstract class Conexion {
 
-    private static final String url = "";
+    private static final String url = "67";
     private static final String user = "";
     private static final String password = "";
 

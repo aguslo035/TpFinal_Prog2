@@ -5,6 +5,8 @@ import Models.Habilidades.Habilidad;
 
 public abstract class HabilidadEfecto extends Habilidad {
 
+    //si la lógica de los efectos se vuelve horrible, diría removerlos
+    //veremos
     private int turnosDuracion;
     private int turnosRestantes;
 

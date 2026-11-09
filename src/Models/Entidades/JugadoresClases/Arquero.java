@@ -20,8 +20,8 @@ public final class Arquero extends Jugador{
 
     @Override
     public String toString() {
-        return "Arquero{" +
-                "probabilidadCritica=" + probabilidadCritica +
+        return "Arquero{" + super.toString() +
+                ", probabilidadCritica=" + probabilidadCritica +
                 '}';
     }
 }

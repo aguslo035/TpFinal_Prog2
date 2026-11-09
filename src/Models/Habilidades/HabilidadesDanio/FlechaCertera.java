@@ -7,8 +7,8 @@ public final class FlechaCertera extends HabilidadDanio{
         super(nombre, descripcion, danio, costoMana);
     }
 
-    public FlechaCertera()
+    public FlechaCertera(int danio) //o recibe el get.ataque del arquero (que no sé donde invocar habilidades igual todavía), o también podemos hacer que se reciba como parametro un arquero e invoque a su .getAtaque en el input del daño
     {
-        super("Flecha Certera", "Golpea duro")
+        super("Flecha Certera", "Duplica el danio de tu flecha.", danio*2, 7);
     }
 }

@@ -42,13 +42,13 @@ public abstract class Jugador extends Entidad {
         return Objects.hashCode(id);
     }
 
+    //no queres imprimir más datos de entidad? ej, ataque, vida, defensa, etc?
+    //por ahora saco el jugador{ para llamar el toString en los hijos y quede lindo (sino queda Guerrero{Jugador{(datos)}} )
     @Override
     public String toString() {
-        return "Jugador{" +
-                "id=" + id +
+        return "id=" + id +
                 ", tipoArma=" + tipoArma +
-                ", inventario=" + inventario +
-                '}';
+                ", inventario=" + inventario; //acá imprimimos todo el array del inventario?
     }
 
     //tomo lo de wsp como que lo revierta

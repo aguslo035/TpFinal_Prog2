@@ -5,6 +5,7 @@ import Models.Entidades.Entidad;
 public abstract class Habilidad {
     private String nombre;
     private String descripcion;
+    //no entendí pq pasaste daño aca
     private int danio;
     private int costoMana;
 
@@ -49,11 +50,10 @@ public abstract class Habilidad {
 
     @Override
     public String toString() {
-        return "Habilidad{" +
+        return "Habilidad: " +
                 "nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", danio=" + danio +
-                ", costoMana=" + costoMana +
-                '}';
+                ", costoMana=" + costoMana; //le saqué la "cola" (}) porque puede haber habilidades con más datos
     }
 }
