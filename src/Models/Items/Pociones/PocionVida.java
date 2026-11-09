@@ -1,6 +1,8 @@
-package Models;
+package Models.Items.Pociones;
 
-public class PocionVida extends Pocion{
+import Models.Entidades.JugadoresClases.Jugador;
+
+public final class PocionVida extends Pocion{
 
     //constructor
     public PocionVida() {
@@ -12,11 +14,4 @@ public class PocionVida extends Pocion{
     public String verEstadisticasItem() {
         return super.toString() + " HP+";
     }
-
-    @Override
-    public void usar(Jugador jugador) {
-        jugador.curar(getCantidad());
-    }
-
-
 }

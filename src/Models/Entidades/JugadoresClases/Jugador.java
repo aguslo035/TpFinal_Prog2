@@ -1,4 +1,4 @@
-package Models.JugadoresClases;
+package Models.Entidades.JugadoresClases;
 
 import Controller.GestoraDeItems;
 import Enumerator.TipoArma;

@@ -1,10 +1,7 @@
 package Interface;
 
-import Models.JugadoresClases.Jugador;
+import Models.Entidades.JugadoresClases.Jugador;
 
 public interface IItem {
-
-    void usar (Jugador jugador);
-
     String verEstadisticasItem();
 }

@@ -1,4 +1,4 @@
-package Models;
+package Models.Items.Pociones;
 
 import Interface.IItem;
 
@@ -34,6 +34,6 @@ public abstract class Pocion implements IItem {
     //toString
     @Override
     public String toString() {
-        return nombre " -> " cantidad;
+        return nombre + " -> " + cantidad;
     }
 }

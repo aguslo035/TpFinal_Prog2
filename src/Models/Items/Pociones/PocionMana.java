@@ -1,6 +1,8 @@
-package Models;
+package Models.Items.Pociones;
 
-public class PocionMana extends Pocion{
+import Models.Entidades.JugadoresClases.Jugador;
+
+public final class PocionMana extends Pocion{
 
     //constructor
     public PocionMana() {
@@ -11,10 +13,5 @@ public class PocionMana extends Pocion{
     @Override
     public String verEstadisticasItem() {
         return super.toString() + " MP+";
-    }
-
-    @Override
-    public void usar(Jugador jugador) {
-        jugador.recuperarMana(getCantidad());
     }
 }
