@@ -23,4 +23,12 @@ public abstract class HabilidadDanio extends Habilidad {
         this.danio = danio;
     }
 
+    @Override
+    public int usar(Entidad usuario, Entidad objetivo) {
+
+        int danioARealizarDeHabilidad = this.getDanio();
+
+        objetivo.recibirDanio(danioARealizarDeHabilidad);
+        return danioARealizarDeHabilidad;
+    }
 }

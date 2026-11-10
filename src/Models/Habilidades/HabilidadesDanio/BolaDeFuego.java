@@ -14,14 +14,4 @@ public final class BolaDeFuego extends HabilidadDanio{
     {
         super("Bola de Fuego", "Lanza una bola de llamas.", 10, 10);
     }
-
-    //metodos
-    @Override
-    public int usar(Entidad usuario, Entidad objetivo) {
-
-        int danioARealizarDeHabilidad = this.getDanio();
-
-        objetivo.recibirDanio(danioARealizarDeHabilidad);
-        return danioARealizarDeHabilidad;
-    }
 }
