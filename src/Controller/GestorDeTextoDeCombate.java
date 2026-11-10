@@ -2,6 +2,7 @@ package Controller;
 
 import Models.Entidades.Entidad;
 
+//en realidad no es un "gestor" de colección, pero no sé cómo ponerlo sino
 public abstract class GestorDeTextoDeCombate { //es para el llamado "flavor text". Va a usarse en TurnoJugador y TurnoEnemigo
 
     public static String ataque(Entidad origen, Entidad objetivo, int danio)
