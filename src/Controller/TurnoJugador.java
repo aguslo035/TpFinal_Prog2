@@ -3,6 +3,7 @@ package Controller;
 import Models.Entidades.Enemigos.Enemigo;
 import Models.Entidades.JugadoresClases.Jugador;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class TurnoJugador {
@@ -18,14 +19,16 @@ public class TurnoJugador {
     //métodos
     public String menuAtaque(Jugador jugador, Enemigo enemigo) //este metodo lo llaman en el turno usuario, así que ya se sabe qué entidad es cada uno (por eso especifico Jugador y Enemigo)
     {
-        boolean flag = false;
-        int decision = 0;
+        boolean continuar = false; //solo cambia al finalizar una acción que termina el turno
+        int decision = 0; //para el menú
+        int aux; //recibe un número para mostrar después (ej, daño ocasionado, cuánto se curó, etc)
+        StringBuilder accion = new StringBuilder(jugador.getNombre());
 
         System.out.println(estadoPelea(jugador, enemigo)); //Muestra HP/MP/Escudo restante de los 2
 
         System.out.println(mostrarOpciones()); //le da a elegir al usuario
 
-        while (!flag)
+        while (!continuar)
         {
             sc.nextInt(decision);
             sc.nextLine();
@@ -33,11 +36,14 @@ public class TurnoJugador {
             switch (decision)
             {
                 case 0:
-                    jugador.atacar(enemigo);
+                    int aux = jugador.atacar(enemigo);
+                    continuar = true;
+                    accion.append(" ataca a " + enemigo.getNombre() + "por "+ aux +" de daño!");
                 case 1:
                     menuHabilidad(jugador, enemigo);
                 case 2:
-                    jugador.obtenerInventario();
+
+                    //llama a un metodo de menu de items
                 case 3:
 
 
@@ -45,6 +51,8 @@ public class TurnoJugador {
             }
         }
 
+
+        return accion;
         //va a terminar devolviendo un flavor text: "X ataca a Y por 123 de daño!"
     }
 

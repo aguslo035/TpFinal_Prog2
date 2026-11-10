@@ -125,7 +125,7 @@ public abstract class Entidad implements IHabilidad {
         return habilidades.add(habilidad);
     }
 
-    public int atacar(Entidad objetivo)
+    public int atacar(Entidad objetivo) //Si me acuerdo después de terminar MenuCombate te consulto, pero esta lógica de qué ocurre en el enemigo si hay X cantidad de daño debería estar en recibirDanio. Que cada entidad que reciba un daño se encarge de gestionar su propio escudo y vida, que no se encarge de eso la persona que ataca (para eso está recibirDaño)
     {
         int danioARealizar = this.ataque - objetivo.getEscudo();
         if(danioARealizar < 0) {

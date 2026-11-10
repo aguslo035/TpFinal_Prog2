@@ -1,0 +1,57 @@
+package Controller;
+
+import Models.Entidades.Entidad;
+
+public abstract class GestorDeTextoDeCombate { //es para el llamado "flavor text". Va a usarse en TurnoJugador y TurnoEnemigo
+
+    public static String ataque(Entidad origen, Entidad objetivo, int danio)
+    {
+        return origen.getNombre() + " ataca a "+ objetivo.getNombre() + " por "+ danio + " de daño!\n";
+    }
+
+    public static String ataqueHabilidad (Entidad origen, Entidad objetivo, String nombreHabilidad, int danio)
+    {
+        return origen.getNombre() + " utiliza su habilidad "+ nombreHabilidad + " contra "+ objetivo.getNombre() + " y ocasiona "+ danio + " de daño!";
+    }
+
+    public static String ataqueHabilidadConCura(Entidad origen, Entidad objetivo, String nombreHabilidad, int danio, int cura)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append(ataqueHabilidad(origen, objetivo, nombreHabilidad, danio));
+        sb.append(origen.getNombre() + " se cura por "+ cura + " de vida!\n");
+
+        return sb.toString();
+    }
+
+    public static String utilizacionItem (Entidad origen, String nombreItem)
+    {
+        return origen.getNombre() + " utiliza el item "+ nombreItem + "!\n";
+    }
+
+    private static String utilizarItemDeRecuperar(Entidad origen, int cantidadDeRecuperacion) //es por si algún día agregamos otros tipos de recuperación estadística (ej escudo u nuevos atributos que decidamos implementar). Sino se termina repitiendo este mismo texto mucho.
+    {
+        return origen.getNombre() + " ha recuperado "+ cantidadDeRecuperacion;
+    }
+
+    public static String utilizacionItemDeRecuperarHP (Entidad origen, String nombreItem, int cantCura)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append(utilizacionItem(origen, nombreItem));
+        sb.append(utilizarItemDeRecuperar(origen, cantCura) + " de vida!\n");
+
+        return sb.toString();
+    }
+
+    public static String utilizacionItemDeRecuperarMP (Entidad origen, String nombreItem, int cantCura)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append(utilizacionItem(origen, nombreItem));
+        sb.append(utilizarItemDeRecuperar(origen, cantCura)+ " de MP!\n");
+
+        return sb.toString();
+    }
+
+
+
+
+}
