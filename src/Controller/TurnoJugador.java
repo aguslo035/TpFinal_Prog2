@@ -16,21 +16,48 @@ public class TurnoJugador {
     }
 
     //métodos
-    public int menuAtaque(Jugador jugador, Enemigo enemigo) //este metodo lo llaman en el turno usuario, así que ya se sabe qué entidad es cada uno (por eso especifico Jugador y Enemigo)
+    public String menuAtaque(Jugador jugador, Enemigo enemigo) //este metodo lo llaman en el turno usuario, así que ya se sabe qué entidad es cada uno (por eso especifico Jugador y Enemigo)
     {
+        boolean flag = false;
         int decision = 0;
 
-//        System.out.println(estadoPelea(jugador, enemigo)); esto conviene esté en BatallaPorTurnos
+        System.out.println(estadoPelea(jugador, enemigo)); //Muestra HP/MP/Escudo restante de los 2
 
-        System.out.println(mostrarOpciones());
+        System.out.println(mostrarOpciones()); //le da a elegir al usuario
 
-        sc.nextInt(decision);
-        sc.nextLine();
+        while (!flag)
+        {
+            sc.nextInt(decision);
+            sc.nextLine();
 
-        return decision;
+            switch (decision)
+            {
+                case 0:
+                    jugador.atacar(enemigo);
+                case 1:
+                    menuHabilidad(jugador, enemigo);
+                case 2:
+                    jugador.obtenerInventario();
+                case 3:
 
 
+
+            }
+        }
+
+        //va a terminar devolviendo un flavor text: "X ataca a Y por 123 de daño!"
     }
+
+    public int menuHabilidad(Jugador jugador, Enemigo enemigo)
+    {
+        System.out.println("===Habilidades disponibles===\n\n");
+        int i = jugador.contarHabilidades();
+        System.out.println();
+        jugador.verHabilidades();
+
+        System.out.println("\n");
+    }
+
 
     //este conviene esté en BatallaPorTurnos
     public String estadoPelea(Jugador jugador, Enemigo enemigo) //muestra la vida, MP y efectos actuales de ambos

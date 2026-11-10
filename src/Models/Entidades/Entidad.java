@@ -99,6 +99,11 @@ public abstract class Entidad implements IHabilidad {
         return habilidadAUsar.usar(this, objetivo);
     }
 
+    public int contarHabilidades() //lo necesito para un método en turnoJugador
+    {
+        return habilidades.size();
+    }
+
     @Override
     public String verHabilidades() {
 
@@ -107,7 +112,7 @@ public abstract class Entidad implements IHabilidad {
 
         for (Habilidad h : habilidades)
         {
-            sb.append("#"+ (i+1) + " - "); //quedaría ej "#1 - "
+            sb.append("#"+ i + " - "); //quedaría ej "#0 - " -> veo que le agregaste +1 para estilización, voy a obligarlo a elegir un listado empezando de 0 para simplificar.
             sb.append(h.toString())
                     .append("\n"); //y esta magia pq esta así el .append y no da error
             i++;
