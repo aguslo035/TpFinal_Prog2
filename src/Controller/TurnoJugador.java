@@ -1,9 +1,8 @@
 package Controller;
 
-import Models.ConstructorDeTextoParaTurnos.GestorDeTextoDeCombate;
 import Models.Entidades.Enemigos.Enemigo;
 import Models.Entidades.JugadoresClases.Jugador;
-
+import Models.*;
 import java.util.Scanner;
 
 public class TurnoJugador {
