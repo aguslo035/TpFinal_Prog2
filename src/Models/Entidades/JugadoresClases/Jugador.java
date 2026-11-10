@@ -4,6 +4,7 @@ import Controller.GestoraDeItems;
 import Enumerator.TipoArma;
 import Interface.IItem;
 import Models.Entidades.Entidad;
+import Models.Items.Pociones.Pocion;
 //import Models.Items.Pociones.Pocion;
 //import Models.Items.Pociones.VerificarItem;
 
@@ -13,7 +14,7 @@ public abstract class Jugador extends Entidad {
     private static int idAux = 0;
     private final int id;
     private final TipoArma tipoArma;
-    private GestoraDeItems inventario;
+    private GestoraDeItems<IItem> inventario;
 
     public Jugador(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma) {
         super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo);
@@ -21,7 +22,7 @@ public abstract class Jugador extends Entidad {
         id = idAux;
         idAux++;
 
-        inventario = new GestoraDeItems();
+        inventario = new GestoraDeItems<>(); // con <> utiliza el tipo de dato utilizado en su referencia
     }
 
     public Jugador(int id, String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma) {

@@ -36,23 +36,22 @@ public class TurnoJugador {
     public String estadoPelea(Jugador jugador, Enemigo enemigo) //muestra la vida, MP y efectos actuales de ambos
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("===");
-        sb.append(jugador.mostrarEstado());
-        sb.append("===");
-        sb.append(enemigo.mostrarEstado());
-        sb.append("\n\n");
-
+        sb.append("===")
+                .append(jugador.mostrarEstado())
+                .append("===")
+                .append(enemigo.mostrarEstado())
+                .append("\n\n");
         return sb.toString();
     }
 
     public String mostrarOpciones()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("==OPCIONES==\n\n");
-        sb.append("0. Atacar.\n");
-        sb.append("1. Habilidades.\n");
-        sb.append("2. Inventario\n");
-        sb.append("3. Inspeccionar Enemigo.\n");
+        sb.append("==OPCIONES==\n\n")
+                .append("0. Atacar.\n")
+                .append("1. Habilidades.\n")
+                .append("2. Inventario\n")
+                .append("3. Inspeccionar Enemigo.\n");
 
         return sb.toString();
     }
