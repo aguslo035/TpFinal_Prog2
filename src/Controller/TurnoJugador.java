@@ -52,7 +52,7 @@ public class TurnoJugador {
         }
 
 
-        return accion;
+        return accion.toString();
         //va a terminar devolviendo un flavor text: "X ataca a Y por 123 de daño!"
     }
 

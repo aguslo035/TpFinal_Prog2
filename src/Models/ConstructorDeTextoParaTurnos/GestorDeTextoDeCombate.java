@@ -1,4 +1,4 @@
-package Controller;
+package Models.ConstructorDeTextoParaTurnos;
 
 import Models.Entidades.Entidad;
 
@@ -51,8 +51,4 @@ public abstract class GestorDeTextoDeCombate { //es para el llamado "flavor text
 
         return sb.toString();
     }
-
-
-
-
 }
