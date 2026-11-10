@@ -22,7 +22,7 @@ public class ConexionClases extends Conexion {
                 "    ataque INT NOT NULL,\n" +
                 "    escudo INT NOT NULL,\n" +
                 "    tipoArma VARCHAR(20) NOT NULL,\n" +
-                "    probabilidadCritica DOUBLE NOT NULL\n" +
+                "    probabilidadCritica DOUBLE NOT NULL\n" + // todos tendran una prob critica de 0 en vez de poner que se permitan null
                 ");";
 
         try (Connection conn = Conexion.createConnection();
