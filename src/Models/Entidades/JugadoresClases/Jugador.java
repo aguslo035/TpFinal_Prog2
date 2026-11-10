@@ -56,6 +56,11 @@ public abstract class Jugador extends Entidad {
         inventario.eliminar(item);
     }
 
+    public String obtenerInventario()
+    {
+        return inventario.listar();
+    }
+
 
     @Override
     public boolean equals(Object o) {
