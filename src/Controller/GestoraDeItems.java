@@ -25,6 +25,11 @@ public class GestoraDeItems<T extends IItem> {
         return elementos.get(indice);
     }
 
+    public int contarElementos ()
+    {
+        return elementos.size();
+    }
+
     public void eliminar(int indice)
     {
         elementos.remove(indice);

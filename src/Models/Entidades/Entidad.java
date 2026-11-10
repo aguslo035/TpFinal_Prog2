@@ -114,11 +114,16 @@ public abstract class Entidad implements IHabilidad {
         {
             sb.append("#"+ i + " - "); //quedaría ej "#0 - " -> veo que le agregaste +1 para estilización, voy a obligarlo a elegir un listado empezando de 0 para simplificar.
             sb.append(h.toString())
-                    .append("\n"); //y esta magia pq esta así el .append y no da error
+                    .append("\n");
             i++;
         }
 
         return sb.toString();
+    }
+
+    public List<Habilidad> getHabilidades ()
+    {
+        return this.habilidades;
     }
 
     public boolean agregarHabilidad(Habilidad habilidad) {
@@ -174,13 +179,6 @@ public abstract class Entidad implements IHabilidad {
             return true;
         }
         return false;
-    }
-
-    public String mostrarEstado()
-    {
-        StringBuilder sb = new StringBuilder(getNombre() + " | Vida Restante: "+ vidaActual + ", Maná restante: "+ manaActual);
-
-        return sb.toString(); //quedaría ejemplo: Guerrero Tomás | Vida restante: 10, Maná restante: 5, Efecto activo: PotenciarAtaque
     }
 
     @Override

@@ -61,6 +61,11 @@ public abstract class Jugador extends Entidad {
         return inventario.listar();
     }
 
+    public int contarItemsInventario()
+    {
+        return inventario.contarElementos();
+    }
+
 
     @Override
     public boolean equals(Object o) {

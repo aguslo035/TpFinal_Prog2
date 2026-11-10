@@ -1,4 +1,4 @@
-package Models.ConstructorDeTextoParaTurnos;
+package Controller;
 
 import Models.Entidades.Entidad;
 
@@ -51,4 +51,15 @@ public abstract class GestorDeTextoDeCombate { //es para el llamado "flavor text
 
         return sb.toString();
     }
+
+    public static String mostrarEstado(Entidad entidadRecibida)
+    {
+        String texto = entidadRecibida.getNombre() + " | Vida Restante: "+ entidadRecibida.getVidaActual() + ", Escudo: "+ entidadRecibida.getEscudo() +  ", Maná restante: "+ entidadRecibida.getManaActual();
+
+        return texto; //quedaría ejemplo: Guerrero Tomás | Vida restante: 10, Escudo: 30, Maná restante: 5
+    }
+
+
+
+
 }
