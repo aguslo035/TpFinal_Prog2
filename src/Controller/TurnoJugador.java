@@ -44,6 +44,10 @@ public class TurnoJugador {
                     break;
                 case 1:
                     accionRealizada = menuHabilidad(jugador, enemigo);
+                    if (!accionRealizada.equals("Volver")) //significa que se tomó una decisión que finaliza el turno
+                    {
+                        continuar = true;
+                    }
                     break;
                 case 2:
 
@@ -119,7 +123,7 @@ public class TurnoJugador {
             }else
             {
                 try {
-                    int danioCausado = jugador.usarHabilidad(decision, enemigo); //esto lanza "HabilidadNoExisteException"
+                    int cantAfectada = jugador.; //esto lanza "HabilidadNoExisteException"
                     //lo siguiente solo ocurre si no ocurrió una exception (elige opción valida)
                     accionRealizada = GestorDeTextoDeCombate.ataqueHabilidad(jugador, enemigo, jugador.getHabilidades().get(decision).getNombre(), danioCausado);
                     continuar = true;

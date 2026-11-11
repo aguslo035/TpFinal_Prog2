@@ -1,7 +1,6 @@
 package Models.Entidades;
 
 import Exception.Juego.IndiceInvalidoException;
-import Exception.Juego.ManaInsuficienteException;
 import Interface.IHabilidad;
 import Models.Habilidades.Habilidad;
 
@@ -165,27 +164,33 @@ public abstract class Entidad implements IHabilidad {
         setVidaActual(getVidaActual()-danio);
     }
 
-    public void curar(int cantidad) //contempla excederse
+    public int curar(int cantidad) //contempla excederse
     {
         int nuevaVida = getVidaActual()+cantidad;
 
         if (nuevaVida > vidaMaxima){ //puede esto pueda modularizarse
+            cantidad = cantidad - (nuevaVida - vidaMaxima); //esta es la cantidad que efectivamente se cura
             setVidaActual(vidaMaxima);
         }else {
             setVidaActual(nuevaVida);
         }
+
+        return cantidad;
     }
 
-    public void recuperarMana(int cantidad) //contempla excederse
+    public int recuperarMana(int cantidad) //contempla excederse
     {
         int nuevoMana = getManaActual()+cantidad;
 
         if (nuevoMana > manaMaximo)
         {
+            cantidad = cantidad - (nuevoMana - manaMaximo);
             setManaActual(manaMaximo);
         }else {
             setManaActual(nuevoMana);
         }
+
+        return cantidad;
     }
 
     public boolean estaVivo()

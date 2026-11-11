@@ -50,6 +50,11 @@ public abstract class Jugador extends Entidad {
         inventario.eliminarElemento(indice);
     }
 
+    public int utilizarItem(int indice)
+    {
+        return inventario.obtenerElemento(indice).utilizar(this);
+    }
+
     public void eliminarItem(IItem item)
     {
         inventario.eliminarElemento(item);
