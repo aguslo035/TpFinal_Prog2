@@ -10,4 +10,7 @@ public interface IItem {
     //lo cambié de void a int porque necesito devuelva la cantidad afectada, si es que hubo afectación
 
     String verEstadisticasItem(); //sería el toString de los items
+
+    //Necesito que cada item construya su propio texto de relleno, sino termino agregando muchos IFs en TurnoJugador
+    String describirComportamiento(Jugador usuario, int cantidad);
 }

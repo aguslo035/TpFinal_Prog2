@@ -24,11 +24,12 @@ public abstract class GestorDeTextoDeCombate { //es para el llamado "flavor text
         return sb.toString();
     }
 
-    public static String utilizacionItem (Entidad origen, String nombreItem)
+    private static String utilizacionItem (Entidad origen, String nombreItem) //como es un método intermedio, no quiero se pueda acceder de fuera
     {
         return origen.getNombre() + " utiliza el item "+ nombreItem + "!\n";
     }
 
+    //el comentario de arriba aplica a este también
     private static String utilizarItemDeRecuperar(Entidad origen, int cantidadDeRecuperacion) //es por si algún día agregamos otros tipos de recuperación estadística (ej escudo u nuevos atributos que decidamos implementar). Sino se termina repitiendo este mismo texto mucho.
     {
         return origen.getNombre() + " ha recuperado "+ cantidadDeRecuperacion;

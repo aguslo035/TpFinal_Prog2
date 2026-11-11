@@ -25,7 +25,7 @@ public class TurnoJugador {
         boolean continuar = false; //cambia al tomar acción que finalize el turno
         int decision;
         int aux; //recibe un número para mostrar después (ej, daño ocasionado, cuánto se curó, etc)
-        String accionRealizada;
+        String accionRealizada = null; //lo igualo a null para que java no se queje
 
         System.out.println(estadoPelea(jugador, enemigo)); //Muestra HP/MP/Escudo restante de los 2
 
@@ -50,12 +50,18 @@ public class TurnoJugador {
                     }
                     break;
                 case 2:
-
-                    //llama a un metodo de menu de items
-                case 3:
-
-
-
+                    accionRealizada = menuItems(jugador, enemigo);
+                    if (!accionRealizada.equals("Volver"))
+                    {
+                        continuar = true;
+                    }
+                    break;
+                case 3: //descubrí que poniendo "todo" el texto se pone todo azul parece útil
+                    System.out.println(enemigo.toString()); //TODO: hay que modificar el toString de Entidad para mostrar todas las habilidades tambien.
+                    break;
+                default:
+                    System.out.println("Por favor elija una de las opciones.");
+                    break;
             }
         }
 
@@ -123,9 +129,10 @@ public class TurnoJugador {
             }else
             {
                 try {
-                    int cantAfectada = jugador.; //esto lanza "HabilidadNoExisteException"
+                    int cantAfectada = jugador.utilizarItem(decision); //esto lanza "IndiceNoValidoException"
                     //lo siguiente solo ocurre si no ocurrió una exception (elige opción valida)
-                    accionRealizada = GestorDeTextoDeCombate.ataqueHabilidad(jugador, enemigo, jugador.getHabilidades().get(decision).getNombre(), danioCausado);
+                    accionRealizada = jugador.getInventario().obtenerElemento(decision).describirComportamiento(jugador, cantAfectada);
+                    jugador.eliminarItem(decision); //al final lo elimino acá al item
                     continuar = true;
                 } catch (IndiceInvalidoException e) {
                     System.out.println("Eliga una opción valida de las mostradas.");
