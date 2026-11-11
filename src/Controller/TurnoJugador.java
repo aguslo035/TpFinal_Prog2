@@ -70,7 +70,7 @@ public abstract class TurnoJugador {
     public static String menuHabilidad(Jugador jugador, Enemigo enemigo)
     {
         boolean continuar = false;
-        int decision = 0;
+        int decision;
 
         String accionRealizada = null; //inicializo en null para que java no se queje
 
@@ -109,7 +109,7 @@ public abstract class TurnoJugador {
     public static String menuItems(Jugador jugador, Enemigo enemigo)
     {
         boolean continuar = false;
-        int decision = 0;
+        int decision;
 
         String accionRealizada = null; //inicializo en null para que no se queje java en el return
 

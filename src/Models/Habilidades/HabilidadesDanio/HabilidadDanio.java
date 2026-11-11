@@ -33,7 +33,7 @@ public abstract class HabilidadDanio extends Habilidad {
 
         int danioARealizarDeHabilidad = this.getDanio();
 
-        objetivo.recibirDanio(danioARealizarDeHabilidad);
+        objetivo.recibirDanio(danioARealizarDeHabilidad); //ojo con esto, ahora mismo las habilidades ignoran el escudo que tenga el enemigo, porque la lógica de quitar escudo está en .ataque y no .recibirDanio
         return danioARealizarDeHabilidad;
     }
 }
