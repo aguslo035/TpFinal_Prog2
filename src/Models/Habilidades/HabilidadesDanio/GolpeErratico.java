@@ -1,7 +1,6 @@
 package Models.Habilidades.HabilidadesDanio;
 
 import Models.Entidades.Entidad;
-import java.util.Random;
 
 public final class GolpeErratico extends HabilidadDanio {
     private int danioFijo;
@@ -9,9 +8,10 @@ public final class GolpeErratico extends HabilidadDanio {
     //creemoslo nosotros por defecto a las habilidades, para ir poniendola en los personajes/enemigos
     //mando números random en todas las habilidades (y te dejo esta nota en todas para que no se pierda)
 
+
     public GolpeErratico(String nombre, String descripcion, int costoMana, int danio, int danioFijo) {
         super(nombre, descripcion, costoMana, danio);
-        this.danioFijo = 10 + this.getDanio();
+        this.danioFijo = danioFijo;
     }
 
     //getters y setters
@@ -26,8 +26,6 @@ public final class GolpeErratico extends HabilidadDanio {
     //metodos
     @Override
     public int usar(Entidad usuario, Entidad objetivo) {
-
-        int danioFijoSigGolpe = danioFijo;
         int danioARealizarDeHabilidad = this.getDanio() + danioFijo;
         // pensando que es para algun guerrero o caballero, se le suma el danio del personaje + (el danio de la habilidad y el extra del golpe erratico)
         // ^^ no entiendo la primera variable ni dónde se agregaría el daño del usuario

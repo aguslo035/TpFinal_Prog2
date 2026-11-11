@@ -1,5 +1,6 @@
 package Controller;
 
+import Exception.Juego.IndiceInvalidoException;
 import Interface.IItem;
 
 import java.util.ArrayList;
@@ -21,7 +22,10 @@ public class GestoraDeItems<T extends IItem> {
     }
 
     public T obtener(int indice)
+            throws IndiceInvalidoException
     {
+        if (indice < elementos.size() || indice >elementos.size())
+            throw new IndiceInvalidoException(indice);
         return elementos.get(indice);
     }
 
@@ -30,10 +34,14 @@ public class GestoraDeItems<T extends IItem> {
         return elementos.size();
     }
 
-    public void eliminar(int indice)
+    public T eliminar(int indice)
+            throws IndiceInvalidoException
     {
-        elementos.remove(indice);
+        if (indice < elementos.size() || indice >elementos.size())
+            throw new IndiceInvalidoException(indice);
+        return elementos.remove(indice);
     }
+
     public void eliminar(T t)
     {
         elementos.remove(t);

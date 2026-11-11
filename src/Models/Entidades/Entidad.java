@@ -1,5 +1,6 @@
 package Models.Entidades;
 
+import Exception.Juego.ManaInsuficienteException;
 import Interface.IHabilidad;
 import Models.Habilidades.Habilidad;
 
@@ -48,6 +49,8 @@ public abstract class Entidad implements IHabilidad {
         {
             this.vidaActual = vidaActual;
         }
+        if (vidaActual >= getVidaMaxima())
+            this.vidaActual = getVidaMaxima();
     }
 
     public int getVidaMaxima() {
@@ -55,10 +58,14 @@ public abstract class Entidad implements IHabilidad {
     }
 
     public void setVidaMaxima(int vidaMaxima) { //tal vez checks de que la vida máxima no pueda ser menor a 1, pero no quiero engorrarme en los detalles ahora mismo. Solo dejo constancia.
-        this.vidaMaxima = vidaMaxima;
+        if (vidaMaxima >= 1)
+            this.vidaMaxima = vidaMaxima;
+        else
+            this.vidaMaxima = 1;
     }
 
-    public int getManaActual() {
+    public int getManaActual()
+    {
         return manaActual;
     }
 

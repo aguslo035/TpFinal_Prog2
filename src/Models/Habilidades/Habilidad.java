@@ -1,5 +1,6 @@
 package Models.Habilidades;
 
+import Exception.Juego.ManaInsuficienteException;
 import Models.Entidades.Entidad;
 
 public abstract class Habilidad {
@@ -38,12 +39,16 @@ public abstract class Habilidad {
     }
 
     public boolean sePuedeUsar(Entidad obj)
+            throws ManaInsuficienteException
     {
-        return obj.getManaActual() >= this.costoMana;
+        if (obj.getManaActual() < this.costoMana)
+            throw new ManaInsuficienteException();
+        return obj.getManaActual() >= this.costoMana; // devuelve true
     }
 
     //Es la acción que realiza la habilidad. Devuelve el daño causado.
-    public abstract int usar(Entidad usuario, Entidad objetivo); //Las hijas deciden como actuaran. Pueden decidir o no utilizar las entidades que se le pasan.
+    public abstract int usar(Entidad usuario, Entidad objetivo);
+    //Las hijas deciden como actuaran. Pueden decidir o no utilizar las entidades que se le pasan.
 
     //toString
     @Override

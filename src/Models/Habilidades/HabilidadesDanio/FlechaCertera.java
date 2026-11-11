@@ -5,10 +5,11 @@ import Models.Entidades.Entidad;
 public final class FlechaCertera extends HabilidadDanio{
     private int multiplicadorCritico;
 
-    public FlechaCertera(String nombre, String descripcion, int costoMana, int danio) {
+    public FlechaCertera(String nombre, String descripcion, int costoMana, int danio, int multiplicadorCritico) {
         super(nombre, descripcion, costoMana, danio);
-        multiplicadorCritico = 2;
+        this.multiplicadorCritico = multiplicadorCritico;
     }
+
     //metodos
     @Override
     public int usar(Entidad usuario, Entidad objetivo) {

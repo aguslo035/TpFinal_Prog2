@@ -12,11 +12,6 @@ public final class RoboDeVida extends HabilidadDanio{
         this.curacionRecibida = curacionRecibida;
     }
 
-    public RoboDeVida() {
-        super("Robo de Vida", "Hace daño y recupera la misma cantidad de vida.", 5, 10);
-        this.curacionRecibida = this.getDanio(); //recupera el daño que hace
-    }
-
     //getters y setters
     public int getCuracionRecibida() {
         return curacionRecibida;
@@ -38,10 +33,11 @@ public final class RoboDeVida extends HabilidadDanio{
     }
 
     //toString
+
     @Override
     public String toString() {
-        return super.toString() +
-                ", curacionRecibida=" + curacionRecibida +
+        return "RoboDeVida{" +
+                "curacionRecibida=" + curacionRecibida +
                 '}';
     }
 }
