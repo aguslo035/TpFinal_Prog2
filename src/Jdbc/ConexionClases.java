@@ -1,6 +1,7 @@
 package Jdbc;
 
 import Enumerator.TipoArma;
+import Exception.Conexion.ConexionException;
 import Models.Entidades.JugadoresClases.Arquero;
 import Models.Entidades.JugadoresClases.Guerrero;
 import Models.Entidades.JugadoresClases.Jugador;
@@ -13,7 +14,8 @@ import java.util.List;
 
 public class ConexionClases extends Conexion {
 
-    public static int crearTablaClases() {
+    public static int crearTablaClases()
+        throws ConexionException {
         String query = "CREATE TABLE IF NOT EXISTS personaje (\n" +
                 "    id INT AUTO_INCREMENT PRIMARY KEY,\n" +
                 "    tipo VARCHAR(20) NOT NULL,\n" +
@@ -31,11 +33,12 @@ public class ConexionClases extends Conexion {
             return ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new ConexionException("Al crear la tabla de clases! " + e.getMessage());
         }
     }
 
     public static int importarClase(Jugador jugador)
+            throws ConexionException
     {
         String query = "INSERT INTO personaje (tipo, vidaMaxima, manaMaximo, ataque, escudo, tipoArma, probabilidadCritica)\n" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?);";
@@ -57,11 +60,12 @@ public class ConexionClases extends Conexion {
 
             return ps.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new ConexionException("Al importar clase! " + e.getMessage());
         }
     }
 
     public static List<Jugador> traerClases()
+            throws ConexionException
     {
         List<Jugador> clasesDeBdd = new ArrayList<>();
         String query = "SELECT * FROM personaje ORDER BY id;";
@@ -97,7 +101,7 @@ public class ConexionClases extends Conexion {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new ConexionException("Al traer las filas de clases! " + e.getMessage());
         }
         return clasesDeBdd;
     }

@@ -1,5 +1,6 @@
 package Jdbc;
 
+import Exception.Conexion.ConexionException;
 import Models.Entidades.Enemigos.Bestia;
 import Models.Entidades.Enemigos.Demonio;
 import Models.Entidades.Enemigos.Enemigo;
@@ -11,7 +12,8 @@ import java.util.List;
 
 public class ConexionEnemigos extends Conexion {
 
-    public static int crearTablaEnemigos() {
+    public static int crearTablaEnemigos()
+        throws ConexionException {
         String query = "CREATE TABLE IF NOT EXISTS enemigo (\n" +
                 "    id INT AUTO_INCREMENT PRIMARY KEY,\n" +
                 "    tipo VARCHAR(20) NOT NULL,\n" +
@@ -28,11 +30,12 @@ public class ConexionEnemigos extends Conexion {
             return ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new ConexionException("Al crear la tabla de enemigos! " + e.getMessage());
         }
     }
 
     public static int importarEnemigo(Enemigo enemigo)
+            throws ConexionException
     {
         String query = "INSERT INTO enemigo (tipo, nombre, vidaMaxima, manaMaximo, ataque, escudo)\n" +
                 "VALUES (?, ?, ?, ?, ?, ?);";
@@ -48,11 +51,12 @@ public class ConexionEnemigos extends Conexion {
 
             return ps.executeUpdate();
         }catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new ConexionException("Al importar enemigo! " + e.getMessage());
         }
     }
 
     public static List<Enemigo> traerEnemigos()
+            throws ConexionException
     {
         List<Enemigo> enemigosDeBdd = new ArrayList<>();
         String query = "SELECT * FROM enemigo ORDER BY id;"; // ya ordenadas vienen
@@ -85,7 +89,7 @@ public class ConexionEnemigos extends Conexion {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new ConexionException("Al traer las filas de enemigos! " + e.getMessage());
         }
         return enemigosDeBdd;
     }
