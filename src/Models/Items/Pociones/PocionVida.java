@@ -13,6 +13,7 @@ public final class PocionVida extends Pocion{
     @Override
     public void utilizar(Jugador jugador) {
         jugador.recuperarMana(getCantidad()); //después se elimina del inventario, no sé si ocurre en menuCombate o gestor inventario
+        // respondiendo a lo tuyo, se eliminaria en menuCombate, primero se llama utilizar y luego se llama inventario.eliminar(indice de esta pocion)
     }
 
     @Override

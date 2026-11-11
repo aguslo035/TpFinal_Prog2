@@ -1,5 +1,6 @@
 package Models.Entidades;
 
+import Exception.Juego.IndiceInvalidoException;
 import Exception.Juego.ManaInsuficienteException;
 import Interface.IHabilidad;
 import Models.Habilidades.Habilidad;
@@ -100,9 +101,14 @@ public abstract class Entidad implements IHabilidad {
         this.escudo = escudo;
     }
 
+
     @Override
-    public int usarHabilidad(int indice, Entidad objetivo) {
-        Habilidad habilidadAUsar = habilidades.get(indice);
+    public int usarHabilidad(int indice, Entidad objetivo)
+            throws IndiceInvalidoException {
+        if (indice < this.habilidades.size() || indice >this.habilidades.size())
+            throw new IndiceInvalidoException(indice);
+
+        Habilidad habilidadAUsar = this.habilidades.get(indice);
         return habilidadAUsar.usar(this, objetivo);
     }
 
