@@ -155,6 +155,9 @@ public abstract class Entidad implements IHabilidad {
         objetivo.recibirDanio(danioARealizar);
         objetivo.setEscudo(0); //si el escudo ya está en 0 se continúa setteando en 0? puede ser preferible un if preguntando si escudo 0 para evitar eso
         return danioARealizar;
+        //recibir danio es cuando recibe danio en su vida, pero igual, que este aca o en recibir danio es lo mismo. Una de las dos se tiene que encargar
+        // de tomar en cuenta el escudo. O el atacante o el que lo recibe, por eso digo que en mi opinion da igual donde se tenga en cuenta
+        // lo importante es que este en alguno de los dos
     }
 
     public void recibirDanio(int danio)

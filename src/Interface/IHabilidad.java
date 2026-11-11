@@ -2,7 +2,6 @@ package Interface;
 
 import Exception.Juego.IndiceInvalidoException;
 import Models.Entidades.Entidad;
-import Models.Habilidades.Habilidad;
 
 public interface IHabilidad {
 
