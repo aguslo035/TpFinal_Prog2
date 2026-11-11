@@ -4,23 +4,20 @@ import Exception.Juego.IndiceInvalidoException;
 import Models.ConstructorDeTextoParaTurnos.GestorDeTextoDeCombate;
 import Models.Entidades.Enemigos.Enemigo;
 import Models.Entidades.JugadoresClases.Jugador;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
-public class TurnoJugador {
+public abstract class TurnoJugador {
 
     //scanner
-    Scanner sc; //Nota: inicializarlo acá
-
-    //constructor
-    public TurnoJugador() {
-        sc = new Scanner(System.in);
-    }
+    private static final Scanner sc = new Scanner(System.in);
 
     //métodos
 
     //Muestra las opciones que tiene el jugador en su turno. Realiza acciones de acorde a su decisión. Devuelve texto de a corde a la acción realizada.
-    public String menuAtaque(Jugador jugador, Enemigo enemigo) //este se llama en turno usuario, así que ya se sabe qué entidad es cada uno (por eso especifico Jugador y Enemigo)
+    public static String menuAtaque(Jugador jugador, Enemigo enemigo) //este se llama en turno usuario, así que ya se sabe qué entidad es cada uno (por eso especifico Jugador y Enemigo)
     {
         boolean continuar = false; //cambia al tomar acción que finalize el turno
         int decision;
@@ -58,20 +55,18 @@ public class TurnoJugador {
                     break;
                 case 3: //descubrí que poniendo "todo" el texto se pone todo azul parece útil
                     System.out.println(enemigo.toString()); //TODO: hay que modificar el toString de Entidad para mostrar todas las habilidades tambien.
-                    break;
+                    break; // todo se pone verde no azul ajdja
                 default:
                     System.out.println("Por favor elija una de las opciones.");
                     break;
             }
         }
-
-
         return accionRealizada;
         //va a terminar devolviendo un flavor text: "X ataca a Y por 123 de daño!"
     }
 
     //Se listan todas las habilidades + opción de volver al menú de ataque. Una vez el usuario decide correctamente, devuelve un String indicando la elección realizada (que se realizó el ataque o se volvió al menú).
-    public String menuHabilidad(Jugador jugador, Enemigo enemigo)
+    public static String menuHabilidad(Jugador jugador, Enemigo enemigo)
     {
         boolean continuar = false;
         int decision = 0;
@@ -107,7 +102,7 @@ public class TurnoJugador {
         return accionRealizada;
     }
 
-    public String menuItems(Jugador jugador, Enemigo enemigo)
+    public static String menuItems(Jugador jugador, Enemigo enemigo)
     {
         boolean continuar = false;
         int decision = 0;
@@ -146,21 +141,26 @@ public class TurnoJugador {
 
 
 
-    public int elegirOpcion() //el "seleccione una de las opciones muy probablemente sea algo recurrente", lo modularizo
+    public static int elegirOpcion() // ahi te lo arregle que tenia un par de errores y tmb maneja para que no se corte si ingresan algo que no es un Int
     {
-        int decision = 0;
+        int decision;
 
-        System.out.println("Seleccione una de las opciones: ");
-
-        sc.nextInt(decision);
-        sc.nextLine();
-
-        return decision;
+        do {
+            System.out.println("Seleccione una de las opciones: ");
+            try {
+                decision = sc.nextInt();
+                return decision;
+            } catch (InputMismatchException e) {
+                System.out.println(e.getMessage() + "Ingrese un valor valido.");
+            } finally {
+                sc.nextLine();
+            }
+        } while (true) ;
     }
 
 
     //este conviene esté en BatallaPorTurnos
-    public String estadoPelea(Jugador jugador, Enemigo enemigo) //muestra la vida, MP y efectos actuales de ambos
+    public static String estadoPelea(Jugador jugador, Enemigo enemigo) //muestra la vida, MP y efectos actuales de ambos
     {
         StringBuilder sb = new StringBuilder();
         sb.append("===")
@@ -171,7 +171,7 @@ public class TurnoJugador {
         return sb.toString();
     }
 
-    public String mostrarOpcionesCombate()
+    public static String mostrarOpcionesCombate()
     {
         StringBuilder sb = new StringBuilder();
         sb.append("==OPCIONES==\n\n")
@@ -183,6 +183,8 @@ public class TurnoJugador {
         return sb.toString();
     }
 
-
-
+    public static void cerrarScanner()
+    {
+        sc.close();
+    }
 }
