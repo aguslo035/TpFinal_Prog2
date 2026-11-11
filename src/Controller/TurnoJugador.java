@@ -12,7 +12,7 @@ import java.util.Scanner;
 public abstract class TurnoJugador {
 
     //scanner
-    private static final Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);//SIEMPRE se utiliza el scanner en el main con el metodo elegirOpcion()
 
     //métodos
 
