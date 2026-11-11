@@ -1,5 +1,6 @@
 package Models.Habilidades.HabilidadesDanio;
 
+import Exception.Juego.ManaInsuficienteException;
 import Models.Entidades.Entidad;
 
 public final class GolpeErratico extends HabilidadDanio {
@@ -25,10 +26,12 @@ public final class GolpeErratico extends HabilidadDanio {
 
     //metodos
     @Override
-    public int usar(Entidad usuario, Entidad objetivo) {
+    public int usar(Entidad usuario, Entidad objetivo)
+        throws ManaInsuficienteException
+    {
+        if(!sePuedeUsar(objetivo))
+            throw new ManaInsuficienteException();
         int danioARealizarDeHabilidad = this.getDanio() + danioFijo;
-        // pensando que es para algun guerrero o caballero, se le suma el danio del personaje + (el danio de la habilidad y el extra del golpe erratico)
-        // ^^ no entiendo la primera variable ni dónde se agregaría el daño del usuario
 
         objetivo.recibirDanio(danioARealizarDeHabilidad);
         return danioARealizarDeHabilidad;

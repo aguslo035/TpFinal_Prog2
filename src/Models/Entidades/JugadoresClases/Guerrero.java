@@ -1,14 +1,17 @@
 package Models.Entidades.JugadoresClases;
 
 import Enumerator.TipoArma;
+import Models.Habilidades.HabilidadesDanio.GolpeErratico;
 
 public final class Guerrero extends Jugador{
     public Guerrero(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma) {
         super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo, tipoArma);
+        this.agregarHabilidad(new GolpeErratico("Golpe brutal", "un tajo con toda su fuerza", this.getManaMaximo() / 4, this.getAtaque(), this.getAtaque() / 2));
     }
 
     public Guerrero(int id, String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma) {
         super(id, nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo, tipoArma);
+        this.agregarHabilidad(new GolpeErratico("Golpe brutal", "un tajo con toda su fuerza", this.getManaMaximo() / 4, this.getAtaque(), this.getAtaque() / 2));
     }
 
     //sin esto al llamar al toString va a imprimir "jugador" en vez de "guerrero"

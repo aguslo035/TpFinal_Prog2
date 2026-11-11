@@ -1,5 +1,6 @@
 package Models.Habilidades.HabilidadesDanio;
 
+import Exception.Juego.ManaInsuficienteException;
 import Models.Entidades.Entidad;
 
 public final class RoboDeVida extends HabilidadDanio{
@@ -23,7 +24,12 @@ public final class RoboDeVida extends HabilidadDanio{
 
     //metodos
     @Override
-    public int usar(Entidad usuario, Entidad objetivo) {
+    public int usar(Entidad usuario, Entidad objetivo)
+        throws ManaInsuficienteException
+    {
+        if(!sePuedeUsar(objetivo))
+            throw new ManaInsuficienteException();
+
         int danioARealizarDeHabilidad = this.getDanio();
 
         objetivo.recibirDanio(danioARealizarDeHabilidad);

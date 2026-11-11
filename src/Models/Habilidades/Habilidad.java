@@ -39,15 +39,12 @@ public abstract class Habilidad {
     }
 
     public boolean sePuedeUsar(Entidad obj)
-            throws ManaInsuficienteException
     {
-        if (obj.getManaActual() < this.costoMana)
-            throw new ManaInsuficienteException();
-        return obj.getManaActual() >= this.costoMana; // devuelve true
+        return obj.getManaActual() >= this.costoMana; // devuelve true o false, si ponemos una excepcion nunca sera false
     }
 
     //Es la acción que realiza la habilidad. Devuelve el daño causado.
-    public abstract int usar(Entidad usuario, Entidad objetivo);
+    public abstract int usar(Entidad usuario, Entidad objetivo) throws ManaInsuficienteException;
     //Las hijas deciden como actuaran. Pueden decidir o no utilizar las entidades que se le pasan.
 
     //toString

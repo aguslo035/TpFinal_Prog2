@@ -1,6 +1,7 @@
 package Controller;
 
 import Exception.Juego.IndiceInvalidoException;
+import Exception.Juego.ManaInsuficienteException;
 import Models.ConstructorDeTextoParaTurnos.GestorDeTextoDeCombate;
 import Models.Entidades.Enemigos.Enemigo;
 import Models.Entidades.JugadoresClases.Jugador;
@@ -94,6 +95,9 @@ public abstract class TurnoJugador {
                     continuar = true;
                 } catch (IndiceInvalidoException e) {
                     System.out.println("Eliga una opción valida de las mostradas.");
+                } catch (ManaInsuficienteException e)
+                {
+                    System.out.println("Mana insuficiente.");
                 }
             }
 

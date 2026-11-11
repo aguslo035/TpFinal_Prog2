@@ -1,5 +1,6 @@
 package Models.Habilidades.HabilidadesDanio;
 
+import Exception.Juego.ManaInsuficienteException;
 import Models.Entidades.Entidad;
 import Models.Habilidades.Habilidad;
 
@@ -24,7 +25,11 @@ public abstract class HabilidadDanio extends Habilidad {
     }
 
     @Override
-    public int usar(Entidad usuario, Entidad objetivo) {
+    public int usar(Entidad usuario, Entidad objetivo)
+        throws ManaInsuficienteException
+    {
+        if(!sePuedeUsar(objetivo))
+            throw new ManaInsuficienteException();
 
         int danioARealizarDeHabilidad = this.getDanio();
 

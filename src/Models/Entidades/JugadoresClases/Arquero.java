@@ -14,12 +14,13 @@ public final class Arquero extends Jugador{
     public Arquero(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma, double probabilidadCritica) {
         super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo, tipoArma);
         this.probabilidadCritica = probabilidadCritica;
-
+        this.agregarHabilidad(new FlechaCertera("Flecha certera", "una flecha directa al punto débil", this.getManaMaximo() / 4, this.getAtaque(), 2));
     }
 
     public Arquero(int id, String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma, double probabilidadCritica) {
         super(id, nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo, tipoArma);
         this.probabilidadCritica = probabilidadCritica;
+        this.agregarHabilidad(new FlechaCertera("Flecha certera", "una flecha directa al punto débil", this.getManaMaximo() / 4, this.getAtaque(), 2));
     }
 
     public double getProbabilidadCritica() {
