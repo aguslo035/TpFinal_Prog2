@@ -16,7 +16,7 @@ public class GestoraDeItems<T extends IItem> {
         elementos = new ArrayList<>();
     }
 
-    public List<T> getElementos ()
+    public List<T> getElementos () //me acabo de dar cuenta que en realidad no era necesario jaja, podía hacer "return inventario" en Jugador
     {
         return elementos;
     }
