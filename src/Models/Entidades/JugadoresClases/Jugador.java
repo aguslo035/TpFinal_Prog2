@@ -4,7 +4,6 @@ import Controller.GestoraDeItems;
 import Enumerator.TipoArma;
 import Interface.IItem;
 import Models.Entidades.Entidad;
-import Models.Items.Pociones.Pocion;
 //import Models.Items.Pociones.Pocion;
 //import Models.Items.Pociones.VerificarItem;
 
@@ -43,20 +42,25 @@ public abstract class Jugador extends Entidad {
 
     public boolean agregarItem(IItem item)
     {
-        return inventario.agregar(item);
+        return inventario.agregarElemento(item);
     }
 
     public void eliminarItem(int indice)
     {
-        inventario.eliminar(indice);
+        inventario.eliminarElemento(indice);
     }
 
     public void eliminarItem(IItem item)
     {
-        inventario.eliminar(item);
+        inventario.eliminarElemento(item);
     }
 
-    public String obtenerInventario()
+    public GestoraDeItems<IItem> getInventario()
+    {
+        return inventario;
+    }
+
+    public String listarInventario()
     {
         return inventario.listar();
     }

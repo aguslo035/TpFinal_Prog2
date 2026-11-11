@@ -1,5 +1,6 @@
 package Controller;
 
+import Exception.Juego.IndiceInvalidoException;
 import Models.ConstructorDeTextoParaTurnos.GestorDeTextoDeCombate;
 import Models.Entidades.Enemigos.Enemigo;
 import Models.Entidades.JugadoresClases.Jugador;
@@ -19,10 +20,10 @@ public class TurnoJugador {
     //métodos
 
     //Muestra las opciones que tiene el jugador en su turno. Realiza acciones de acorde a su decisión. Devuelve texto de a corde a la acción realizada.
-    public String menuAtaque(Jugador jugador, Enemigo enemigo) //este metodo lo llaman en el turno usuario, así que ya se sabe qué entidad es cada uno (por eso especifico Jugador y Enemigo)
+    public String menuAtaque(Jugador jugador, Enemigo enemigo) //este se llama en turno usuario, así que ya se sabe qué entidad es cada uno (por eso especifico Jugador y Enemigo)
     {
         boolean continuar = false; //cambia al tomar acción que finalize el turno
-        int decision = 0;
+        int decision;
         int aux; //recibe un número para mostrar después (ej, daño ocasionado, cuánto se curó, etc)
         String accionRealizada;
 
@@ -65,7 +66,7 @@ public class TurnoJugador {
         boolean continuar = false;
         int decision = 0;
 
-        String accionRealizada;
+        String accionRealizada = null; //inicializo en null para que java no se queje
 
         do {
             System.out.println("===Habilidades disponibles===\n\n");
@@ -81,13 +82,12 @@ public class TurnoJugador {
                 continuar = true;
             }else
             {
-                //TRY CATCH ACÁ ("habilidadNoExisteException") -> si intenta elegir del arraylist un indice que no existe (hay que agregar el throws exception en .usarHabilidad)
                 try {
-                    int danioCausado = jugador.usarHabilidad(decision, enemigo); //esto lanza "HabilidadNoExisteException"
+                    int danioCausado = jugador.usarHabilidad(decision, enemigo);
                     //lo siguiente solo ocurre si no ocurrió una exception (elige opción valida)
                     accionRealizada = GestorDeTextoDeCombate.ataqueHabilidad(jugador, enemigo, jugador.getHabilidades().get(decision).getNombre(), danioCausado);
                     continuar = true;
-                } catch (HabilidadNoExisteException e) {
+                } catch (IndiceInvalidoException e) {
                     System.out.println("Eliga una opción valida de las mostradas.");
                 }
             }
@@ -102,11 +102,11 @@ public class TurnoJugador {
         boolean continuar = false;
         int decision = 0;
 
-        String accionRealizada;
+        String accionRealizada = null; //inicializo en null para que no se queje java en el return
 
         do {
             System.out.println("===Items disponibles===\n\n");
-            System.out.println(jugador.obtenerInventario());
+            System.out.println(jugador.listarInventario());
             int i = jugador.contarItemsInventario();
             System.out.println("#"+i+" - Volver a Opciones");
 
@@ -118,13 +118,12 @@ public class TurnoJugador {
                 continuar = true;
             }else
             {
-                //TRY CATCH ACÁ ("habilidadNoExisteException") -> si intenta elegir del arraylist un indice que no existe (hay que agregar el throws exception en .usarHabilidad)
                 try {
                     int danioCausado = jugador.usarHabilidad(decision, enemigo); //esto lanza "HabilidadNoExisteException"
                     //lo siguiente solo ocurre si no ocurrió una exception (elige opción valida)
                     accionRealizada = GestorDeTextoDeCombate.ataqueHabilidad(jugador, enemigo, jugador.getHabilidades().get(decision).getNombre(), danioCausado);
                     continuar = true;
-                } catch (HabilidadNoExisteException e) {
+                } catch (IndiceInvalidoException e) {
                     System.out.println("Eliga una opción valida de las mostradas.");
                 }
             }

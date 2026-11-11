@@ -16,12 +16,17 @@ public class GestoraDeItems<T extends IItem> {
         elementos = new ArrayList<>();
     }
 
-    public boolean agregar(T t)
+    public List<T> getElementos ()
+    {
+        return elementos;
+    }
+
+    public boolean agregarElemento(T t)
     {
         return elementos.add(t);
     }
 
-    public T obtener(int indice)
+    public T obtenerElemento(int indice)
             throws IndiceInvalidoException
     {
         if (indice < elementos.size() || indice >elementos.size())
@@ -34,7 +39,7 @@ public class GestoraDeItems<T extends IItem> {
         return elementos.size();
     }
 
-    public T eliminar(int indice)
+    public T eliminarElemento(int indice)
             throws IndiceInvalidoException
     {
         if (indice < elementos.size() || indice >elementos.size())
@@ -42,12 +47,12 @@ public class GestoraDeItems<T extends IItem> {
         return elementos.remove(indice);
     }
 
-    public void eliminar(T t)
+    public void eliminarElemento(T t)
     {
         elementos.remove(t);
     }
 
-    public String listar()
+    public String listar() //más que listar no sé si cambiarle el nombre a toString
     {
         StringBuilder sb = new StringBuilder();
         int i = 0; //agrego un contador para el listado (después se decide mediante índice)
