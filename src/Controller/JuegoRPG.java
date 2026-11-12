@@ -2,6 +2,8 @@ package Controller;
 
 import Models.Entidades.Enemigos.Enemigo;
 import Models.Entidades.JugadoresClases.Jugador;
+import Models.Items.Pociones.PocionMana;
+import Models.Items.Pociones.PocionVida;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -63,23 +65,93 @@ public abstract class JuegoRPG {
             System.out.println(encuentroEnemigo(jugadorElegido, enemigos.get(enemigoActual))); //Texto de encuentro.
             ganar = BatallaPorTurnos.combateEntreEntidades(jugadorElegido, enemigos.get(enemigoActual)); //Ocurre batalla
 
+            if(ganar)
+            {
+                System.out.println(recolectarRecompensa(jugadorElegido));
+                enemigoActual++;
+            }else
+            {
+                System.out.println(derrotaJugador(jugadorElegido));
+                sc.nextLine();
+                System.exit(0);
+            }
         }
 
+        //solo se llega a este punto si no se ha muerto el jugador (todos los enemigos han sido derrotados)
+        System.out.println(victoriaAnteLosMonstruos(jugadorElegido));
     }
 
-    //Estoy tan embolado de modularizar tanto que simplemente voy a crear un objeto del tiem que elija y agregarselo al inventario
-    //Está mal porque por cada item que agregemos hay que modificar este método
-    //Pero modularizé tanto que me marié y esto requiere de una solución más compleja (pensé que cada enemigo dropeaba un item y me hacía la vida fácil, pero lo habíamos cambiado para que el usuario elija de los items que existen)
-    public void recolectarRecompensa(Jugador jugadorElegido)
-    {
-        System.out.println();
-    }
-
-    public String recompensasDisponibles()
+    public static String victoriaAnteLosMonstruos(Jugador jugadorElegido)
     {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("");
+        sb.append("\n"+ jugadorElegido.getNombre() + " ha derrotado a todos los enemigos en su camino.\n");
+        sb.append("Ha demostrado ser uno de los mejores "+ jugadorElegido.getClass().toString() + " de todos los tiempos...\n\n");
+        sb.append("FIN DEL JUEGO. VICTORIA.\n");
+
+        return sb.toString();
+    }
+
+    public static String derrotaJugador(Jugador jugadorElegido)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\nCon su vida en 0, "+ jugadorElegido.getNombre() + " es derrotado por el monstruo...\n");
+        sb.append("Hasta aquí ha llegado su aventura...\n\n");
+        sb.append("FIN DEL JUEGO. DERROTA.\n");
+
+        return sb.toString();
+    }
+
+    //Estoy tan embolado de modularizar tanto que simplemente voy a crear un objeto del item que elija y agregarselo al inventario
+    //Está mal porque por cada item que agregemos hay que modificar este método
+    //Pero modularizé tanto que me marié y esto requiere de una solución más compleja (pensé que cada enemigo dropeaba un item y me hacía la vida fácil, pero lo habíamos cambiado para que el usuario elija de los items que existen)
+    //Por si te importa el problema específico, lo que se me ocurría al darme cuenta que los enemigos no dropeaban items, era poner un listado de todos los items hasta ahora en un atributo de esta misma clase, y acceder a ella según lo que quiere el usuario (ej si quiere poción de vida o maná, se accede al indice del array de items disponibles y se agrega a su inventario). El problema es que si se agregan 2 pociones de vida, se está agregando la misma poción de vida. Si se usa se usan todas entonces.
+    //Para simplemente ignorar todo, hardcodié que cada vez que se toma una decisión, se crea un nuevo objeto del item que eligió.
+    public static String recolectarRecompensa(Jugador jugadorElegido)
+    {
+        System.out.println(jugadorElegido.getNombre() + " ha vencido al rival... ¡Ahora procede a recolectar el tesoro!\n");
+        System.out.println(recompensasDisponibles());
+
+        boolean continuar = false;
+
+        String accionRealizada = null; //inicalizo en null para que java no se queje
+
+        while(!continuar)
+        {
+            int decision = elegirOpcion();
+
+            switch (decision)
+            {
+                case 1:
+                    PocionVida pocionDeVida = new PocionVida();
+                    jugadorElegido.agregarItem(pocionDeVida);
+                    accionRealizada = "Se ha agregado una poción de vida a su inventario.\n";
+                    continuar = true;
+                    break;
+                case 2:
+                    PocionMana pocionDeMana = new PocionMana();
+                    jugadorElegido.agregarItem(pocionDeMana);
+                    accionRealizada = "Se ha agregado una poción de maná a su inventario.\n";
+                    continuar = true;
+                    break;
+                default:
+                    System.out.println("Elija una opción valida.\n\n");
+            }
+        }
+
+        return accionRealizada;
+    }
+
+    public static String recompensasDisponibles()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\n==Items Disponibles==\n\n");
+        sb.append("1. Pocion de vida.\n");
+        sb.append("2. Pocion de maná\n\n");
+
+        return sb.toString();
     }
 
 
@@ -104,8 +176,6 @@ public abstract class JuegoRPG {
 
         return sb.toString();
     }
-
-    public
 
     public static String menuOpciones()
     {

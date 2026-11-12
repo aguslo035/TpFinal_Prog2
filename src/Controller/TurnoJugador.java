@@ -57,7 +57,7 @@ public abstract class TurnoJugador {
                 case 3: //descubrí que poniendo "todo" el texto se pone todo azul parece útil
                     System.out.println(enemigo.toString()); //TODO: hay que modificar el toString de Entidad para mostrar todas las habilidades tambien.
                     break; // todo se pone verde no azul ajdja
-                default:
+                default: //creo que porque uso el intellijet en blanco el color mío es azul
                     System.out.println("Por favor elija una de las opciones.");
                     break;
             }
@@ -75,6 +75,7 @@ public abstract class TurnoJugador {
         String accionRealizada = null; //inicializo en null para que java no se queje
 
         do {
+            System.out.println("Maná actual: "+ jugador.getManaActual() + "\n\n");
             System.out.println("===Habilidades disponibles===\n\n");
             System.out.println(jugador.verHabilidades());
             int i = jugador.contarHabilidades();
@@ -94,7 +95,7 @@ public abstract class TurnoJugador {
                     accionRealizada = GestorDeTextoDeCombate.ataqueHabilidad(jugador, enemigo, jugador.getHabilidades().get(decision).getNombre(), danioCausado);
                     continuar = true;
                 } catch (IndiceInvalidoException e) {
-                    System.out.println("Eliga una opción valida de las mostradas.");
+                    System.out.println("Elija una opción valida de las mostradas.");
                 } catch (ManaInsuficienteException e)
                 {
                     System.out.println("Mana insuficiente.");
@@ -134,7 +135,7 @@ public abstract class TurnoJugador {
                     jugador.eliminarItem(decision); //al final lo elimino acá al item
                     continuar = true;
                 } catch (IndiceInvalidoException e) {
-                    System.out.println("Eliga una opción valida de las mostradas.");
+                    System.out.println("Elija una opción valida de las mostradas.");
                 }
             }
 
