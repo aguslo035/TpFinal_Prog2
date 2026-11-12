@@ -52,6 +52,7 @@ public abstract class JuegoRPG {
         }
     }
 
+    //va a batallar contra todos los enemigos que se han importado
     public static void aventura(Jugador jugadorElegido, List<Enemigo> enemigos)
     {
         System.out.println(historiaInicial(jugadorElegido));
@@ -208,7 +209,7 @@ public abstract class JuegoRPG {
         return jugadorElegido;
     }
 
-    public static int elegirOpcion() // ahi te lo arregle que tenia un par de errores y tmb maneja para que no se corte si ingresan algo que no es un Int
+    public static int elegirOpcion()
     {
         int decision;
 

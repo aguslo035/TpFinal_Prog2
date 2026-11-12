@@ -1,7 +1,12 @@
 package Models.Entidades.Enemigos;
 
+import Enumerator.EAccionEnemigo;
 import Models.Entidades.Entidad;
+import Models.Habilidades.Habilidad;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -25,10 +30,61 @@ public abstract class Enemigo extends Entidad {
         return id;
     }
 
-    public static int elegirAccion()
+    //quiero probarlo hacerlo con Enum
+    //también puede contemplar futuras acciones que agregemos
+    //le saco el static porque puede ser que algún día decidamos un enemigo se comporte distinto, y si es static no se puede sobre-escribir
+    public EAccionEnemigo elegirAccion()
     {
-        return random.nextInt(2) + 1;
+        EAccionEnemigo[] accionesPosibles = EAccionEnemigo.values(); //.values() de un enum devuelve un array fijo con las opciones en EAccionEnemigo
+        int cantAcciones = accionesPosibles.length; //por si algún día agregamos más acciones que puede tomar el enemigo, el limite lo pone la cantidad de opciones en el Enum
+
+        EAccionEnemigo decisionTomada;
+
+        if(puedeUsarHabilidades(habilidadesDisponibles())) //si ya no puede usar habilidades solo ataca, caso contrario puede hacer otras cosas que estén en el ENUM
+        {
+            decisionTomada = accionesPosibles[random.nextInt(cantAcciones)];
+        }else {
+            decisionTomada = EAccionEnemigo.ATACAR;
+        }
+
+        return decisionTomada;
+
         // 2 siendo el tope y +1 donde comienza, porque si no, comenzaria en 0 y serian nums aleatorios de 0 a 2
+        //^como ahora tengo un array que empieza en 0 voy a sacar el +1.
+    }
+
+    //lo que voy a hacer, es que cada turno el enemigo revise qué habilidades pueda usar (usando maná actual) y las devuelva en un listado.
+    //después si decide usar una habilidad, decide aleatoriamente qué habilidad usa
+    public ArrayList<Habilidad> habilidadesDisponibles()
+    {
+        ArrayList<Habilidad> habilidadesPuedeUsar = new ArrayList<>();
+
+        for (Habilidad aux : this.getHabilidades())
+        {
+            if(aux.getCostoMana() <= this.getManaActual())
+            {
+                habilidadesPuedeUsar.add(aux);
+            }
+        }
+
+        return habilidadesPuedeUsar;
+    }
+
+    public boolean puedeUsarHabilidades (List<Habilidad> habilidadesPosibles)
+    {
+        if (habilidadesPosibles.isEmpty())
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public Habilidad elegirHabilidadAUsar(List<Habilidad> habilidadesPosibles)
+    {
+        int cantHabilidadesDisponibles = habilidadesPosibles.size();
+
+        return habilidadesPosibles.get(random.nextInt(cantHabilidadesDisponibles));
     }
 
     @Override
