@@ -8,13 +8,12 @@ import java.util.ArrayList;
 public class BatallaPorTurnos {
 
     //atributos
-    private ArrayList<Jugador> personajes; //no me gusta que esto implique la carga y eleccion de personajes se hace en batalla por turnos, después de hacerlo hay que considerar ponerlo en otra clase
-    private ArrayList<Enemigo> enemigos;
+    private ArrayList<Enemigo> enemigos; //tampoco sé si tener el listado de enemigo en la gestión de turnos, pero tampoco quiero complicarnos tercerizando la lógica aún más (ej, haciendo otra clase de juego que recién ahí invoque batalla por turnos)
     private Jugador jugador;
     private Enemigo enemigoActual;
     private int ronda;
 
-    //
+    //métodos
 
 
 }

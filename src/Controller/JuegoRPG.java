@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 //eventualmente le quiero agregar el MenuAdmin
-public abstract class MenuInicial {
+public abstract class JuegoRPG {
 
     private static List<Jugador> clasesAElegir = new ArrayList<>();
     private static List<Enemigo> enemigos = new ArrayList<>();
@@ -29,14 +29,20 @@ public abstract class MenuInicial {
         {
             System.out.println(menuOpciones());
 
-            opcion = sc.nextInt();
-            sc.nextLine();
+            opcion = elegirOpcion();
 
             switch (opcion)
             {
                 case 1:
-                    jugadorElegido =
-                            BatallaPorTurnos()
+                    jugadorElegido = menuEleccionClase();
+                    BatallaPorTurnos.(insertarMetodoRelevanteAqui)(jugadorElegido, enemigos);
+                    break;
+                case 2:
+                    System.exit(0);
+                    break;
+                case 3:
+                    //menu admin
+                    break;
             }
         }
 
@@ -58,6 +64,8 @@ public abstract class MenuInicial {
         sb.append("3. MENU ADMIN\n");
 
         sb.append("\nSu decision: ");
+
+        return sb.toString();
     }
 
     public static Jugador menuEleccionClase()
@@ -77,7 +85,7 @@ public abstract class MenuInicial {
                 decision = sc.nextInt();
                 return decision;
             } catch (InputMismatchException e) {
-                System.out.println(e.getMessage() + "Ingrese un valor valido.");
+                System.out.println(e.getMessage() + "Ingrese un valor valido."); //e.get message no te tira el texto gigante?
             } finally {
                 sc.nextLine();
             }

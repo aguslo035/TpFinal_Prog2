@@ -6,7 +6,6 @@ import Models.ConstructorDeTextoParaTurnos.GestorDeTextoDeCombate;
 import Models.Entidades.Enemigos.Enemigo;
 import Models.Entidades.JugadoresClases.Jugador;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -32,7 +31,7 @@ public abstract class TurnoJugador {
 
         while (!continuar)
         {
-            decision = MenuInicial.elegirOpcion();
+            decision = JuegoRPG.elegirOpcion();
 
             switch (decision)
             {
@@ -81,7 +80,7 @@ public abstract class TurnoJugador {
             int i = jugador.contarHabilidades();
             System.out.println("#"+i+" - Volver a Opciones");
 
-            decision = MenuInicial.elegirOpcion();
+            decision = JuegoRPG.elegirOpcion();
 
             if (decision == i)
             {
@@ -120,7 +119,7 @@ public abstract class TurnoJugador {
             int i = jugador.contarItemsInventario();
             System.out.println("#"+i+" - Volver a Opciones");
 
-            decision = MenuInicial.elegirOpcion();
+            decision = JuegoRPG.elegirOpcion();
 
             if (decision == i)
             {
