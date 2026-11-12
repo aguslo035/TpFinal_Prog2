@@ -2,7 +2,6 @@ package Controller;
 
 import Models.Entidades.Enemigos.Enemigo;
 import Models.Entidades.JugadoresClases.Jugador;
-import Models.ConstructorDeTextoParaTurnos.GestorDeTextoDeCombate;
 
 
 //La idea ahora mismo es que "BatallaPorTurnos" maneje 1 solo combate a la vez, no todos. JuegoRPG se encarga de mandar 1 por 1 los enemigos hasta que no haya más. Por eso elimino el arrayList de enemigoActual.

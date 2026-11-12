@@ -1,4 +1,4 @@
-package Models.ConstructorDeTextoParaTurnos;
+package Models;
 
 import Models.Entidades.Entidad;
 

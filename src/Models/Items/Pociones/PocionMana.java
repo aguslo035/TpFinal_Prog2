@@ -1,7 +1,7 @@
 package Models.Items.Pociones;
 
 import Models.Entidades.JugadoresClases.Jugador;
-import Models.ConstructorDeTextoParaTurnos.GestorDeTextoDeCombate;
+import Models.GestorDeTextoDeCombate;
 
 public final class PocionMana extends Pocion{
 
