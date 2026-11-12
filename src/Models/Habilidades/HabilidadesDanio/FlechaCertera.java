@@ -2,6 +2,7 @@ package Models.Habilidades.HabilidadesDanio;
 
 import Exception.Juego.ManaInsuficienteException;
 import Models.Entidades.Entidad;
+import Models.GestorDeTextoDeCombate;
 
 public final class FlechaCertera extends HabilidadDanio{
     private int multiplicadorCritico;
@@ -24,5 +25,7 @@ public final class FlechaCertera extends HabilidadDanio{
         objetivo.recibirDanio(danioARealizarDeHabilidad);
         return danioARealizarDeHabilidad;
     }
+
+
 
 }

@@ -2,6 +2,7 @@ package Models.Habilidades.HabilidadesDanio;
 
 import Exception.Juego.ManaInsuficienteException;
 import Models.Entidades.Entidad;
+import Models.GestorDeTextoDeCombate;
 
 public final class GolpeErratico extends HabilidadDanio {
     private int danioFijo;
@@ -36,6 +37,8 @@ public final class GolpeErratico extends HabilidadDanio {
         objetivo.recibirDanio(danioARealizarDeHabilidad);
         return danioARealizarDeHabilidad;
     }
+
+
 
     //toString reformateado (no llamo al super) por el tema de que el daño es 0
     @Override

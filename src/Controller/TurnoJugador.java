@@ -23,7 +23,7 @@ public abstract class TurnoJugador {
         boolean continuar = false; //cambia al tomar acción que finalize el turno
         int decision;
         int aux; //recibe un número para mostrar después (ej, daño ocasionado, cuánto se curó, etc)
-        String accionRealizada = null; //lo igualo a null para que java no se queje
+        String resultadoAccion = null; //lo igualo a null para que java no se queje
 
         System.out.println(estadoPelea(jugador, enemigo)); //Muestra HP/MP/Escudo restante de los 2
 
@@ -38,18 +38,18 @@ public abstract class TurnoJugador {
                 case 0:
                     aux = jugador.atacar(enemigo);
                     continuar = true;
-                    accionRealizada = GestorDeTextoDeCombate.ataque(jugador, enemigo, aux);
+                    resultadoAccion = GestorDeTextoDeCombate.ataque(jugador, enemigo, aux);
                     break;
                 case 1:
-                    accionRealizada = menuHabilidad(jugador, enemigo);
-                    if (!accionRealizada.equals("Volver")) //significa que se tomó una decisión que finaliza el turno
+                    resultadoAccion = menuHabilidad(jugador, enemigo);
+                    if (!resultadoAccion.equals("Volver")) //significa que se tomó una decisión que finaliza el turno
                     {
                         continuar = true;
                     }
                     break;
                 case 2:
-                    accionRealizada = menuItems(jugador, enemigo);
-                    if (!accionRealizada.equals("Volver"))
+                    resultadoAccion = menuItems(jugador, enemigo);
+                    if (!resultadoAccion.equals("Volver"))
                     {
                         continuar = true;
                     }
@@ -62,7 +62,7 @@ public abstract class TurnoJugador {
                     break;
             }
         }
-        return accionRealizada;
+        return resultadoAccion;
         //va a terminar devolviendo un flavor text: "X ataca a Y por 123 de daño!"
     }
 
@@ -92,7 +92,7 @@ public abstract class TurnoJugador {
                 try {
                     int danioCausado = jugador.usarHabilidad(decision, enemigo);
                     //lo siguiente solo ocurre si no ocurrió una exception (elige opción valida)
-                    accionRealizada = GestorDeTextoDeCombate.ataqueHabilidad(jugador, enemigo, jugador.getHabilidades().get(decision).getNombre(), danioCausado);
+                    accionRealizada = jugador.getHabilidades().get(decision).describirComportamiento(jugador, enemigo, danioCausado);
                     continuar = true;
                 } catch (IndiceInvalidoException e) {
                     System.out.println("Elija una opción valida de las mostradas.");

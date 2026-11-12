@@ -2,11 +2,15 @@ package Models.Habilidades.HabilidadesDanio;
 
 import Exception.Juego.ManaInsuficienteException;
 import Models.Entidades.Entidad;
+import Models.GestorDeTextoDeCombate;
 
 public final class RoboDeVida extends HabilidadDanio{
 
     //creemoslo nosotros por defecto a las habilidades, para ir poniendola en los personajes/enemigos
-    //mando números random en todas las habilidades (y te dejo esta nota en todas para que no se pierda)
+
+    //Cuando se agregue esta habilidad a los personajes, que solamente se llama "Robo de Vida" exactamente
+    //Tuve que hacer lógica en turno jugador usando exactamente ese nombre
+
 
     public RoboDeVida(String nombre, String descripcion, int costoMana, int danio) {
         super(nombre, descripcion, costoMana, danio);
@@ -28,12 +32,16 @@ public final class RoboDeVida extends HabilidadDanio{
         return danioARealizarDeHabilidad;
     }
 
-    //toString
+    @Override
+    public String describirComportamiento(Entidad origen, Entidad destino, int danio) {
+        return GestorDeTextoDeCombate.ataqueHabilidadConCura(origen, destino, getNombre(), danio, danio); //tengo que asumir se cura lo mismo que daña, a menos que hagamos una cura fija en variable
+    }
 
+    //toString
     @Override
     public String toString() {
         return "RoboDeVida{" +
-                "curacionRecibida=" + curacionRecibida +
+                "curacionRecibida=" + curacionRecibida + //todo: arreglar el toString de esto
                 '}';
     }
 }

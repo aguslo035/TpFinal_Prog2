@@ -47,6 +47,9 @@ public abstract class Habilidad {
     public abstract int usar(Entidad usuario, Entidad objetivo) throws ManaInsuficienteException;
     //Las hijas deciden como actuaran. Pueden decidir o no utilizar las entidades que se le pasan.
 
+    //Devuelve un string describiendo lo que se realizó para el jugador.
+    public abstract String describirComportamiento(Entidad origen, Entidad destino, int danio);
+
     //toString
     @Override
     public String toString() {

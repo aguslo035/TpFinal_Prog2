@@ -4,7 +4,6 @@ import Enumerator.EAccionEnemigo;
 import Models.Entidades.Entidad;
 import Models.Habilidades.Habilidad;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -40,8 +39,7 @@ public abstract class Enemigo extends Entidad {
 
         EAccionEnemigo decisionTomada;
 
-        if(puedeUsarHabilidades(habilidadesDisponibles())) //si ya no puede usar habilidades solo ataca, caso contrario puede hacer otras cosas que estén en el ENUM
-        {
+        if(puedeUsarHabilidades()){ //si ya no puede usar habilidades solo ataca, caso contrario puede hacer otras cosas que estén en el ENUM
             decisionTomada = accionesPosibles[random.nextInt(cantAcciones)];
         }else {
             decisionTomada = EAccionEnemigo.ATACAR;
@@ -53,9 +51,9 @@ public abstract class Enemigo extends Entidad {
         //^como ahora tengo un array que empieza en 0 voy a sacar el +1.
     }
 
-    //lo que voy a hacer, es que cada turno el enemigo revise qué habilidades pueda usar (usando maná actual) y las devuelva en un listado.
+    //lo que voy a hacer, es que cada vez que va a tomar una decisión, el enemigo revise qué habilidades pueda usar (usando maná actual) y las devuelva en un listado.
     //después si decide usar una habilidad, decide aleatoriamente qué habilidad usa
-    public ArrayList<Habilidad> habilidadesDisponibles()
+    public ArrayList<Habilidad> getHabilidadesDisponibles()
     {
         ArrayList<Habilidad> habilidadesPuedeUsar = new ArrayList<>();
 
@@ -70,18 +68,17 @@ public abstract class Enemigo extends Entidad {
         return habilidadesPuedeUsar;
     }
 
-    public boolean puedeUsarHabilidades (List<Habilidad> habilidadesPosibles)
+    public boolean puedeUsarHabilidades ()
     {
-        if (habilidadesPosibles.isEmpty())
-        {
-            return false;
-        }
+        List<Habilidad> habilidadesPosibles = getHabilidadesDisponibles();
 
-        return true;
+        return !habilidadesPosibles.isEmpty();
     }
 
-    public Habilidad elegirHabilidadAUsar(List<Habilidad> habilidadesPosibles)
+    public Habilidad elegirHabilidadAUsar()
     {
+        List<Habilidad> habilidadesPosibles = getHabilidadesDisponibles();
+
         int cantHabilidadesDisponibles = habilidadesPosibles.size();
 
         return habilidadesPosibles.get(random.nextInt(cantHabilidadesDisponibles));

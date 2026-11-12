@@ -76,6 +76,8 @@ public abstract class Jugador extends Entidad {
     }
 
 
+
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Jugador jugador)) return false;

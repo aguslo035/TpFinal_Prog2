@@ -2,6 +2,7 @@ package Models.Habilidades.HabilidadesDanio;
 
 import Exception.Juego.ManaInsuficienteException;
 import Models.Entidades.Entidad;
+import Models.GestorDeTextoDeCombate;
 import Models.Habilidades.Habilidad;
 
 public abstract class HabilidadDanio extends Habilidad {
@@ -34,5 +35,10 @@ public abstract class HabilidadDanio extends Habilidad {
 
         objetivo.recibirDanio(danioARealizarDeHabilidad); //ojo con esto, ahora mismo las habilidades ignoran el escudo que tenga el enemigo, porque la lógica de quitar escudo está en .ataque y no .recibirDanio
         return danioARealizarDeHabilidad;
+    }
+
+    @Override
+    public String describirComportamiento(Entidad origen, Entidad destino, int danio) {
+        return GestorDeTextoDeCombate.ataqueHabilidad(origen, destino, getNombre(), danio);
     }
 }
