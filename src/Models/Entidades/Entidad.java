@@ -103,8 +103,7 @@ public abstract class Entidad implements IHabilidad {
 
 
     @Override
-    public int usarHabilidad(int indice, Entidad objetivo)
-            throws IndiceInvalidoException, ManaInsuficienteException {
+    public int usarHabilidad(int indice, Entidad objetivo) throws IndiceInvalidoException, ManaInsuficienteException {
         if (indice < this.habilidades.size() || indice >this.habilidades.size())
             throw new IndiceInvalidoException(indice);
 

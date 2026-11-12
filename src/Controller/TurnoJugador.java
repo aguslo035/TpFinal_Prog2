@@ -5,6 +5,7 @@ import Exception.Juego.ManaInsuficienteException;
 import Models.GestorDeTextoDeCombate;
 import Models.Entidades.Enemigos.Enemigo;
 import Models.Entidades.JugadoresClases.Jugador;
+import Models.Habilidades.Habilidad;
 
 import java.util.Scanner;
 
@@ -92,7 +93,7 @@ public abstract class TurnoJugador {
                 try {
                     int danioCausado = jugador.usarHabilidad(decision, enemigo);
                     //lo siguiente solo ocurre si no ocurrió una exception (elige opción valida)
-                    accionRealizada = jugador.getHabilidades().get(decision).describirComportamiento(jugador, enemigo, danioCausado);
+                    accionRealizada = jugador.getHabilidades().get(decision).describirComportamiento(jugador, enemigo, danioCausado); //puede que esté mal que se busque la misma habilidad 2 veces, pero el .usarHabilidad del jugador en la linea de arriba hace la verificación de que tiene maná para usarla
                     continuar = true;
                 } catch (IndiceInvalidoException e) {
                     System.out.println("Elija una opción valida de las mostradas.");

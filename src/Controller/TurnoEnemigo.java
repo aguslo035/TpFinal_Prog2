@@ -37,13 +37,9 @@ public abstract class TurnoEnemigo {
 
         try{
             Habilidad habilidadElegida = enemigo.elegirHabilidadAUsar();
-            int danioCausado = habilidadElegida.usar(enemigo, jugador);
-            if (habilidadElegida.getNombre().equals("Robo de Vida"))
-            {
-                resultadoAccion = GestorDeTextoDeCombate.ataqueHabilidadConCura(enemigo, jugador, "Robo de Vida", danioCausado, danioCausado);
-            }else {
-                resultadoAccion = GestorDeTextoDeCombate.ataqueHabilidad(enemigo, jugador, habilidadElegida.getNombre(), danioCausado);
-            }
+            int pos = enemigo.getHabilidades().indexOf(habilidadElegida); //busco la posición de la habilidad que eligió
+            int danioCausado = enemigo.usarHabilidad(pos, jugador);
+            resultadoAccion = habilidadElegida.describirComportamiento(enemigo, jugador, danioCausado);
         } catch (ManaInsuficienteException e) { //no puede pasar nunca porque el enemigo solo tiene acceso a las habilidades para las que tiene maná. Igual le agrego el mensaje
             System.out.println(e.getMessage() + " El enemigo utilizó una habilidad sin maná.");
         }
