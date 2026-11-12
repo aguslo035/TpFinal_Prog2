@@ -10,12 +10,12 @@ import Models.ConstructorDeTextoParaTurnos.GestorDeTextoDeCombate;
 public class BatallaPorTurnos {
 
     //atributos
-    private int ronda = 1;
+    private static int ronda = 1;
 
     //métodos
 
     //devuelve true si ganó el jugador, devuelve false si perdió. JuegoRPG se encarga del final.
-    public boolean combateEntreEntidades(Jugador jugador, Enemigo enemigoActual)
+    public static boolean combateEntreEntidades(Jugador jugador, Enemigo enemigoActual)
     {
         System.out.println("\n\nInicio de combate!\n\n");
         while (jugador.estaVivo())
@@ -28,8 +28,11 @@ public class BatallaPorTurnos {
                 //hay que hacer una clase que se encarge de recibir sus decisiones ("TurnoEnemigo")
                 //Me voy a encargar de hacerla yo, porque se va a parecer bastante a TurnoJugador (solo que sin scanners), además va a llamar mucho a GestorDeTextoCombate)
             }else {
-                return true; //JuegoRPG se encarga de que el usuario elija item
+                ronda = 1; //lo setteo a 1 para el siguiente combate
+                return true;
             }
+
+            ronda++;
         }
 
         return false; //solo llegamos acá si jugador.estaVivo da falso (es decir, murió)

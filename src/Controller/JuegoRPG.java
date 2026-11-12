@@ -34,8 +34,7 @@ public abstract class JuegoRPG {
             {
                 case 1:
                     jugadorElegido = menuEleccionClase();
-                    sc.close();
-                    BatallaPorTurnos.(insertarMetodoRelevanteAqui)(jugadorElegido, enemigos);
+                    aventura(jugadorElegido, enemigos);
                     break;
                 case 2:
                     System.exit(0); //sale del programa. el "0" indica que es un cierre normal
@@ -50,6 +49,63 @@ public abstract class JuegoRPG {
             }
         }
     }
+
+    public static void aventura(Jugador jugadorElegido, List<Enemigo> enemigos)
+    {
+        System.out.println(historiaInicial(jugadorElegido));
+
+        boolean ganar;
+        int cantidadDeBatallas = enemigos.size();
+        int enemigoActual = 0;
+
+        while(enemigoActual < cantidadDeBatallas)
+        {
+            System.out.println(encuentroEnemigo(jugadorElegido, enemigos.get(enemigoActual))); //Texto de encuentro.
+            ganar = BatallaPorTurnos.combateEntreEntidades(jugadorElegido, enemigos.get(enemigoActual)); //Ocurre batalla
+
+        }
+
+    }
+
+    //Estoy tan embolado de modularizar tanto que simplemente voy a crear un objeto del tiem que elija y agregarselo al inventario
+    //Está mal porque por cada item que agregemos hay que modificar este método
+    //Pero modularizé tanto que me marié y esto requiere de una solución más compleja (pensé que cada enemigo dropeaba un item y me hacía la vida fácil, pero lo habíamos cambiado para que el usuario elija de los items que existen)
+    public void recolectarRecompensa(Jugador jugadorElegido)
+    {
+        System.out.println();
+    }
+
+    public String recompensasDisponibles()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("");
+    }
+
+
+
+
+    public static String encuentroEnemigo(Jugador jugadorElegido, Enemigo enemigo)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\nEn el trayecto, "+ jugadorElegido.getNombre() + " se encuentra con "+ enemigo.getNombre() + "...\n");
+        sb.append("¡Que se prepare para pelear!\n\n");
+
+        return sb.toString();
+    }
+
+    public static String historiaInicial (Jugador jugadorElegido)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\n¡"+ jugadorElegido.getNombre() + " embarca en su aventura para ser el más fuerte!\n");
+        sb.append("En su viaje se encontrará con distintos enemigos que buscarán su muerte.\n");
+
+        return sb.toString();
+    }
+
+    public
 
     public static String menuOpciones()
     {
