@@ -73,13 +73,15 @@ public abstract class JuegoRPG {
             }else
             {
                 System.out.println(derrotaJugador(jugadorElegido));
-                sc.nextLine();
+                sc.nextLine(); //esto le da una pausa al jugador antes de que se cierre el juego.
                 System.exit(0);
             }
         }
 
         //solo se llega a este punto si no se ha muerto el jugador (todos los enemigos han sido derrotados)
         System.out.println(victoriaAnteLosMonstruos(jugadorElegido));
+        sc.nextLine(); //esto le da una pausa al jugador antes de que se cierre el juego.
+        System.exit(0);
     }
 
     public static String victoriaAnteLosMonstruos(Jugador jugadorElegido)

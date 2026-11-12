@@ -23,10 +23,9 @@ public class BatallaPorTurnos {
             System.out.println(TurnoJugador.menuAtaque(jugador, enemigoActual));
             if (enemigoActual.estaVivo())
             {
-                //falta la lógica de lo que hace cada enemigo :|
-                //hay que hacer una clase que se encarge de recibir sus decisiones ("TurnoEnemigo")
-                //Me voy a encargar de hacerla yo, porque se va a parecer bastante a TurnoJugador (solo que sin scanners), además va a llamar mucho a GestorDeTextoCombate)
-            }else {
+                System.out.println(TurnoEnemigo.accionEnemiga(jugador, enemigoActual));
+            }else //Cuando el enemigo muere
+            {
                 ronda = 1; //lo setteo a 1 para el siguiente combate
                 return true;
             }
@@ -34,7 +33,7 @@ public class BatallaPorTurnos {
             ronda++;
         }
 
-        return false; //solo llegamos acá si jugador.estaVivo da falso (es decir, murió)
+        return false; //solo llegamos acá si el jugador muere (jugador.estaVivo da falso)
     }
 
 
