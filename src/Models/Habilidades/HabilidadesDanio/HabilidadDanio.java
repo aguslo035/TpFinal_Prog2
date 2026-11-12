@@ -25,8 +25,7 @@ public abstract class HabilidadDanio extends Habilidad {
     }
 
     @Override
-    public int usar(Entidad usuario, Entidad objetivo)
-        throws ManaInsuficienteException
+    public int usar(Entidad usuario, Entidad objetivo) throws ManaInsuficienteException //me molestaba que estuviese 1 linea debajo jaja
     {
         if(!sePuedeUsar(objetivo))
             throw new ManaInsuficienteException();

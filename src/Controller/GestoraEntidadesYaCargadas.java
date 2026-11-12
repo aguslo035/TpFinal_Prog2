@@ -12,20 +12,27 @@ public abstract class GestoraEntidadesYaCargadas { // es para traer las entidade
     // tambien, los metodos de meter a la base de datos o crear tabla no los tiene que usar el usuario, eso lo usamos para cargar
     // nosotros entidades a la base de datos para que despues el juego se arme solo nada mas
     public static List<Jugador> jugadores(){
+        List<Jugador> jugadores = null;
+
         try {
-            List<Jugador> jugadores = ConexionClases.traerClases();
+            jugadores = ConexionClases.traerClases();
         } catch (ConexionException e) {
             System.out.println(e.getMessage());
         }
-        return jugadores();
+
+        return jugadores;
     }
 
-    public static List<Jugador> enemigos(){
+    public static List<Enemigo> enemigos(){
+        
+        List<Enemigo> enemigos = null;
+
         try {
-            List<Enemigo> enemigos = ConexionEnemigos.traerEnemigos();
+            enemigos = ConexionEnemigos.traerEnemigos();
         } catch (ConexionException e) {
             System.out.println(e.getMessage());
         }
-        return enemigos();
+
+        return enemigos;
     }
 }
