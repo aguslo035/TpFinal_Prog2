@@ -74,6 +74,7 @@ public abstract class JuegoRPG {
             {
                 System.out.println(derrotaJugador(jugadorElegido));
                 sc.nextLine(); //esto le da una pausa al jugador antes de que se cierre el juego.
+                sc.close();
                 System.exit(0);
             }
         }
@@ -81,6 +82,7 @@ public abstract class JuegoRPG {
         //solo se llega a este punto si no se ha muerto el jugador (todos los enemigos han sido derrotados)
         System.out.println(victoriaAnteLosMonstruos(jugadorElegido));
         sc.nextLine(); //esto le da una pausa al jugador antes de que se cierre el juego.
+        sc.close();
         System.exit(0);
     }
 
@@ -89,7 +91,7 @@ public abstract class JuegoRPG {
         StringBuilder sb = new StringBuilder();
 
         sb.append("\n"+ jugadorElegido.getNombre() + " ha derrotado a todos los enemigos en su camino.\n");
-        sb.append("Ha demostrado ser uno de los mejores "+ jugadorElegido.getClass().toString() + " de todos los tiempos...\n\n");
+        sb.append("Ha demostrado ser uno de los mejores "+ jugadorElegido.getClass().toString() + "s de todos los tiempos...\n\n");
         sb.append("FIN DEL JUEGO. VICTORIA.\n");
 
         return sb.toString();
