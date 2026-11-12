@@ -98,4 +98,15 @@ public abstract class Jugador extends Entidad {
                 ", tipoArma=" + tipoArma +
                 ", inventario=" + inventario.listar(); //acá imprimimos todo el array del inventario?
     }
+
+    //otro tipo de toString que imprime solo datos relevantes para decidir qué clase elegir.
+    public String datosParaEleccion()
+    {
+        return "Nombre: "+ getNombre() +
+                ", Vida: "+ getVidaMaxima() +
+                ", Maná(MP): "+ getManaMaximo() +
+                ", Ataque: " + getAtaque() +
+                ", Escudo: "+ getEscudo() +
+                ", Arma Utilizada: "+ this.tipoArma;
+    }
 }
