@@ -18,7 +18,7 @@ public abstract class TurnoJugador {
 
     //métodos
 
-    //Muestra las opciones que tiene el jugador en su turno. Realiza acciones de acorde a su decisión. Devuelve texto de a corde a la acción realizada.
+    //Muestra las opciones que tiene el jugador en su turno. Realiza acciones según su decisión. Devuelve texto de acorde a la acción realizada.
     public static String menuAtaque(Jugador jugador, Enemigo enemigo) //este se llama en turno usuario, así que ya se sabe qué entidad es cada uno (por eso especifico Jugador y Enemigo)
     {
         boolean continuar = false; //cambia al tomar acción que finalize el turno
@@ -26,7 +26,7 @@ public abstract class TurnoJugador {
         int aux; //recibe un número para mostrar después (ej, daño ocasionado, cuánto se curó, etc)
         String resultadoAccion = null; //lo igualo a null para que java no se queje
 
-        System.out.println(estadoPelea(jugador, enemigo)); //Muestra HP/MP/Escudo restante de los 2
+        System.out.println(BatallaPorTurnos.estadoPelea(jugador, enemigo)); //Muestra HP/MP/Escudo restante de los 2
 
         System.out.println(mostrarOpcionesCombate()); //le da a elegir al usuario
 
@@ -63,11 +63,12 @@ public abstract class TurnoJugador {
                     break;
             }
         }
-        return resultadoAccion;
-        //va a terminar devolviendo un flavor text: "X ataca a Y por 123 de daño!"
+
+        sc.close();
+        return resultadoAccion; //ej resultado: "X ataca a Y por 123 de daño!"
     }
 
-    //Se listan todas las habilidades + opción de volver al menú de ataque. Una vez el usuario decide correctamente, devuelve un String indicando la elección realizada (que se realizó el ataque o se volvió al menú).
+    //Lista todas las habilidades del jugador y una opción para volver al menú de ataque. Una vez el usuario tome una opción valida, devuelve un String indicando la elección realizada (que se realizó el ataque o se volvió al menú).
     public static String menuHabilidad(Jugador jugador, Enemigo enemigo)
     {
         boolean continuar = false;
@@ -108,6 +109,7 @@ public abstract class TurnoJugador {
         return accionRealizada;
     }
 
+    //Lista todas los items del jugador y una opción para volver al menú de ataque. Una vez el usuario tome una opción valida, devuelve un String indicando la elección realizada (que se realizó el ataque o se volvió al menú).
     public static String menuItems(Jugador jugador, Enemigo enemigo)
     {
         boolean continuar = false;
@@ -145,23 +147,10 @@ public abstract class TurnoJugador {
         return accionRealizada;
     }
 
-
-//moví "elegirOpcion" a MenuInicial
-
-
-
     //este conviene esté en BatallaPorTurnos
-    public static String estadoPelea(Jugador jugador, Enemigo enemigo) //muestra la vida, MP y efectos actuales de ambos
-    {
-        StringBuilder sb = new StringBuilder();
-        sb.append("===")
-                .append(GestorDeTextoDeCombate.mostrarEstado(jugador))
-                .append("===")
-                .append(GestorDeTextoDeCombate.mostrarEstado(enemigo))
-                .append("\n\n");
-        return sb.toString();
-    }
+    //
 
+    //Consiste de un menú con las opcioens disponibles en el turno del usuario. Lo devuelve como String.
     public static String mostrarOpcionesCombate()
     {
         StringBuilder sb = new StringBuilder();
@@ -174,6 +163,7 @@ public abstract class TurnoJugador {
         return sb.toString();
     }
 
+    //Cierra el scanner.
     public static void cerrarScanner()
     {
         sc.close();

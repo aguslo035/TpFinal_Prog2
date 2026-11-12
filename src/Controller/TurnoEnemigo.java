@@ -10,6 +10,7 @@ import Models.Habilidades.Habilidad;
 
 public abstract class TurnoEnemigo {
 
+    //Gestiona la acción tomada por el enemigo. Devuelve un String describiendole al usuario la acción realizada.
     public static String accionEnemiga(Jugador jugador, Enemigo enemigo)
     {
         int aux; //recibe un número para mostrar después (por ej, daño ocasionado, vida/maná curada)
@@ -31,6 +32,7 @@ public abstract class TurnoEnemigo {
         return resultadoAccion;
     }
 
+    //Gestiona el ataque en caso de que el enemigo pueda y quiera usar una habilidad. Devuelve un String describiendo qué ocurrió al realizarla.
     public static String ataqueConHabilidad(Jugador jugador, Enemigo enemigo)
     {
         String resultadoAccion = null;

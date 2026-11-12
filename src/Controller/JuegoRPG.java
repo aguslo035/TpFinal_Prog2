@@ -219,12 +219,12 @@ public abstract class JuegoRPG {
         int decision;
 
         do {
-            System.out.println("Seleccione una de las opciones: ");
+            System.out.println("\nSeleccione una de las opciones: ");
             try {
                 decision = sc.nextInt();
                 return decision;
             } catch (InputMismatchException e) {
-                System.out.println(e.getMessage() + "Ingrese un valor valido."); //e.get message no te tira el texto gigante?
+                System.out.println(e.getMessage() + "Ingrese un valor valido.\n"); //e.get message no te tira el texto gigante?
             } finally {
                 sc.nextLine();
             }
