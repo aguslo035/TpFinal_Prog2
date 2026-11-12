@@ -14,6 +14,7 @@ public abstract class TurnoJugador {
 
     //scanner
     private static final Scanner sc = new Scanner(System.in);//SIEMPRE se utiliza el scanner en el main con el metodo elegirOpcion()
+    //cómo que en el main?
 
     //métodos
 
@@ -31,7 +32,7 @@ public abstract class TurnoJugador {
 
         while (!continuar)
         {
-            decision = elegirOpcion();
+            decision = MenuInicial.elegirOpcion();
 
             switch (decision)
             {
@@ -80,7 +81,7 @@ public abstract class TurnoJugador {
             int i = jugador.contarHabilidades();
             System.out.println("#"+i+" - Volver a Opciones");
 
-            decision = elegirOpcion();
+            decision = MenuInicial.elegirOpcion();
 
             if (decision == i)
             {
@@ -119,7 +120,7 @@ public abstract class TurnoJugador {
             int i = jugador.contarItemsInventario();
             System.out.println("#"+i+" - Volver a Opciones");
 
-            decision = elegirOpcion();
+            decision = MenuInicial.elegirOpcion();
 
             if (decision == i)
             {
@@ -144,23 +145,8 @@ public abstract class TurnoJugador {
     }
 
 
+//moví "elegirOpcion" a MenuInicial
 
-    public static int elegirOpcion() // ahi te lo arregle que tenia un par de errores y tmb maneja para que no se corte si ingresan algo que no es un Int
-    {
-        int decision;
-
-        do {
-            System.out.println("Seleccione una de las opciones: ");
-            try {
-                decision = sc.nextInt();
-                return decision;
-            } catch (InputMismatchException e) {
-                System.out.println(e.getMessage() + "Ingrese un valor valido.");
-            } finally {
-                sc.nextLine();
-            }
-        } while (true) ;
-    }
 
 
     //este conviene esté en BatallaPorTurnos

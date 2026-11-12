@@ -4,6 +4,7 @@ import Exception.Conexion.ConexionException;
 import Jdbc.ConexionClases;
 import Jdbc.ConexionEnemigos;
 import Models.Entidades.Enemigos.Enemigo;
+import Models.Entidades.Entidad;
 import Models.Entidades.JugadoresClases.Jugador;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public abstract class GestoraEntidadesYaCargadas { // es para traer las entidade
     }
 
     public static List<Enemigo> enemigos(){
-        
+
         List<Enemigo> enemigos = null;
 
         try {
@@ -34,5 +35,11 @@ public abstract class GestoraEntidadesYaCargadas { // es para traer las entidade
         }
 
         return enemigos;
+    }
+
+    //consideré hacerlo genérico (ej, List<? extends Entidad>) por el hipotético caso que algún día queramos también listar enemigos. Me dio tanta flojera pensarlo que lo dejé en jugadores, pero acá hay otro potencial uso de genericidad (usando el comodín)
+    public static String listarEntidades (List<Jugador> jugadores)
+    {
+        //necesito que me devuelva un String lindo contando de cada jugador del array del #0 hasta el que haya para que el usuario pueda elegir
     }
 }
