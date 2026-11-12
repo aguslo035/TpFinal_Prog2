@@ -69,7 +69,7 @@ public abstract class JuegoRPG {
             if(ganar)
             {
                 System.out.println(recolectarRecompensa(jugadorElegido));
-                enemigoActual++;
+                enemigoActual++; //avanzamos al siguiente enemigo
             }else
             {
                 System.out.println(derrotaJugador(jugadorElegido));
@@ -195,6 +195,7 @@ public abstract class JuegoRPG {
         return sb.toString();
     }
 
+    //Solo recordatorio de lo que falta acá, falta un toString en GestoraEntidadesYaCargadas que imprima los datos relevantes de los jugadores para que el usuario pueda elegir
     public static Jugador menuEleccionClase() //todo: una vez esté hecho el toString en "GestoraEntidadesYaCargadas" lo completo
     {
         StringBuilder sb = new StringBuilder();
