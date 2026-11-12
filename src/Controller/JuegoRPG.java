@@ -23,9 +23,8 @@ public abstract class JuegoRPG {
 
         int opcion;
         Jugador jugadorElegido;
-        boolean continuar = false;
 
-        while(!continuar)
+        while(true)
         {
             System.out.println(menuOpciones());
 
@@ -35,22 +34,21 @@ public abstract class JuegoRPG {
             {
                 case 1:
                     jugadorElegido = menuEleccionClase();
+                    sc.close();
                     BatallaPorTurnos.(insertarMetodoRelevanteAqui)(jugadorElegido, enemigos);
                     break;
                 case 2:
-                    System.exit(0);
+                    System.exit(0); //sale del programa. el "0" indica que es un cierre normal
                     break;
                 case 3:
+                    sc.close();
                     //menu admin
+                    break;
+                default:
+                    System.out.println("Elija una opción valida.");
                     break;
             }
         }
-
-
-
-
-
-        sc.close();
     }
 
     public static String menuOpciones()
@@ -68,11 +66,20 @@ public abstract class JuegoRPG {
         return sb.toString();
     }
 
-    public static Jugador menuEleccionClase()
+    public static Jugador menuEleccionClase() //todo: una vez esté hecho el toString en "GestoraEntidadesYaCargadas" lo completo
     {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(clasesAElegir.);
+        Jugador jugadorElegido;
+
+        sb.append(clasesAElegir);
+
+        int decision = elegirOpcion();
+
+        //un while true hasta que eliga una opción válida (voy a copiar la lógica de lo que hice en TurnoJugador con menú de habilidades e items)
+
+        //eventualmente devuelvo el jugador que se eligió dentro de los switches del while
+        return jugadorElegido;
     }
 
     public static int elegirOpcion() // ahi te lo arregle que tenia un par de errores y tmb maneja para que no se corte si ingresan algo que no es un Int
