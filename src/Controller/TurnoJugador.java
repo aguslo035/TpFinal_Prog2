@@ -64,7 +64,6 @@ public abstract class TurnoJugador {
             }
         }
 
-        sc.close();
         return resultadoAccion; //ej resultado: "X ataca a Y por 123 de daño!"
     }
 
