@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConexionEnemigos extends Conexion {
+public abstract class ConexionEnemigos extends Conexion {
 
     public static int crearTablaEnemigos()
         throws ConexionException {
