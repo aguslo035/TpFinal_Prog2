@@ -75,13 +75,21 @@ public abstract class Enemigo extends Entidad {
         return !habilidadesPosibles.isEmpty();
     }
 
+    //Dentro recibe un array con las habilidades para las cuales el enemigo tiene maná suficiente. Devuelve una de estas. Si no hay habilidades, devuelve null.
     public Habilidad elegirHabilidadAUsar()
     {
         List<Habilidad> habilidadesPosibles = getHabilidadesDisponibles();
 
         int cantHabilidadesDisponibles = habilidadesPosibles.size();
 
-        return habilidadesPosibles.get(random.nextInt(cantHabilidadesDisponibles));
+        if (cantHabilidadesDisponibles == 0)
+        {
+            return null;
+        }else
+        {
+            return habilidadesPosibles.get(random.nextInt(cantHabilidadesDisponibles));
+        }
+
     }
 
     @Override

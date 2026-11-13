@@ -18,15 +18,26 @@ public abstract class TurnoEnemigo {
 
         EAccionEnemigo decisionTomada = enemigo.elegirAccion();
 
-        switch (decisionTomada) //si alguna vez agregamos una acción nueva enemiga, hay que agregar otro switch
+        boolean continuar = false;
+
+        while (!continuar)
         {
-            case ATACAR:
-                aux = enemigo.atacar(jugador);
-                resultadoAccion = GestorDeTextoDeCombate.ataque(enemigo, jugador, aux);
-                break;
-            case USAR_HABILIDAD:
-                resultadoAccion = ataqueConHabilidad(jugador, enemigo);
-                break;
+
+            switch (decisionTomada) //si alguna vez agregamos una acción nueva enemiga, hay que agregar otro switch
+            {
+                case ATACAR:
+                    aux = enemigo.atacar(jugador);
+                    resultadoAccion = GestorDeTextoDeCombate.ataque(enemigo, jugador, aux);
+                    continuar = true;
+                    break;
+                case USAR_HABILIDAD:
+                    resultadoAccion = ataqueConHabilidad(jugador, enemigo);
+                    if (resultadoAccion != null) //ocurre si el enemigo intenta usar una habilidad y no tiene maná suficiente para ninguna. Lo obliga a atacar.
+                    {
+                        decisionTomada = EAccionEnemigo.ATACAR;
+                    }
+                    break;
+            }
         }
 
         return resultadoAccion;
@@ -38,12 +49,18 @@ public abstract class TurnoEnemigo {
         String resultadoAccion = null;
 
         try{
-            Habilidad habilidadElegida = enemigo.elegirHabilidadAUsar();
-            int pos = enemigo.getHabilidades().indexOf(habilidadElegida); //busco la posición de la habilidad que eligió
-            int danioCausado = enemigo.usarHabilidad(pos, jugador);
-            resultadoAccion = habilidadElegida.describirComportamiento(enemigo, jugador, danioCausado);
+            Habilidad habilidadElegida = enemigo.elegirHabilidadAUsar(); //A partir de un array de habilidades para las cuales el enemigo tiene maná para usar, elige una aleatoriamente.
+            if (habilidadElegida == null) //En caso de no tener maná suficiente para ninguna habilidad, habilidadElegida es null
+            {
+                resultadoAccion = null;
+            }else
+            {
+                int pos = enemigo.getHabilidades().indexOf(habilidadElegida); //busco la posición de la habilidad que eligió
+                int danioCausado = enemigo.usarHabilidad(pos, jugador);
+                resultadoAccion = habilidadElegida.describirComportamiento(enemigo, jugador, danioCausado);
+            }
         } catch (ManaInsuficienteException e) { //no puede pasar nunca porque el enemigo solo tiene acceso a las habilidades para las que tiene maná. Igual le agrego el mensaje
-            System.out.println(e.getMessage() + " El enemigo utilizó una habilidad sin maná.");
+            System.out.println(e.getMessage() + " El enemigo utilizó una habilidad sin maná."); //^ dije no puede pasar nunca y pasó igual lol
         }
 
         return resultadoAccion;
