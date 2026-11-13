@@ -13,4 +13,7 @@ public interface IItem {
 
     //Necesito que cada item construya su propio texto de relleno, sino termino agregando muchos IFs en TurnoJugador
     String describirComportamiento(Jugador usuario, int cantidad);
+
+    //Necesito que cada item me pueda dar su propio nombre
+    String getNombre();
 }

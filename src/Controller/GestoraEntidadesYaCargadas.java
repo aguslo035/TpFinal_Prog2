@@ -38,9 +38,20 @@ public abstract class GestoraEntidadesYaCargadas { // es para traer las entidade
     }
 
     //consideré hacerlo genérico (ej, List<? extends Entidad>) por el hipotético caso que algún día queramos también listar enemigos. Me dio tanta flojera pensarlo que lo dejé en jugadores, pero acá hay otro potencial uso de genericidad (usando el comodín)
+    //necesito que me devuelva un String lindo contando de cada jugador del array del #0 hasta el que haya para que el usuario pueda elegir
+    //Devuelve un String listando todos los personajes disponibles. Utiliza un metodo que indica atributos relevantes de los personajes.
     public static String listarPersonajes (List<Jugador> jugadores)
     {
-        return jugadores.
-        //necesito que me devuelva un String lindo contando de cada jugador del array del #0 hasta el que haya para que el usuario pueda elegir
+        StringBuilder sb = new StringBuilder();
+        int contador = 0;
+
+        for (Jugador aux : jugadores)
+        {
+            sb.append("#"+ contador +" - ");
+            sb.append(aux.datosParaEleccion());
+            sb.append("\n");
+        }
+
+        return sb.toString();
     }
 }

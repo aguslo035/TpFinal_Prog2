@@ -1,7 +1,14 @@
 package Controller;
 
+import Enumerator.TipoArma;
+import Models.Entidades.Enemigos.Bestia;
+import Models.Entidades.Enemigos.Demonio;
 import Models.Entidades.Enemigos.Enemigo;
+import Models.Entidades.Enemigos.Orco;
+import Models.Entidades.JugadoresClases.Arquero;
+import Models.Entidades.JugadoresClases.Guerrero;
 import Models.Entidades.JugadoresClases.Jugador;
+import Models.Entidades.JugadoresClases.Mago;
 import Models.Items.Pociones.PocionMana;
 import Models.Items.Pociones.PocionVida;
 
@@ -18,10 +25,33 @@ public abstract class JuegoRPG {
 
     private static Scanner sc = new Scanner(System.in);
 
+    public static void testJugadoresYEnemigos()
+    {
+        Guerrero clase1 = new Guerrero(1, "Emma el Guerrero", 100, 100, 100, 100, 20, 100, TipoArma.ESPADA);
+        Mago clase2 = new Mago(2, "Lucre la Maga", 100, 100, 100, 100, 15, 100, TipoArma.BASTON);
+        Arquero clase3 = new Arquero(3, "Legolas el Arquero", 100, 100, 100, 100, 20, 80, TipoArma.ARCO, 0.50);
+
+        clasesAElegir.add(clase1);
+        clasesAElegir.add(clase2);
+        clasesAElegir.add(clase3);
+
+        Bestia enemigo1 = new Bestia(1, "Firulais la Bestia", 50, 50, 60, 60, 10, 40);
+        Orco enemigo2 = new Orco(2, "Bernard el Orco", 60, 60 , 70, 70, 20, 30);
+        Demonio enemigo3 = new Demonio(3, "Horacio el Rey Demonio", 70, 70, 80, 80, 25, 40);
+
+        enemigos.add(enemigo1);
+        enemigos.add(enemigo2);
+        enemigos.add(enemigo3);
+    }
+
+
     public static void inicioJuego()
     {
-        clasesAElegir = GestoraEntidadesYaCargadas.jugadores();
-        enemigos = GestoraEntidadesYaCargadas.enemigos();
+        //Esto lo voy a comentar en testeos, voy a hardcodear un array de jugadores y enemigos
+        //clasesAElegir = GestoraEntidadesYaCargadas.jugadores();
+        //enemigos = GestoraEntidadesYaCargadas.enemigos();
+
+        testJugadoresYEnemigos(); //agrega a los listados los jugadores y enemigos que creé
 
         int opcion;
         Jugador jugadorElegido;
@@ -42,7 +72,7 @@ public abstract class JuegoRPG {
                     System.exit(0); //sale del programa. el "0" indica que es un cierre normal
                     break;
                 case 3:
-                    sc.close();
+                    sc.close(); //como esto llama al menú admin no hay que cerrar
                     //menu admin
                     break;
                 default:
@@ -197,21 +227,30 @@ public abstract class JuegoRPG {
         return sb.toString();
     }
 
-    //Solo recordatorio de lo que falta acá, falta un toString en GestoraEntidadesYaCargadas que imprima los datos relevantes de los jugadores para que el usuario pueda elegir
+    //Menú para que el usuario elija la clase/personaje que desea usar. Devuelve el personaje elegido.
     public static Jugador menuEleccionClase() //todo: una vez esté hecho el toString en "GestoraEntidadesYaCargadas" lo completo
     {
-        StringBuilder sb = new StringBuilder();
+        System.out.println("\n==PERSONAJES DISPONIBLES==\n\n");
+        String clasesDisponibles = GestoraEntidadesYaCargadas.listarPersonajes(clasesAElegir);
+        System.out.println(clasesDisponibles);
+        System.out.println("\n");
+
+        int cantClases = clasesAElegir.size();
 
         Jugador jugadorElegido;
 
-        sb.append(clasesAElegir);
+        while (true)
+        {
+            int decision = elegirOpcion();
 
-        int decision = elegirOpcion();
-
-        //un while true hasta que eliga una opción válida (voy a copiar la lógica de lo que hice en TurnoJugador con menú de habilidades e items)
-
-        //eventualmente devuelvo el jugador que se eligió dentro de los switches del while
-        return jugadorElegido;
+            if (cantClases <= decision)
+            {
+                return jugadorElegido = clasesAElegir.get(decision);
+            }else
+            {
+                System.out.println("Por favor elija una de las opciones.\n\n");
+            }
+        }
     }
 
     public static int elegirOpcion()

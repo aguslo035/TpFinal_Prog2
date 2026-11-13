@@ -67,5 +67,12 @@ public class GestoraDeItems<T extends IItem> {
 
         return sb.toString();
     }
+
+    //Esto lo tengo que poner en una gestora de texto aparte. Junto con otros muchos textos más que ahora están en JuegoRPG
+    //A partir del item que se le entregue, devuelve texto indicandole al usuario que se agregó ese item.
+    public String textoDeAgregado (T itemAgregado)
+    {
+        return "Se ha agregado "+itemAgregado.getClass() + " a su inventario.";
+    }
 }
 
