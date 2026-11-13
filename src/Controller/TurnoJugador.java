@@ -26,12 +26,12 @@ public abstract class TurnoJugador {
         int aux; //recibe un número para mostrar después (ej, daño ocasionado, cuánto se curó, etc)
         String resultadoAccion = null; //lo igualo a null para que java no se queje
 
-        System.out.println(BatallaPorTurnos.estadoPelea(jugador, enemigo)); //Muestra HP/MP/Escudo restante de los 2
-
-        System.out.println(mostrarOpcionesCombate()); //le da a elegir al usuario
-
         while (!continuar)
         {
+            System.out.println(BatallaPorTurnos.estadoPelea(jugador, enemigo)); //Muestra HP/MP/Escudo restante de los 2
+
+            System.out.println(mostrarOpcionesCombate()); //le da a elegir al usuario
+
             decision = JuegoRPG.elegirOpcion();
 
             switch (decision)
@@ -43,14 +43,14 @@ public abstract class TurnoJugador {
                     break;
                 case 1:
                     resultadoAccion = menuHabilidad(jugador, enemigo);
-                    if (!resultadoAccion.equals("Volver")) //significa que se tomó una decisión que finaliza el turno
+                    if (!resultadoAccion.equals("VOLVER")) //significa que se tomó una decisión que finaliza el turno
                     {
                         continuar = true;
                     }
                     break;
                 case 2:
                     resultadoAccion = menuItems(jugador, enemigo);
-                    if (!resultadoAccion.equals("Volver"))
+                    if (!resultadoAccion.equals("VOLVER"))
                     {
                         continuar = true;
                     }
@@ -64,7 +64,6 @@ public abstract class TurnoJugador {
             }
         }
 
-        sc.close();
         return resultadoAccion; //ej resultado: "X ataca a Y por 123 de daño!"
     }
 
@@ -121,6 +120,7 @@ public abstract class TurnoJugador {
             System.out.println("===Items disponibles===\n\n");
             System.out.println(jugador.listarInventario());
             int i = jugador.contarItemsInventario();
+            System.out.println("\nAhora mismo hay "+ i + " items en su inventario.\n");
             System.out.println("#"+i+" - Volver a Opciones");
 
             decision = JuegoRPG.elegirOpcion();

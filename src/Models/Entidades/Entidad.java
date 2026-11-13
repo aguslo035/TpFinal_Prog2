@@ -104,12 +104,14 @@ public abstract class Entidad implements IHabilidad {
 
     @Override
     public int usarHabilidad(int indice, Entidad objetivo) throws IndiceInvalidoException, ManaInsuficienteException {
-        if (indice < this.habilidades.size() || indice >this.habilidades.size())
+        if (indice < 0 || indice > this.habilidades.size()) //todo: cambiar si estás en desacuerdo. Pero si el indice es menor al rango tamaño del array, si intentas acceder a una posición del array siempre te va a tirar esta excepción. Voy a cambiar ese .size por un 0 porque creo que querías evitar valores negativos.
             throw new IndiceInvalidoException(indice);
 
         Habilidad habilidadAUsar = this.habilidades.get(indice);
         if(!habilidadAUsar.sePuedeUsar(this))
             throw new ManaInsuficienteException();
+
+        this.manaActual -= habilidadAUsar.getCostoMana(); //ahora le resta maná al Jugador al usar la habilidad
 
         return habilidadAUsar.usar(this, objetivo);
     }

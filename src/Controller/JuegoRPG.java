@@ -222,8 +222,6 @@ public abstract class JuegoRPG {
         sb.append("2. SALIR\n");
         sb.append("3. MENU ADMIN\n");
 
-        sb.append("\nSu decision: ");
-
         return sb.toString();
     }
 
@@ -243,7 +241,7 @@ public abstract class JuegoRPG {
         {
             int decision = elegirOpcion();
 
-            if (cantClases <= decision)
+            if (cantClases >= decision)
             {
                 return jugadorElegido = clasesAElegir.get(decision);
             }else
@@ -263,7 +261,7 @@ public abstract class JuegoRPG {
                 decision = sc.nextInt();
                 return decision;
             } catch (InputMismatchException e) {
-                System.out.println(e.getMessage() + "Ingrese un valor valido.\n"); //e.get message no te tira el texto gigante?
+                System.out.println("Ingrese un valor valido.\n"); //e.get message no te tira el texto gigante? -> e.getMessage() devuelve "null" como texto, lo saqué
             } finally {
                 sc.nextLine();
             }

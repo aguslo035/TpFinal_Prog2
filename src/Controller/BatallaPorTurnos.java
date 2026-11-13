@@ -17,10 +17,10 @@ public abstract class BatallaPorTurnos {
     //devuelve true si ganó el jugador, devuelve false si perdió. JuegoRPG se encarga del final.
     public static boolean combateEntreEntidades(Jugador jugador, Enemigo enemigoActual)
     {
-        System.out.println("\n\nInicio de combate!\n\n");
+        System.out.println("Inicio de combate!\n\n");
         while (jugador.estaVivo())
         {
-            System.out.println("\n==RONDA #"+ ronda+ " ==\n\n");
+            System.out.println("==RONDA #"+ ronda+ " ==\n");
             System.out.println(TurnoJugador.menuAtaque(jugador, enemigoActual));
             if (enemigoActual.estaVivo())
             {
@@ -41,9 +41,9 @@ public abstract class BatallaPorTurnos {
     public static String estadoPelea(Jugador jugador, Enemigo enemigo)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("===")
+        sb.append("===\n")
                 .append(GestorDeTextoDeCombate.mostrarEstado(jugador))
-                .append("===")
+                .append("\n===\n")
                 .append(GestorDeTextoDeCombate.mostrarEstado(enemigo))
                 .append("\n\n");
         return sb.toString();

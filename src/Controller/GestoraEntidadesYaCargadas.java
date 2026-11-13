@@ -50,6 +50,7 @@ public abstract class GestoraEntidadesYaCargadas { // es para traer las entidade
             sb.append("#"+ contador +" - ");
             sb.append(aux.datosParaEleccion());
             sb.append("\n");
+            contador++;
         }
 
         return sb.toString();
