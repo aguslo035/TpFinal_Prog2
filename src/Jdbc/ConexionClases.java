@@ -8,11 +8,10 @@ import Models.Entidades.JugadoresClases.Jugador;
 import Models.Entidades.JugadoresClases.Mago;
 
 import java.util.ArrayList;
-
 import java.sql.*;
 import java.util.List;
 
-public class ConexionClases extends Conexion {
+public abstract class ConexionClases extends Conexion{
 
     public static int crearTablaClases()
         throws ConexionException {

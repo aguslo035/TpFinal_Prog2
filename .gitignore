@@ -28,3 +28,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### datos de nuestra base de datos q no subiremos a git###
+jdbc.txt
