@@ -6,7 +6,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
-import Exception.Conexion.ConexionException;
+//https://www.arquitecturajava.com/java-properties-files-y-como-usarlos/
+// en esta pagina nos guiamos para poder leer el txt
 
 public abstract class Conexion {
 
@@ -31,7 +32,7 @@ public abstract class Conexion {
             throws ConexionException
     {
         try {
-            return DriverManager.getConnection(url, user, password); // sin conexion no podia usar el atributo static
+            return DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             throw new ConexionException("Al abrir conexion! " + e.getMessage());
         }
