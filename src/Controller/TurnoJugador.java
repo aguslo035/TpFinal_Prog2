@@ -43,14 +43,14 @@ public abstract class TurnoJugador {
                     break;
                 case 1:
                     resultadoAccion = menuHabilidad(jugador, enemigo);
-                    if (!resultadoAccion.equals("Volver")) //significa que se tomó una decisión que finaliza el turno
+                    if (!resultadoAccion.equals("VOLVER")) //significa que se tomó una decisión que finaliza el turno
                     {
                         continuar = true;
                     }
                     break;
                 case 2:
                     resultadoAccion = menuItems(jugador, enemigo);
-                    if (!resultadoAccion.equals("Volver"))
+                    if (!resultadoAccion.equals("VOLVER"))
                     {
                         continuar = true;
                     }
