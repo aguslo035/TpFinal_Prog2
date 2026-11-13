@@ -261,7 +261,7 @@ public abstract class JuegoRPG {
                 decision = sc.nextInt();
                 return decision;
             } catch (InputMismatchException e) {
-                System.out.println(e.getMessage() + "Ingrese un valor valido.\n"); //e.get message no te tira el texto gigante?
+                System.out.println("Ingrese un valor valido.\n"); //e.get message no te tira el texto gigante? -> e.getMessage() devuelve "null" como texto, lo saqué
             } finally {
                 sc.nextLine();
             }
