@@ -36,12 +36,4 @@ public final class RoboDeVida extends HabilidadDanio{
     public String describirComportamiento(Entidad origen, Entidad destino, int danio) {
         return GestorDeTextoDeCombate.ataqueHabilidadConCura(origen, destino, getNombre(), danio, danio); //tengo que asumir se cura lo mismo que daña, a menos que hagamos una cura fija en variable
     }
-
-    //toString
-    @Override
-    public String toString() {
-        return "RoboDeVida{" +
-                "curacionRecibida=" + curacionRecibida + //todo: arreglar el toString de esto
-                '}';
-    }
 }

@@ -38,6 +38,13 @@ public abstract class HabilidadDanio extends Habilidad {
     }
 
     @Override
+    public String toString() {
+        return super.toString() +
+                ", danio=" + danio +
+                '}';
+    }
+
+    @Override
     public String describirComportamiento(Entidad origen, Entidad destino, int danio) {
         return GestorDeTextoDeCombate.ataqueHabilidad(origen, destino, getNombre(), danio);
     }
