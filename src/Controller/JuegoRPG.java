@@ -222,8 +222,6 @@ public abstract class JuegoRPG {
         sb.append("2. SALIR\n");
         sb.append("3. MENU ADMIN\n");
 
-        sb.append("\nSu decision: ");
-
         return sb.toString();
     }
 
@@ -243,7 +241,7 @@ public abstract class JuegoRPG {
         {
             int decision = elegirOpcion();
 
-            if (cantClases <= decision)
+            if (cantClases >= decision)
             {
                 return jugadorElegido = clasesAElegir.get(decision);
             }else
