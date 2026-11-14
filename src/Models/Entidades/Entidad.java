@@ -10,6 +10,7 @@ import java.util.List;
 
 public abstract class Entidad implements IHabilidad {
 
+    //atributos
     private String nombre;
     private int vidaActual;
     private int vidaMaxima;
@@ -19,6 +20,7 @@ public abstract class Entidad implements IHabilidad {
     private int escudo;
     private List<Habilidad> habilidades;
 
+    //constructor
     public Entidad(String nombre, int vidaActual, int vidaMaxima,
                    int manaActual, int manaMaximo, int ataque,
                    int escudo) {
@@ -33,6 +35,7 @@ public abstract class Entidad implements IHabilidad {
         habilidades = new ArrayList<>(); // Las habilidades son especificas de cada clase/enemigo. Se llena la lista con sus respectivas habildades en sus constructores
     }
 
+    //getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -58,7 +61,7 @@ public abstract class Entidad implements IHabilidad {
         return vidaMaxima;
     }
 
-    public void setVidaMaxima(int vidaMaxima) { //tal vez checks de que la vida máxima no pueda ser menor a 1, pero no quiero engorrarme en los detalles ahora mismo. Solo dejo constancia.
+    public void setVidaMaxima(int vidaMaxima) { //Contempla intentar settear una vida máxima menor a 1.
         if (vidaMaxima >= 1)
             this.vidaMaxima = vidaMaxima;
         else
@@ -101,10 +104,21 @@ public abstract class Entidad implements IHabilidad {
         this.escudo = escudo;
     }
 
+    public List<Habilidad> getHabilidades ()
+    {
+        return this.habilidades;
+    }
+
+    public void setHabilidades(List<Habilidad> habilidades) {
+        this.habilidades = habilidades;
+    }
+
+    //Métodos
 
     @Override
+    //Verifica que existe el hechizo que se quiere utilizar + que se tenga maná y lo utiliza en contra del objetivo. Devuelve el daño realizado.
     public int usarHabilidad(int indice, Entidad objetivo) throws IndiceInvalidoException, ManaInsuficienteException {
-        if (indice < 0 || indice > this.habilidades.size()) //todo: cambiar si estás en desacuerdo. Pero si el indice es menor al rango tamaño del array, si intentas acceder a una posición del array siempre te va a tirar esta excepción. Voy a cambiar ese .size por un 0 porque creo que querías evitar valores negativos.
+        if (indice < 0 || indice > this.habilidades.size())
             throw new IndiceInvalidoException(indice);
 
         Habilidad habilidadAUsar = this.habilidades.get(indice);
@@ -138,10 +152,6 @@ public abstract class Entidad implements IHabilidad {
         return sb.toString();
     }
 
-    public List<Habilidad> getHabilidades ()
-    {
-        return this.habilidades;
-    }
 
     public boolean agregarHabilidad(Habilidad habilidad) {
         return habilidades.add(habilidad);
@@ -149,9 +159,9 @@ public abstract class Entidad implements IHabilidad {
 
     public int atacar(Entidad objetivo) //Si me acuerdo después de terminar MenuCombate te consulto, pero esta lógica de qué ocurre en el enemigo si hay X cantidad de daño debería estar en recibirDanio. Que cada entidad que reciba un daño se encarge de gestionar su propio escudo y vida, que no se encarge de eso la persona que ataca (para eso está recibirDaño)
     {
-        int danioARealizar = this.ataque - objetivo.getEscudo();
-        if(danioARealizar < 0) {
-            objetivo.recibirDanio(0); //es un ataque normal, el objetivo pierde daño acorde a la cantidad de ataque de esta entidad
+        int danioARealizar = this.ataque - objetivo.getEscudo(); //si el escudo supera a la estadística de ataque, el danio a realizar es negativo
+        if(danioARealizar < 0) { //ocurre si el escudo es mayor al ataque
+            objetivo.recibirDanio(0); //es un ataque normal, el objetivo pierde daño acorde a la cantidad de ataque de esta entidad <- no entiendo qué querés decir aca pq esta recibiendo 0 de daño
             //^ nos podemos ahorrar esta linea
             objetivo.setEscudo(danioARealizar * (-1));
             return 0;
@@ -169,7 +179,8 @@ public abstract class Entidad implements IHabilidad {
         setVidaActual(getVidaActual()-danio);
     }
 
-    public int curar(int cantidad) //contempla excederse
+    //Recibe una cantidad de curación y la suma a la vida actual. Contempla excederse del máximo. Devuelve la vida que efectivamente se curó.
+    public int curar(int cantidad)
     {
         int nuevaVida = getVidaActual()+cantidad;
 
@@ -183,6 +194,7 @@ public abstract class Entidad implements IHabilidad {
         return cantidad;
     }
 
+    //Recibe una cantidad de maná y la suma al maná actual. Contempla el caso de excederse del máximo posible. Devuelva el maná que efectivamente se regeneró.
     public int recuperarMana(int cantidad) //contempla excederse
     {
         int nuevoMana = getManaActual()+cantidad;
@@ -198,6 +210,7 @@ public abstract class Entidad implements IHabilidad {
         return cantidad;
     }
 
+    //Verifica si la entidad sigue viva (vida actual mayor a 0). Devuelve true si este es el caso.
     public boolean estaVivo()
     {
         if (getVidaActual() > 0)
