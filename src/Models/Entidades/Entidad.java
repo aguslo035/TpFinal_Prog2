@@ -18,6 +18,7 @@ public abstract class Entidad implements IHabilidad {
     private int manaMaximo;
     private int ataque;
     private int escudo;
+    private boolean escudoRoto = false; //todas las entidades van a tener escudo, ninguna lo tendrá roto. Es necesario exista como variable para cambios en gestor del texto.
     private List<Habilidad> habilidades;
 
     //constructor
@@ -104,6 +105,14 @@ public abstract class Entidad implements IHabilidad {
         this.escudo = escudo;
     }
 
+    public void setEscudoRoto(boolean escudoRoto) {
+        this.escudoRoto = escudoRoto;
+    }
+
+    public boolean isEscudoRoto() {
+        return escudoRoto;
+    }
+
     public List<Habilidad> getHabilidades ()
     {
         return this.habilidades;
@@ -116,7 +125,7 @@ public abstract class Entidad implements IHabilidad {
     //Métodos
 
     @Override
-    //Verifica que existe el hechizo que se quiere utilizar + que se tenga maná y lo utiliza en contra del objetivo. Devuelve el daño realizado.
+    //Verifica que existe el hechizo que se quiere utilizar + que se tenga maná y lo utiliza en contra del objetivo. Devuelve el daño realizado a la vida.
     public int usarHabilidad(int indice, Entidad objetivo) throws IndiceInvalidoException, ManaInsuficienteException {
         if (indice < 0 || indice > this.habilidades.size())
             throw new IndiceInvalidoException(indice);
@@ -143,7 +152,7 @@ public abstract class Entidad implements IHabilidad {
 
         for (Habilidad h : habilidades)
         {
-            sb.append("#"+ i + " - "); //quedaría ej "#0 - " -> veo que le agregaste +1 para estilización, voy a obligarlo a elegir un listado empezando de 0 para simplificar.
+            sb.append("#"+ i + " - "); //quedaría ej "#0 - (datos habilidad)"
             sb.append(h.toString())
                     .append("\n");
             i++;
@@ -157,26 +166,33 @@ public abstract class Entidad implements IHabilidad {
         return habilidades.add(habilidad);
     }
 
-    public int atacar(Entidad objetivo) //Si me acuerdo después de terminar MenuCombate te consulto, pero esta lógica de qué ocurre en el enemigo si hay X cantidad de daño debería estar en recibirDanio. Que cada entidad que reciba un daño se encarge de gestionar su propio escudo y vida, que no se encarge de eso la persona que ataca (para eso está recibirDaño)
+    public int atacar(Entidad objetivo)
     {
-        int danioARealizar = this.ataque - objetivo.getEscudo(); //si el escudo supera a la estadística de ataque, el danio a realizar es negativo
-        if(danioARealizar < 0) { //ocurre si el escudo es mayor al ataque
-            objetivo.recibirDanio(0); //es un ataque normal, el objetivo pierde daño acorde a la cantidad de ataque de esta entidad <- no entiendo qué querés decir aca pq esta recibiendo 0 de daño
-            //^ nos podemos ahorrar esta linea
-            objetivo.setEscudo(danioARealizar * (-1));
-            return 0;
-        }
-        objetivo.recibirDanio(danioARealizar);
-        objetivo.setEscudo(0); //si el escudo ya está en 0 se continúa setteando en 0? puede ser preferible un if preguntando si escudo 0 para evitar eso
-        return danioARealizar;
+        return recibirDanio(this.ataque);
         //recibir danio es cuando recibe danio en su vida, pero igual, que este aca o en recibir danio es lo mismo. Una de las dos se tiene que encargar
         // de tomar en cuenta el escudo. O el atacante o el que lo recibe, por eso digo que en mi opinion da igual donde se tenga en cuenta
         // lo importante es que este en alguno de los dos
     }
 
-    public void recibirDanio(int danio)
+    //Recibe una cantidad de daño. Resta el daño contra el escudo y vida de la entidad (primero se daña al escudo, después a la vida). El métod o devuelve el daño ocasionado o al escudo, o a la vida si este se ha roto.
+    public int recibirDanio(int danio)
     {
-        setVidaActual(getVidaActual()-danio);
+        int danioARealizar = danio - this.escudo; //Del daño entrante, se quita la cantidad de escudo que se tiene. Si el escudo es superior, "danioARealizar" es negativo.
+
+        if(danioARealizar < 0) { //ocurre si el escudo es mayor al ataque
+            setEscudo(danioARealizar * (-1)); //le resto lo correspondiente de escudo. *-1 porque el parametro debe ser positivo.
+            return danioARealizar*-1; //se devuelve el daño realizado al escudo
+        }
+
+        if (!this.escudoRoto)
+        {
+            setEscudo(0); //si llegó a este punto, el escudo logró romperse, se settea en 0
+            this.escudoRoto = true; //para no volver a entrar en el if
+        }
+
+        setVidaActual(this.vidaActual-danioARealizar);
+
+        return danioARealizar; //se devuelve el daño realizado a la vida
     }
 
     //Recibe una cantidad de curación y la suma a la vida actual. Contempla excederse del máximo. Devuelve la vida que efectivamente se curó.

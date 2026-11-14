@@ -12,7 +12,12 @@ public abstract class GestorDeTextoDeCombate { //es para el llamado "flavor text
 
     public static String ataqueHabilidad (Entidad origen, Entidad objetivo, String nombreHabilidad, int danio)
     {
-        return origen.getNombre() + " utiliza su habilidad "+ nombreHabilidad + " contra "+ objetivo.getNombre() + " y ocasiona "+ danio + " de daño!\n";
+        StringBuilder sb = new StringBuilder();
+
+        if(objetivo.getEscudo() > 0)
+        {
+            return origen.getNombre() + " utiliza su habilidad "+ nombreHabilidad + " contra "+ objetivo.getNombre() + " y ocasiona "+ danio + " de daño!\n";
+        }
     }
 
     public static String ataqueHabilidadConCura(Entidad origen, Entidad objetivo, String nombreHabilidad, int danio, int cura)
