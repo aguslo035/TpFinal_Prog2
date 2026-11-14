@@ -18,7 +18,6 @@ public abstract class Entidad implements IHabilidad {
     private int manaMaximo;
     private int ataque;
     private int escudo;
-    private boolean escudoRoto = false; //todas las entidades van a tener escudo, ninguna lo tendrá roto. Es necesario exista como variable para cambios en gestor del texto.
     private List<Habilidad> habilidades;
 
     //constructor
@@ -105,14 +104,6 @@ public abstract class Entidad implements IHabilidad {
         this.escudo = escudo;
     }
 
-    public void setEscudoRoto(boolean escudoRoto) {
-        this.escudoRoto = escudoRoto;
-    }
-
-    public boolean isEscudoRoto() {
-        return escudoRoto;
-    }
-
     public List<Habilidad> getHabilidades ()
     {
         return this.habilidades;
@@ -193,6 +184,16 @@ public abstract class Entidad implements IHabilidad {
         setVidaActual(this.vidaActual-danioARealizar);
 
         return danioARealizar; //se devuelve el daño realizado a la vida
+    }
+
+    public boolean isEscudoRoto() {
+        if(this.escudo >= 1)
+        {
+            return false;
+        }else
+        {
+            return true;
+        }
     }
 
     //Recibe una cantidad de curación y la suma a la vida actual. Contempla excederse del máximo. Devuelve la vida que efectivamente se curó.

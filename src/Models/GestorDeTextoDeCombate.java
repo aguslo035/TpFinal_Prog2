@@ -7,7 +7,17 @@ public abstract class GestorDeTextoDeCombate { //es para el llamado "flavor text
 
     public static String ataque(Entidad origen, Entidad objetivo, int danio)
     {
-        return origen.getNombre() + " ataca a "+ objetivo.getNombre() + " por "+ danio + " de daño!\n";
+        if (!objetivo.isEscudoRoto())
+        {
+            return origen.getNombre() + " ataca a "+ objetivo.getNombre() + " por "+ danio + " de daño!\n";
+        }
+
+
+    }
+
+    private static String ataqueAEscudo(Entidad orgien, Entidad objetivo, int danio)
+    {
+
     }
 
     public static String ataqueHabilidad (Entidad origen, Entidad objetivo, String nombreHabilidad, int danio)
