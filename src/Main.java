@@ -5,11 +5,11 @@ import Jdbc.ConexionClases;
 
 void main() {
 
-    //JuegoRPG.inicioJuego();
+    JuegoRPG.inicioJuego();
 
-    try {
-        ConexionClases.crearTablaClases();
-    } catch (ConexionException e) {
-        System.out.println(e.getMessage());
-    }
+//    try {
+//        ConexionClases.crearTablaClases();
+//    } catch (ConexionException e) {
+//        System.out.println(e.getMessage());
+//    }
 }
