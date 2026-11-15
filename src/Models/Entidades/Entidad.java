@@ -147,12 +147,10 @@ public abstract class Entidad implements IHabilidad {
 
         for (Habilidad h : habilidades)
         {
-            sb.append("#"+ i + " - "); //quedaría ej "#0 - (datos habilidad)"
-            sb.append(h.toString())
-                    .append("\n");
+            sb.append("\n").append("#"+ i + " - "); //quedaría ej "#0 - (datos habilidad)"
+            sb.append(h.toString());
             i++;
         }
-
         return sb.toString();
     }
 

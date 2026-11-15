@@ -1,6 +1,6 @@
 package Jdbc;
 
-import Enumerator.TipoArma;
+import Enumerator.ETipoArma;
 import Exception.Conexion.ConexionException;
 import Models.Entidades.JugadoresClases.Arquero;
 import Models.Entidades.JugadoresClases.Guerrero;
@@ -81,7 +81,7 @@ public abstract class ConexionClases extends Conexion{
                 int manaMaximo = rs.getInt("manaMaximo");
                 int ataque = rs.getInt("ataque");
                 int escudo = rs.getInt("escudo");
-                TipoArma tipoArma = TipoArma.valueOf(rs.getString("tipoArma")); // te selecciona el enum con la string que este dentro de valueof
+                ETipoArma eTipoArma = ETipoArma.valueOf(rs.getString("eTipoArma")); // te selecciona el enum con la string que este dentro de valueof
                 double probabilidadCritica = rs.getDouble("probabilidadCritica");
 
                 String nombre = " Clase recuperada de la base de datos "; // el jugador lo cambia después con setNombre lo demas no varia
@@ -89,13 +89,13 @@ public abstract class ConexionClases extends Conexion{
                 switch (clase)
                 {
                     case "Guerrero":
-                        clasesDeBdd.add(new Guerrero(id, nombre, vidaMaxima, vidaMaxima, manaMaximo, manaMaximo, ataque, escudo, tipoArma));
+                        clasesDeBdd.add(new Guerrero(id, nombre, vidaMaxima, vidaMaxima, manaMaximo, manaMaximo, ataque, escudo, eTipoArma));
                         break;
                     case "Arquero":
-                        clasesDeBdd.add(new Arquero(id, nombre, vidaMaxima, vidaMaxima, manaMaximo, manaMaximo, ataque, escudo, tipoArma, probabilidadCritica));
+                        clasesDeBdd.add(new Arquero(id, nombre, vidaMaxima, vidaMaxima, manaMaximo, manaMaximo, ataque, escudo, eTipoArma, probabilidadCritica));
                         break;
                     case "Mago":
-                        clasesDeBdd.add(new Mago(id, nombre, vidaMaxima, vidaMaxima, manaMaximo, manaMaximo, ataque, escudo, tipoArma));
+                        clasesDeBdd.add(new Mago(id, nombre, vidaMaxima, vidaMaxima, manaMaximo, manaMaximo, ataque, escudo, eTipoArma));
                         break;
                 }
             }

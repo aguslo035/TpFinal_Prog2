@@ -1,6 +1,6 @@
 package Controller;
 
-import Enumerator.TipoArma;
+import Enumerator.ETipoArma;
 import Models.Entidades.Enemigos.Bestia;
 import Models.Entidades.Enemigos.Demonio;
 import Models.Entidades.Enemigos.Enemigo;
@@ -31,10 +31,10 @@ public abstract class JuegoRPG {
     //Es un métod o prueba. Eliminar después y descomentar el inicio de .inicioJuego(). Carga en el array de clase personajes y enemigos.
     public static void testJugadoresYEnemigos()
     {
-        Guerrero clase1 = new Guerrero(1, "Emma el Guerrero", 100, 100, 100, 100, 20, 100, TipoArma.ESPADA);
-        Mago clase2 = new Mago(2, "Lucre la Maga", 100, 100, 100, 100, 15, 100, TipoArma.BASTON);
-        Arquero clase3 = new Arquero(3, "Legolas el Arquero", 100, 100, 100, 100, 20, 80, TipoArma.ARCO, 0.50);
-        Guerrero clase4 = new Guerrero(4, "Goku", 10000, 10000, 10000, 10000, 2000, 10000, TipoArma.NINGUNA);
+        Guerrero clase1 = new Guerrero(1, "Emma el Guerrero", 100, 100, 100, 100, 20, 100, ETipoArma.ESPADA);
+        Mago clase2 = new Mago(2, "Lucre la Maga", 100, 100, 100, 100, 15, 100, ETipoArma.BASTON);
+        Arquero clase3 = new Arquero(3, "Legolas el Arquero", 100, 100, 100, 100, 20, 80, ETipoArma.ARCO, 0.50);
+        Guerrero clase4 = new Guerrero(4, "Goku", 10000, 10000, 10000, 10000, 2000, 10000, ETipoArma.NINGUNA);
 
         clasesAElegir.add(clase1);
         clasesAElegir.add(clase2);
@@ -264,8 +264,8 @@ public abstract class JuegoRPG {
             try {
                 decision = sc.nextInt();
                 return decision;
-            } catch (InputMismatchException e) {
-                System.out.println("\nIngrese un valor valido.\n"); //e.get message no te tira el texto gigante? -> e.getMessage() devuelve "null" como texto, lo saqué
+            } catch (InputMismatchException e) { // lo ingresado no corresponde con un Integrer, tira esa excepcion
+                System.out.println("\nIngrese un valor valido.\n");
             } finally {
                 sc.nextLine();
             }

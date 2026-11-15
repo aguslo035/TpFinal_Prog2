@@ -1,7 +1,7 @@
 package Models.Entidades.JugadoresClases;
 
 import Controller.GestoraDeItems;
-import Enumerator.TipoArma;
+import Enumerator.ETipoArma;
 import Interface.IItem;
 import Models.Entidades.Entidad;
 //import Models.Items.Pociones.Pocion;
@@ -13,21 +13,21 @@ public abstract class Jugador extends Entidad {
 
     ///atributos
     private final int id;
-    private final TipoArma tipoArma;
+    private final ETipoArma eTipoArma;
     private GestoraDeItems<IItem> inventario;
 
     ///constructores
-    public Jugador(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma) {
+    public Jugador(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, ETipoArma eTipoArma) {
         super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo);
-        this.tipoArma = tipoArma;
+        this.eTipoArma = eTipoArma;
         this.id = 0;
 
         inventario = new GestoraDeItems<>(); // con <> utiliza el tipo de dato utilizado en su referencia
     }
 
-    public Jugador(int id, String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma) {
+    public Jugador(int id, String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, ETipoArma eTipoArma) {
         super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo);
-        this.tipoArma = tipoArma;
+        this.eTipoArma = eTipoArma;
         this.id = id;
 
         inventario = new GestoraDeItems<>();
@@ -38,8 +38,8 @@ public abstract class Jugador extends Entidad {
         return id;
     }
 
-    public TipoArma getTipoArma() {
-        return tipoArma;
+    public ETipoArma getTipoArma() {
+        return eTipoArma;
     }
 
     public boolean agregarItem(IItem item)
@@ -96,7 +96,7 @@ public abstract class Jugador extends Entidad {
     public String toString() {
         return "id=" + id +
                 super.toString() +
-                ", tipoArma=" + tipoArma +
+                ", eTipoArma=" + eTipoArma +
                 ", inventario=" + inventario.listar(); //acá imprimimos todo el array del inventario?
     }
 
@@ -108,6 +108,6 @@ public abstract class Jugador extends Entidad {
                 ", Maná(MP): "+ getManaMaximo() +
                 ", Ataque: " + getAtaque() +
                 ", Escudo: "+ getEscudo() +
-                ", Arma Utilizada: "+ this.tipoArma;
+                ", Arma Utilizada: "+ this.eTipoArma;
     }
 }

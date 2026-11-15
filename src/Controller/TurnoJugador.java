@@ -79,9 +79,10 @@ public abstract class TurnoJugador {
         String accionRealizada = null; //inicializo en null para que java no se queje
 
         do {
-            System.out.println("Maná actual: "+ jugador.getManaActual() + "\n\n");
-            System.out.println("===Habilidades disponibles===\n\n");
+            System.out.println("\n===Habilidades disponibles===");
             System.out.println(jugador.verHabilidades());
+            System.out.println("Maná actual: "+ jugador.getManaActual() + "\n");
+
             int i = jugador.contarHabilidades();
             System.out.println("#"+i+" - Volver a Opciones");
 

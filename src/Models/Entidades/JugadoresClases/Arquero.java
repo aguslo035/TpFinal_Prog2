@@ -1,6 +1,6 @@
 package Models.Entidades.JugadoresClases;
 
-import Enumerator.TipoArma;
+import Enumerator.ETipoArma;
 import Models.DanioOcasionado;
 import Models.Entidades.Entidad;
 import Models.Habilidades.HabilidadesDanio.FlechaCertera;
@@ -14,14 +14,14 @@ public final class Arquero extends Jugador{
     private static final Random random = new Random(); // lo mismo que en enemigo con el numero random, se usara nextDouble() que es un numero random entre 0 y 1
 
     ///Constructores
-    public Arquero(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma, double probabilidadCritica) {
-        super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo, tipoArma);
+    public Arquero(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, ETipoArma eTipoArma, double probabilidadCritica) {
+        super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo, eTipoArma);
         this.probabilidadCritica = probabilidadCritica;
         this.agregarHabilidad(new FlechaCertera("Flecha certera", "una flecha directa al punto débil", this.getManaMaximo() / 4, this.getAtaque(), 2));
     }
 
-    public Arquero(int id, String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma, double probabilidadCritica) {
-        super(id, nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo, tipoArma);
+    public Arquero(int id, String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, ETipoArma eTipoArma, double probabilidadCritica) {
+        super(id, nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo, eTipoArma);
         this.probabilidadCritica = probabilidadCritica;
         this.agregarHabilidad(new FlechaCertera("Flecha certera", "una flecha directa al punto débil", this.getManaMaximo() / 4, this.getAtaque(), 2));
     }
