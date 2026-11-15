@@ -18,7 +18,7 @@ void main() {
     //todo 3) Ahora mismo hay 2 clases con scanners (JuegoRPG y TurnoJugador), hay que hacer que todos los scanners usen el scanner de JuegoRPG (es decir, borrar el scanner de TurnoJugador, pero hay que cambiar los llamados a scanners dentro de esa clase y también en caso de que otras clases que llamen al scanner de TurnoJugador)
     //4)todo [HECHO] Al inspeccionar al enemigo en TurnoJugador, se debe de poder también ver qué habilidad tiene (creo que hay que cambiar el toString de Entidad)
     //todo 5) Cambiar nombre de el Enum "ETipoArma" por "ETipoArma" sin que se rompa todo
-    //6) Hay muchos espacios de más al abrir el menú de habilidades.
+    //todo 6) Hay muchos espacios de más al abrir el menú de habilidades.
 
 
 
