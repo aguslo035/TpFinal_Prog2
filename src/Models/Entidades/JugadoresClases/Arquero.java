@@ -1,6 +1,7 @@
 package Models.Entidades.JugadoresClases;
 
 import Enumerator.TipoArma;
+import Models.DanioOcasionado;
 import Models.Entidades.Entidad;
 import Models.Habilidades.HabilidadesDanio.FlechaCertera;
 
@@ -32,22 +33,15 @@ public final class Arquero extends Jugador{
     }
 
     @Override
-    public int atacar(Entidad objetivo) {
+    public DanioOcasionado atacar(Entidad objetivo) {
         int danioARealizar = getAtaque();
         if (random.nextDouble() < probabilidadCritica) {
             danioARealizar = danioARealizar * 2; //es un golpe crítico
         }
 
-        // danio con critico
-        danioARealizar = danioARealizar - objetivo.getEscudo();
-        if (danioARealizar < 0) {
-            objetivo.setEscudo(danioARealizar * (-1));
-            return 0;
-        }
-        objetivo.recibirDanio(danioARealizar);
-        objetivo.setEscudo(0);
-        return danioARealizar;
-        //la logica es la misma que atacar de todos despues de lo del critico
+        DanioOcasionado danioRealizado = objetivo.recibirDanio(danioARealizar);
+
+        return danioRealizado;
     }
 
     @Override
