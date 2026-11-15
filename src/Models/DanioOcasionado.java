@@ -6,7 +6,7 @@ public class DanioOcasionado {
     ///atributos
     private final int danioAlEscudo;
     private final int danioALaVida;
-    private final boolean rompeEscudo;
+    private final boolean rompeEscudo; //indica true si el ataque rompió el escudo (de settear esto se encarga Entidad.recibirDanio())
 
     ///constructores
     public DanioOcasionado(int danioAlEscudo, int danioALaVida, boolean rompeEscudo) {
