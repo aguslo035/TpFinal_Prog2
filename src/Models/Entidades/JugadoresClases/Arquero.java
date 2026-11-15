@@ -8,6 +8,8 @@ import Models.Habilidades.HabilidadesDanio.FlechaCertera;
 import java.util.Random;
 
 public final class Arquero extends Jugador{
+
+
     private double probabilidadCritica; // debe ser con probabilidad, de 0 hasta 1
     private static final Random random = new Random();
     // lo mismo que en enemigo con el numero random, se usara nextDouble() que es un numero random entre 0 y 1

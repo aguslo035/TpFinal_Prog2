@@ -249,7 +249,6 @@ public abstract class Entidad implements IHabilidad {
                 ", manaActual=" + manaActual +
                 ", manaMaximo=" + manaMaximo +
                 ", ataque=" + ataque +
-                ", escudo=" + escudo +
-                '}';
+                ", escudo=" + escudo;
     }
 }
