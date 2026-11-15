@@ -1,7 +1,6 @@
 package Controller;
 
 import Enumerator.EAccionEnemigo;
-import Exception.Juego.IndiceInvalidoException;
 import Exception.Juego.ManaInsuficienteException;
 import Models.DanioOcasionado;
 import Models.Entidades.Enemigos.Enemigo;
