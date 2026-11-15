@@ -122,7 +122,7 @@ public abstract class GestorDeTextoDeCombate {
 
     private static String ataqueRompeEscudoYDania(DanioOcasionado danio)
     {
-        return ", rompiendole el escudo por "+ danio.getDanioAlEscudo() +" de daño... Recibe "+ danio.getDanioALaVida() + " de daño a su vida.\n";
+        return ", rompiendole el escudo por "+ danio.getDanioAlEscudo() +" de daño... Con el escudo roto, le causa "+ danio.getDanioALaVida() + " de daño a su vida.\n";
     }
 
     private static String ataqueRompeEscudo(DanioOcasionado danio)
