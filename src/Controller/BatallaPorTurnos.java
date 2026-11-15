@@ -22,8 +22,10 @@ public abstract class BatallaPorTurnos {
         {
             System.out.println("==RONDA #"+ ronda+ " ==\n");
             System.out.println(TurnoJugador.menuAtaque(jugador, enemigoActual));
+            System.out.println("\nEstoy en batalla por turnos, acabo de hacer sout del menuAtaque\n");
             if (enemigoActual.estaVivo())
             {
+                System.out.println("\nEstoy en batalla por turnos, acabo de entar al if de si sigue vivo el enemigo.\n");
                 System.out.println(TurnoEnemigo.accionEnemiga(jugador, enemigoActual));
             }else //Cuando el enemigo muere
             {

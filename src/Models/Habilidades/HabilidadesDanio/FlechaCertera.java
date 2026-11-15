@@ -16,10 +16,7 @@ public final class FlechaCertera extends HabilidadDanio{
     //metodos
     @Override
     public DanioOcasionado usar(Entidad usuario, Entidad objetivo)
-        throws ManaInsuficienteException
-        {
-            if(!sePuedeUsar(objetivo))
-                throw new ManaInsuficienteException();
+    {
         int probCritica = multiplicadorCritico;
         int danioARealizarDeHabilidad = this.getDanio() * probCritica;
 

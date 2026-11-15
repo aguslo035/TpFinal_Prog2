@@ -46,9 +46,9 @@ public abstract class Habilidad {
     //Métodos
 
     //Indica true si tiene maná suficiente para usar la habilidad. False en caso contrario.
-    public boolean sePuedeUsar(Entidad obj)
+    public boolean sePuedeUsar(Entidad origen)
     {
-        return obj.getManaActual() >= this.costoMana;
+        return origen.getManaActual() >= this.costoMana;
     }
 
     //Es la acción que realiza la habilidad. Devuelve el daño causado.
@@ -56,7 +56,7 @@ public abstract class Habilidad {
     public abstract DanioOcasionado usar(Entidad usuario, Entidad objetivo) throws ManaInsuficienteException;
 
     //Devuelve un string describiendo lo que realizó la habilidad hacia el jugador / los jugadores afectados.
-    //Su razón de existir es para evitar poner muchos ifs en Gestor De Texto De Combate describiendo qué hace cada habilidad.
+    //Su razón de existir es para evitar poner muchos ifs en Gestor De Texto De Combate describiendo qué nombre poner de la habilidad por ejemplo.
     public abstract String describirComportamiento(Entidad origen, Entidad destino, DanioOcasionado danio);
 
     //toString

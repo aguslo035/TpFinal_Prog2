@@ -29,10 +29,7 @@ public final class GolpeErratico extends HabilidadDanio {
     //metodos
     @Override
     public DanioOcasionado usar(Entidad usuario, Entidad objetivo)
-        throws ManaInsuficienteException
     {
-        if(!sePuedeUsar(objetivo))
-            throw new ManaInsuficienteException();
         int danioARealizarDeHabilidad = this.getDanio() + danioFijo;
 
         DanioOcasionado danioRealizado = objetivo.recibirDanio(danioARealizarDeHabilidad);

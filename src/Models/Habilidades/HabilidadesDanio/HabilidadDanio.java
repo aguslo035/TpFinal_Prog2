@@ -27,11 +27,8 @@ public abstract class HabilidadDanio extends Habilidad {
     }
 
     @Override
-    public DanioOcasionado usar(Entidad usuario, Entidad objetivo) throws ManaInsuficienteException
+    public DanioOcasionado usar(Entidad usuario, Entidad objetivo)
     {
-        if(!sePuedeUsar(objetivo))
-            throw new ManaInsuficienteException();
-
         int danioARealizarDeHabilidad = this.getDanio();
 
         DanioOcasionado danioRealizado;
