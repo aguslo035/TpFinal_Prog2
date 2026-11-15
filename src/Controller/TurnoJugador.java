@@ -95,7 +95,7 @@ public abstract class TurnoJugador {
                     accionRealizada = jugador.getHabilidades().get(decision).describirComportamiento(jugador, enemigo, danioRealizado); //puede que esté mal que se busque la misma habilidad 2 veces, pero el .usarHabilidad del jugador en la linea de arriba hace la verificación de que tiene maná para usarla
                     continuar = true;
                 } catch (IndiceInvalidoException e) {
-                    System.out.println("Elija una opción valida de las mostradas.");
+                    System.out.println(e.getMessage() + "Elija una opción valida de las mostradas.");
                 } catch (ManaInsuficienteException e)
                 {
                     System.out.println("Mana insuficiente.");
@@ -137,7 +137,7 @@ public abstract class TurnoJugador {
                     jugador.eliminarItem(decision); //al final lo elimino acá al item
                     continuar = true;
                 } catch (IndiceInvalidoException e) {
-                    System.out.println("Elija una opción valida de las mostradas.");
+                    System.out.println(e.getMessage() + "Elija una opción valida de las mostradas.");
                 }
             }
 

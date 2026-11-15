@@ -12,7 +12,6 @@ import java.util.Objects;
 public abstract class Jugador extends Entidad {
 
     ///atributos
-    private static int idAux = 0;
     private final int id;
     private final TipoArma tipoArma;
     private GestoraDeItems<IItem> inventario;
@@ -21,8 +20,7 @@ public abstract class Jugador extends Entidad {
     public Jugador(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma) {
         super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo);
         this.tipoArma = tipoArma;
-        id = idAux;
-        idAux++;
+        this.id = 0;
 
         inventario = new GestoraDeItems<>(); // con <> utiliza el tipo de dato utilizado en su referencia
     }
@@ -32,7 +30,7 @@ public abstract class Jugador extends Entidad {
         this.tipoArma = tipoArma;
         this.id = id;
 
-        inventario = new GestoraDeItems();
+        inventario = new GestoraDeItems<>();
     } // lo mismo de la id que enemigo, para que no se repita al traerlos de la base de datos
 
     ///getters y setters
