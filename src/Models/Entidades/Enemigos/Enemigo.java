@@ -13,22 +13,20 @@ import java.util.Random;
 public abstract class Enemigo extends Entidad {
 
     ///atributos
-    private static int idAux = 0; //esto se guarda en la misma base de datos de enemigos?
     private final int id;
     private static final Random random = new Random();
-    // static porque pertenece a la clase, no a sus instancias. Y final porque quiero q no haya nuevos new Random()
+    // static porque pertenece a la clase, no a sus instancias. Y final porque quiero q no haya nuevas instancias
 
     ///constructores
     public Enemigo(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo) {
         super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo);
-        id = idAux;
-        idAux++;
+        this.id = 0;
     }
 
     public Enemigo(int id, String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo) {
         super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo);
         this.id = id;
-    } // para traer enemigos de la base de datos que ya tienen una id y no utilicen el idAux, ya que seria incorrecto y seria el mismo enemigo con otra id cada vez que se trae de la base de datos.
+    } // para traer enemigos de la base de datos que ya tienen una id
 
     ///getter de ID
     public int getId() {
