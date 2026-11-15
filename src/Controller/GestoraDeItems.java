@@ -71,7 +71,7 @@ public class GestoraDeItems<T extends IItem> {
         {
             sb.append("#"+ i + " - "); //quedaría ej "#0 - Poción de Vida -> 10 HP+"
             sb.append(t.toString())
-                    .append("\n"); //y esta magia pq esta así el .append y no da error
+                    .append("\n");
             i++;
         }
 

@@ -113,7 +113,7 @@ public abstract class Enemigo extends Entidad {
         return "Enemigo{"+
                 "id=" + id +
                 ", "+ super.toString() +
-                ", Habilidades: " + this.verHabilidades() +
+                "\nHabilidades del enemigo: " + this.verHabilidades() +
                 '}';
     }
 }
