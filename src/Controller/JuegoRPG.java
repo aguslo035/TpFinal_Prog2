@@ -30,10 +30,12 @@ public abstract class JuegoRPG {
         Guerrero clase1 = new Guerrero(1, "Emma el Guerrero", 100, 100, 100, 100, 20, 100, TipoArma.ESPADA);
         Mago clase2 = new Mago(2, "Lucre la Maga", 100, 100, 100, 100, 15, 100, TipoArma.BASTON);
         Arquero clase3 = new Arquero(3, "Legolas el Arquero", 100, 100, 100, 100, 20, 80, TipoArma.ARCO, 0.50);
+        Guerrero clase4 = new Guerrero(4, "Goku", 10000, 10000, 10000, 10000, 2000, 10000, TipoArma.NINGUNA);
 
         clasesAElegir.add(clase1);
         clasesAElegir.add(clase2);
         clasesAElegir.add(clase3);
+        clasesAElegir.add(clase4);
 
         Bestia enemigo1 = new Bestia(1, "Firulais la Bestia", 50, 50, 60, 60, 10, 40);
         Orco enemigo2 = new Orco(2, "Bernard el Orco", 60, 60 , 70, 70, 20, 30);

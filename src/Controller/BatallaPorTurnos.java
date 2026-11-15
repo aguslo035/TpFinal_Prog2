@@ -4,9 +4,7 @@ import Models.Entidades.Enemigos.Enemigo;
 import Models.Entidades.JugadoresClases.Jugador;
 import Models.GestorDeTextoDeCombate;
 
-
-//La idea ahora mismo es que "BatallaPorTurnos" maneje 1 solo combate a la vez, no todos. JuegoRPG se encarga de mandar 1 por 1 los enemigos hasta que no haya más. Por eso elimino el arrayList de enemigoActual.
-//también saco enemigo y jugador como atributos, porque todo lo recibe de JuegoRPG
+//"BatallaPorTurnos" maneja 1 solo combate entre un jugador y un enemigo. Recibe ambos de la clase JuegoRPG.
 public abstract class BatallaPorTurnos {
 
     //atributos
@@ -22,10 +20,10 @@ public abstract class BatallaPorTurnos {
         {
             System.out.println("==RONDA #"+ ronda +" ==\n");
             System.out.println(TurnoJugador.menuAtaque(jugador, enemigoActual));
-            if (enemigoActual.estaVivo())
+            if (enemigoActual.estaVivo()) //si el enemigo no ha muerto en el turno del jugador, se le da lugar para que haga su acción.
             {
                 System.out.println(TurnoEnemigo.accionEnemiga(jugador, enemigoActual));
-            }else //Cuando el enemigo muere
+            }else //caso contrario se sale del método avisando que murió.
             {
                 ronda = 1; //lo setteo a 1 para el siguiente combate
                 return true;

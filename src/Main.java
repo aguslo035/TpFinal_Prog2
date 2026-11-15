@@ -9,9 +9,8 @@ void main() {
 
     //A hacer (de más importante a menos importante):
     //- El menú de inventario, al seleccionar un item, dice que estás ingresando un valor no valido. (para testeo tenés que matar al primer enemigo para tener un item)
-    
+    //- No entiendo dónde usar "IndiceInvalidoException", agregué muchos listados pero no sé cómo ni en cuales ponerlo. Tal vez por sueño.
     //- Ahora mismo hay 2 clases con scanners, hay que hacer que todos los scanners usen el scanner de JuegoRPG
-    //
 
 //    try {
 //        ConexionClases.crearTablaClases();
