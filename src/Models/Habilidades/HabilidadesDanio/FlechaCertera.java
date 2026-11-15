@@ -1,6 +1,7 @@
 package Models.Habilidades.HabilidadesDanio;
 
 import Exception.Juego.ManaInsuficienteException;
+import Models.DanioOcasionado;
 import Models.Entidades.Entidad;
 import Models.GestorDeTextoDeCombate;
 
@@ -14,7 +15,7 @@ public final class FlechaCertera extends HabilidadDanio{
 
     //metodos
     @Override
-    public int usar(Entidad usuario, Entidad objetivo)
+    public DanioOcasionado usar(Entidad usuario, Entidad objetivo)
         throws ManaInsuficienteException
         {
             if(!sePuedeUsar(objetivo))
@@ -22,8 +23,9 @@ public final class FlechaCertera extends HabilidadDanio{
         int probCritica = multiplicadorCritico;
         int danioARealizarDeHabilidad = this.getDanio() * probCritica;
 
-        objetivo.recibirDanio(danioARealizarDeHabilidad);
-        return danioARealizarDeHabilidad;
+        DanioOcasionado danioRealizado = objetivo.recibirDanio(danioARealizarDeHabilidad);
+
+        return danioRealizado;
     }
 
 

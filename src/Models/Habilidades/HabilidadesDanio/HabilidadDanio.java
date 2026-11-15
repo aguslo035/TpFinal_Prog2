@@ -1,6 +1,7 @@
 package Models.Habilidades.HabilidadesDanio;
 
 import Exception.Juego.ManaInsuficienteException;
+import Models.DanioOcasionado;
 import Models.Entidades.Entidad;
 import Models.GestorDeTextoDeCombate;
 import Models.Habilidades.Habilidad;
@@ -26,15 +27,18 @@ public abstract class HabilidadDanio extends Habilidad {
     }
 
     @Override
-    public int usar(Entidad usuario, Entidad objetivo) throws ManaInsuficienteException
+    public DanioOcasionado usar(Entidad usuario, Entidad objetivo) throws ManaInsuficienteException
     {
         if(!sePuedeUsar(objetivo))
             throw new ManaInsuficienteException();
 
         int danioARealizarDeHabilidad = this.getDanio();
 
-        objetivo.recibirDanio(danioARealizarDeHabilidad); //ojo con esto, ahora mismo las habilidades ignoran el escudo que tenga el enemigo, porque la lógica de quitar escudo está en .ataque y no .recibirDanio
-        return danioARealizarDeHabilidad;
+        DanioOcasionado danioRealizado;
+
+        danioRealizado = objetivo.recibirDanio(danioARealizarDeHabilidad);
+
+        return danioRealizado;
     }
 
     @Override
@@ -45,7 +49,7 @@ public abstract class HabilidadDanio extends Habilidad {
     }
 
     @Override
-    public String describirComportamiento(Entidad origen, Entidad destino, int danio) {
+    public String describirComportamiento(Entidad origen, Entidad destino, DanioOcasionado danio) {
         return GestorDeTextoDeCombate.ataqueHabilidad(origen, destino, getNombre(), danio);
     }
 }

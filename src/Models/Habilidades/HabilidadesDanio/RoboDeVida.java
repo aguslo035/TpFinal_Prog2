@@ -1,6 +1,7 @@
 package Models.Habilidades.HabilidadesDanio;
 
 import Exception.Juego.ManaInsuficienteException;
+import Models.DanioOcasionado;
 import Models.Entidades.Entidad;
 import Models.GestorDeTextoDeCombate;
 
@@ -18,7 +19,7 @@ public final class RoboDeVida extends HabilidadDanio{
 
     //metodos
     @Override
-    public int usar(Entidad usuario, Entidad objetivo)
+    public DanioOcasionado usar(Entidad usuario, Entidad objetivo)
         throws ManaInsuficienteException
     {
         if(!sePuedeUsar(objetivo))
@@ -26,14 +27,14 @@ public final class RoboDeVida extends HabilidadDanio{
 
         int danioARealizarDeHabilidad = this.getDanio();
 
-        objetivo.recibirDanio(danioARealizarDeHabilidad);
+        DanioOcasionado danioRealizado = objetivo.recibirDanio(danioARealizarDeHabilidad);
         usuario.curar(danioARealizarDeHabilidad);
 
-        return danioARealizarDeHabilidad;
+        return danioRealizado;
     }
 
     @Override
-    public String describirComportamiento(Entidad origen, Entidad destino, int danio) {
-        return GestorDeTextoDeCombate.ataqueHabilidadConCura(origen, destino, getNombre(), danio, danio); //tengo que asumir se cura lo mismo que daña, a menos que hagamos una cura fija en variable
+    public String describirComportamiento(Entidad origen, Entidad destino, DanioOcasionado danio) {
+        return GestorDeTextoDeCombate.ataqueHabilidadConCura(origen, destino, getNombre(), danio);
     }
 }

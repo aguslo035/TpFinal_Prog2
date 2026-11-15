@@ -1,19 +1,24 @@
 package Models.Habilidades;
 
 import Exception.Juego.ManaInsuficienteException;
+import Models.DanioOcasionado;
 import Models.Entidades.Entidad;
 
 public abstract class Habilidad {
+
+    //atributos
     private String nombre;
     private String descripcion;
     private int costoMana;
 
+    //constructor
     public Habilidad(String nombre, String descripcion, int costoMana) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.costoMana = costoMana;
     }
 
+    //getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -38,17 +43,21 @@ public abstract class Habilidad {
         this.costoMana = costoMana;
     }
 
+    //Métodos
+
+    //Indica true si tiene maná suficiente para usar la habilidad. False en caso contrario.
     public boolean sePuedeUsar(Entidad obj)
     {
-        return obj.getManaActual() >= this.costoMana; // devuelve true o false, si ponemos una excepcion nunca sera false
+        return obj.getManaActual() >= this.costoMana;
     }
 
     //Es la acción que realiza la habilidad. Devuelve el daño causado.
-    public abstract int usar(Entidad usuario, Entidad objetivo) throws ManaInsuficienteException;
-    //Las hijas deciden como actuaran. Pueden decidir o no utilizar las entidades que se le pasan.
+    //Cada hija decide si utiliza o no las entidades que se le pasan.
+    public abstract DanioOcasionado usar(Entidad usuario, Entidad objetivo) throws ManaInsuficienteException;
 
-    //Devuelve un string describiendo lo que se realizó para el jugador.
-    public abstract String describirComportamiento(Entidad origen, Entidad destino, int danio);
+    //Devuelve un string describiendo lo que realizó la habilidad hacia el jugador / los jugadores afectados.
+    //Su razón de existir es para evitar poner muchos ifs en Gestor De Texto De Combate describiendo qué hace cada habilidad.
+    public abstract String describirComportamiento(Entidad origen, Entidad destino, DanioOcasionado danio);
 
     //toString
     @Override

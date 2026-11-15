@@ -1,6 +1,7 @@
 package Models.Habilidades.HabilidadesDanio;
 
 import Exception.Juego.ManaInsuficienteException;
+import Models.DanioOcasionado;
 import Models.Entidades.Entidad;
 import Models.GestorDeTextoDeCombate;
 
@@ -27,15 +28,16 @@ public final class GolpeErratico extends HabilidadDanio {
 
     //metodos
     @Override
-    public int usar(Entidad usuario, Entidad objetivo)
+    public DanioOcasionado usar(Entidad usuario, Entidad objetivo)
         throws ManaInsuficienteException
     {
         if(!sePuedeUsar(objetivo))
             throw new ManaInsuficienteException();
         int danioARealizarDeHabilidad = this.getDanio() + danioFijo;
 
-        objetivo.recibirDanio(danioARealizarDeHabilidad);
-        return danioARealizarDeHabilidad;
+        DanioOcasionado danioRealizado = objetivo.recibirDanio(danioARealizarDeHabilidad);
+
+        return danioRealizado;
     }
 
 

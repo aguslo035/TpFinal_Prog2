@@ -2,6 +2,7 @@ package Controller;
 
 import Exception.Juego.IndiceInvalidoException;
 import Exception.Juego.ManaInsuficienteException;
+import Models.DanioOcasionado;
 import Models.GestorDeTextoDeCombate;
 import Models.Entidades.Enemigos.Enemigo;
 import Models.Entidades.JugadoresClases.Jugador;
@@ -23,7 +24,8 @@ public abstract class TurnoJugador {
     {
         boolean continuar = false; //cambia al tomar acción que finalize el turno
         int decision;
-        int aux; //recibe un número para mostrar después (ej, daño ocasionado, cuánto se curó, etc)
+        DanioOcasionado danioRealizado; //recibe daño realizado a escudo y vida enemiga
+        int aux; //recibe un número para mostrar después (ej, cuánto se curó de vida o maná)
         String resultadoAccion = null; //lo igualo a null para que java no se queje
 
         while (!continuar)
@@ -37,9 +39,9 @@ public abstract class TurnoJugador {
             switch (decision)
             {
                 case 0:
-                    aux = jugador.atacar(enemigo);
+                    danioRealizado = jugador.atacar(enemigo);
                     continuar = true;
-                    resultadoAccion = GestorDeTextoDeCombate.ataque(jugador, enemigo, aux);
+                    resultadoAccion = GestorDeTextoDeCombate.ataque(jugador, enemigo, danioRealizado);
                     break;
                 case 1:
                     resultadoAccion = menuHabilidad(jugador, enemigo);
@@ -72,6 +74,7 @@ public abstract class TurnoJugador {
     {
         boolean continuar = false;
         int decision;
+        DanioOcasionado danioRealizado;
 
         String accionRealizada = null; //inicializo en null para que java no se queje
 
@@ -91,9 +94,9 @@ public abstract class TurnoJugador {
             }else
             {
                 try {
-                    int danioCausado = jugador.usarHabilidad(decision, enemigo);
+                    danioRealizado = jugador.usarHabilidad(decision, enemigo);
                     //lo siguiente solo ocurre si no ocurrió una exception (elige opción valida)
-                    accionRealizada = jugador.getHabilidades().get(decision).describirComportamiento(jugador, enemigo, danioCausado); //puede que esté mal que se busque la misma habilidad 2 veces, pero el .usarHabilidad del jugador en la linea de arriba hace la verificación de que tiene maná para usarla
+                    accionRealizada = jugador.getHabilidades().get(decision).describirComportamiento(jugador, enemigo, danioRealizado); //puede que esté mal que se busque la misma habilidad 2 veces, pero el .usarHabilidad del jugador en la linea de arriba hace la verificación de que tiene maná para usarla
                     continuar = true;
                 } catch (IndiceInvalidoException e) {
                     System.out.println("Elija una opción valida de las mostradas.");

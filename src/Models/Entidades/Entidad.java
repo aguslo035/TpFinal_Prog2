@@ -3,6 +3,7 @@ package Models.Entidades;
 import Exception.Juego.IndiceInvalidoException;
 import Exception.Juego.ManaInsuficienteException;
 import Interface.IHabilidad;
+import Models.DanioOcasionado;
 import Models.Habilidades.Habilidad;
 
 import java.util.ArrayList;
@@ -117,7 +118,7 @@ public abstract class Entidad implements IHabilidad {
 
     @Override
     //Verifica que existe el hechizo que se quiere utilizar + que se tenga maná y lo utiliza en contra del objetivo. Devuelve el daño realizado a la vida.
-    public int usarHabilidad(int indice, Entidad objetivo) throws IndiceInvalidoException, ManaInsuficienteException {
+    public DanioOcasionado usarHabilidad(int indice, Entidad objetivo) throws IndiceInvalidoException, ManaInsuficienteException {
         if (indice < 0 || indice > this.habilidades.size())
             throw new IndiceInvalidoException(indice);
 
@@ -157,7 +158,7 @@ public abstract class Entidad implements IHabilidad {
         return habilidades.add(habilidad);
     }
 
-    public int atacar(Entidad objetivo)
+    public DanioOcasionado atacar(Entidad objetivo)
     {
         return recibirDanio(this.ataque);
         //recibir danio es cuando recibe danio en su vida, pero igual, que este aca o en recibir danio es lo mismo. Una de las dos se tiene que encargar
@@ -165,25 +166,36 @@ public abstract class Entidad implements IHabilidad {
         // lo importante es que este en alguno de los dos
     }
 
-    //Recibe una cantidad de daño. Resta el daño contra el escudo y vida de la entidad (primero se daña al escudo, después a la vida). El métod o devuelve el daño ocasionado o al escudo, o a la vida si este se ha roto.
-    public int recibirDanio(int danio)
+    //Recibe una cantidad de daño. Resta el daño contra el escudo y vida de la entidad (primero se daña al escudo, después a la vida). El métod o devuelve un objeto que contiene datos sobre el daño ocasionado al escudo y a la vida.
+    public DanioOcasionado recibirDanio(int danio)
     {
+        DanioOcasionado resultado; //declaro el objeto que voy a devolver
+
         int danioARealizar = danio - this.escudo; //Del daño entrante, se quita la cantidad de escudo que se tiene. Si el escudo es superior, "danioARealizar" es negativo.
 
         if(danioARealizar < 0) { //ocurre si el escudo es mayor al ataque
-            setEscudo(danioARealizar * (-1)); //le resto lo correspondiente de escudo. *-1 porque el parametro debe ser positivo.
-            return danioARealizar*-1; //se devuelve el daño realizado al escudo
+            setEscudo(danioARealizar * (-1)); //Le coloca el nuevo escudo calculado a la entidad. *-1 porque el parametro debe ser positivo.
+            return resultado = new DanioOcasionado(danio, 0, false); //se devuelve el daño realizado al escudo
         }
 
-        if (!this.escudoRoto)
+        if (danioARealizar == 0) { //Caso específico en el que daño recibido y el escudo son iguales.
+            setEscudo(0);
+            return resultado = new DanioOcasionado(danio, 0, true); //Este ataque rompe el escudo
+        }
+
+        //Se prosigue si el daño supera al escudo
+
+        setVidaActual(this.vidaActual-danioARealizar); //El ataque calculado le quita vida a la entidad
+
+        if (this.escudo > 0) //El primer ataque que sobrepase al escudo (si no se dio el caso de arriba) entra en este if. Significa que el ataque realizado rompe el escudo (leer el else).
         {
-            setEscudo(0); //si llegó a este punto, el escudo logró romperse, se settea en 0
-            this.escudoRoto = true; //para no volver a entrar en el if
+            resultado = new DanioOcasionado(this.escudo, danioARealizar, true);
+            setEscudo(0);
+            return resultado;
+        }else //una vez el escudo este en 0, solamente se ataca a la vida
+        {
+            return resultado = new DanioOcasionado(0, danioARealizar, false);
         }
-
-        setVidaActual(this.vidaActual-danioARealizar);
-
-        return danioARealizar; //se devuelve el daño realizado a la vida
     }
 
     public boolean isEscudoRoto() {

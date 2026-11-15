@@ -51,7 +51,7 @@ public abstract class JuegoRPG {
         //clasesAElegir = GestoraEntidadesYaCargadas.jugadores();
         //enemigos = GestoraEntidadesYaCargadas.enemigos();
 
-        testJugadoresYEnemigos(); //agrega a los listados los jugadores y enemigos que creé
+        testJugadoresYEnemigos(); //agrega a los listados de clase los jugadores y enemigos que creé de prueba
 
         int opcion;
         Jugador jugadorElegido;
@@ -69,10 +69,10 @@ public abstract class JuegoRPG {
                     aventura(jugadorElegido, enemigos);
                     break;
                 case 2:
+                    sc.close();
                     System.exit(0); //sale del programa. el "0" indica que es un cierre normal
                     break;
                 case 3:
-                    sc.close(); //como esto llama al menú admin no hay que cerrar
                     //menu admin
                     break;
                 default:
