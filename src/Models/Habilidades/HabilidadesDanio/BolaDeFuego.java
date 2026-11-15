@@ -10,6 +10,4 @@ public final class BolaDeFuego extends HabilidadDanio{
     public BolaDeFuego(String nombre, String descripcion, int costoMana, int danio) {
         super(nombre, descripcion, costoMana, danio);
     }
-
-
 }

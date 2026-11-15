@@ -23,8 +23,9 @@ public abstract class JuegoRPG {
     //atributos
     private static List<Jugador> clasesAElegir = new ArrayList<>();
     private static List<Enemigo> enemigos = new ArrayList<>();
-
-    private static Scanner sc = new Scanner(System.in);
+//    private static List<Jugador> clasesAElegir = GestoraEntidadesYaCargadas.jugadores();
+//    private static List<Enemigo> enemigos = GestoraEntidadesYaCargadas.enemigos(); ESTOS DOS ATRIBUTOS SON LOS QUE VAMOS A USAR, LOS DE ARRIBA SON DE PRUEBA
+    private static Scanner sc = new Scanner(System.in); // el unico scanner que vamos a usar
 
     //métodos
 
@@ -43,7 +44,7 @@ public abstract class JuegoRPG {
 
         Bestia enemigo1 = new Bestia(1, "Firulais la Bestia", 50, 50, 60, 60, 10, 40);
         Orco enemigo2 = new Orco(2, "Bernard el Orco", 60, 60 , 70, 70, 20, 30);
-        Demonio enemigo3 = new Demonio(3, "Horacio el Rey Demonio", 70, 70, 80, 80, 25, 40);
+        Demonio enemigo3 = new Demonio(3, "Adrian el Rey Demonio", 70, 70, 80, 80, 25, 40);
 
         enemigos.add(enemigo1);
         enemigos.add(enemigo2);
@@ -54,8 +55,6 @@ public abstract class JuegoRPG {
     public static void inicioJuego()
     {
         //Esto lo voy a comentar en testeos, voy a hardcodear un array de jugadores y enemigos
-        //clasesAElegir = GestoraEntidadesYaCargadas.jugadores();
-        //enemigos = GestoraEntidadesYaCargadas.enemigos();
 
         testJugadoresYEnemigos(); //agrega a los listados de clase los jugadores y enemigos que creé de prueba
 
@@ -66,12 +65,12 @@ public abstract class JuegoRPG {
         {
             System.out.println(menuOpciones());
 
-            opcion = elegirOpcion();
+            opcion = elegirOpcion(); //scanner
 
             switch (opcion)
             {
                 case 1:
-                    jugadorElegido = menuEleccionClase();
+                    jugadorElegido = menuEleccionClase(); // devuelve un jugador
                     aventura(jugadorElegido, enemigos);
                     break;
                 case 2:

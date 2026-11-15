@@ -119,7 +119,7 @@ public abstract class Entidad implements IHabilidad {
     @Override
     //Verifica que existe el hechizo que se quiere utilizar + que se tenga maná y lo utiliza en contra del objetivo. Devuelve el daño realizado a la vida.
     public DanioOcasionado usarHabilidad(int indice, Entidad objetivo) throws IndiceInvalidoException, ManaInsuficienteException {
-        if (indice < 0 || indice > this.habilidades.size())
+        if (indice < 0 || indice >= this.habilidades.size())
             throw new IndiceInvalidoException(indice);
 
         Habilidad habilidadAUsar = this.habilidades.get(indice);
