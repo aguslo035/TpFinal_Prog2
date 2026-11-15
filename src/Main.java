@@ -1,35 +1,47 @@
 import Controller.JuegoRPG;
+import Enumerator.ETipoArma;
 import Exception.Conexion.ConexionException;
 import java.sql.*;
 
 import Jdbc.Conexion;
 import Jdbc.ConexionClases;
 import Jdbc.ConexionEnemigos;
+import Models.Entidades.Enemigos.Bestia;
+import Models.Entidades.Enemigos.Demonio;
 import Models.Entidades.Enemigos.Orco;
+import Models.Entidades.JugadoresClases.Arquero;
+import Models.Entidades.JugadoresClases.Guerrero;
+import Models.Entidades.JugadoresClases.Mago;
 
 void main() {
+    /*Guerrero clase1 = new Guerrero(1, "Emma el Guerrero", 100, 100, 100, 100, 20, 100, ETipoArma.ESPADA);
+    Mago clase2 = new Mago(2, "Lucre la Maga", 100, 100, 100, 100, 15, 100, ETipoArma.BASTON);
+    Arquero clase3 = new Arquero(3, "Legolas el Arquero", 100, 100, 100, 100, 20, 80, ETipoArma.ARCO, 0.50);
+    Guerrero clase4 = new Guerrero(4, "Goku", 10000, 10000, 10000, 10000, 2000, 10000, ETipoArma.NINGUNA);
 
-    JuegoRPG.inicioJuego();
-    /*JuegoRpg, la partida completa,
-    batallaPorTurnos, un combate que tiene turno del jugador y turno del enemigo,
-    
-     */
-
-    //A hacer (de más importante a menos importante):
-    //1)LO ARREGLÉ CREO: El menú de inventario, si tenés un item, no importa qué se elija, dice que estás ingresando un valor no valido. (para testeo tenés que matar al primer enemigo, recién ahí te da un item)
-    //^ lo arreglé (CREO) sin querer al arreglar los indices de GestoraDeItems
-    //todo 2) No entiendo dónde usar "IndiceInvalidoException", agregué muchos listados pero no sé cómo ni en cuales ponerlo. Tal vez por sueño.
-    //todo 3) Ahora mismo hay 2 clases con scanners (JuegoRPG y TurnoJugador), hay que hacer que todos los scanners usen el scanner de JuegoRPG (es decir, borrar el scanner de TurnoJugador, pero hay que cambiar los llamados a scanners dentro de esa clase y también en caso de que otras clases que llamen al scanner de TurnoJugador)
-    //4)todo [HECHO] Al inspeccionar al enemigo en TurnoJugador, se debe de poder también ver qué habilidad tiene (creo que hay que cambiar el toString de Entidad)
-    //todo 5) Cambiar nombre de el Enum "ETipoArma" por "ETipoArma" sin que se rompa todo
-    //todo 6) Hay muchos espacios de más al abrir el menú de habilidades.
-
-
-
+    Bestia enemigo1 = new Bestia(1, "Firulais la Bestia", 50, 50, 60, 60, 10, 40);
+    Orco enemigo2 = new Orco(2, "Bernard el Orco", 60, 60 , 70, 70, 20, 30);
+    Demonio enemigo3 = new Demonio(3, "Adrian el Rey Demonio", 70, 70, 80, 80, 25, 40);
 
     try {
         ConexionClases.crearTablaClases();
+        ConexionClases.importarClase(clase1);
+        ConexionClases.importarClase(clase2);
+        ConexionClases.importarClase(clase3);
+        ConexionClases.importarClase(clase4);
+
+        ConexionEnemigos.crearTablaEnemigos();
+        ConexionEnemigos.importarEnemigo(enemigo1);
+        ConexionEnemigos.importarEnemigo(enemigo2);
+        ConexionEnemigos.importarEnemigo(enemigo3);
     } catch (ConexionException e) {
         System.out.println(e.getMessage());
-    }
+    }*/
+
+
+    JuegoRPG.inicioJuego();
+    /*JuegoRpg, la partida completa,
+    batallaPorTurnos, un combate que tiene turno del jugador y turno del enemigo*/
+
+
 }

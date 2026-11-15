@@ -18,11 +18,12 @@ public abstract class ConexionClases extends Conexion{
         String query = "CREATE TABLE IF NOT EXISTS personaje (\n" +
                 "    id INT AUTO_INCREMENT PRIMARY KEY,\n" +
                 "    tipo VARCHAR(20) NOT NULL,\n" +
+                "    nombre VARCHAR(50) NOT NULL,\n" +
                 "    vidaMaxima INT NOT NULL,\n" +
                 "    manaMaximo INT NOT NULL,\n" +
                 "    ataque INT NOT NULL,\n" +
                 "    escudo INT NOT NULL,\n" +
-                "    tipoArma VARCHAR(20) NOT NULL,\n" +
+                "    eTipoArma VARCHAR(20) NOT NULL,\n" +
                 "    probabilidadCritica DOUBLE NOT NULL\n" + // todos tendran una prob critica de 0 en vez de poner que se permitan null
                 ");";
 
@@ -39,8 +40,8 @@ public abstract class ConexionClases extends Conexion{
     public static int importarClase(Jugador jugador)
             throws ConexionException
     {
-        String query = "INSERT INTO personaje (tipo, vidaMaxima, manaMaximo, ataque, escudo, tipoArma, probabilidadCritica)\n" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?);";
+        String query = "INSERT INTO personaje (tipo, nombre, vidaMaxima, manaMaximo, ataque, escudo, eTipoArma, probabilidadCritica)\n" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         try (Connection conn = Conexion.createConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
 
@@ -50,12 +51,13 @@ public abstract class ConexionClases extends Conexion{
             }
 
             ps.setString(1, jugador.getClass().getSimpleName());
-            ps.setInt(2, jugador.getVidaMaxima());
-            ps.setInt(3, jugador.getManaMaximo());
-            ps.setInt(4, jugador.getAtaque());
-            ps.setInt(5, jugador.getEscudo());
-            ps.setString(6, jugador.getTipoArma().name());
-            ps.setDouble(7, probCritica);
+            ps.setString(2, jugador.getNombre());
+            ps.setInt(3, jugador.getVidaMaxima());
+            ps.setInt(4, jugador.getManaMaximo());
+            ps.setInt(5, jugador.getAtaque());
+            ps.setInt(6, jugador.getEscudo());
+            ps.setString(7, jugador.getTipoArma().name());
+            ps.setDouble(8, probCritica);
 
             return ps.executeUpdate();
         } catch (SQLException e) {
@@ -77,14 +79,13 @@ public abstract class ConexionClases extends Conexion{
             {
                 String clase = rs.getString("tipo");
                 int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
                 int vidaMaxima = rs.getInt("vidaMaxima");
                 int manaMaximo = rs.getInt("manaMaximo");
                 int ataque = rs.getInt("ataque");
                 int escudo = rs.getInt("escudo");
-                ETipoArma eTipoArma = ETipoArma.valueOf(rs.getString("eTipoArma")); // te selecciona el enum con la string que este dentro de valueof
+                ETipoArma eTipoArma = ETipoArma.valueOf(rs.getString("eTipoArma"));
                 double probabilidadCritica = rs.getDouble("probabilidadCritica");
-
-                String nombre = " Clase recuperada de la base de datos "; // el jugador lo cambia después con setNombre lo demas no varia
 
                 switch (clase)
                 {

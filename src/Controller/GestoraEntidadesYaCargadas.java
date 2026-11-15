@@ -16,8 +16,8 @@ public abstract class GestoraEntidadesYaCargadas {
 
     //Intenta obtener y devolver el listado de jugadores dentro de la base de datos.
     public static List<Jugador> jugadores(){
-        List<Jugador> jugadores = null;
 
+        List<Jugador> jugadores = null;
         try {
             jugadores = ConexionClases.traerClases();
         } catch (ConexionException e) {
