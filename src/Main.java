@@ -38,7 +38,6 @@ void main() {
         System.out.println(e.getMessage());
     }*/
 
-
     JuegoRPG.inicioJuego();
     /*JuegoRpg, la partida completa,
     batallaPorTurnos, un combate que tiene turno del jugador y turno del enemigo*/

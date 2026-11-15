@@ -1,9 +1,7 @@
 package Controller;
 
 import Enumerator.ETipoArma;
-import Exception.Conexion.ConexionException;
 import Jdbc.Conexion;
-import Jdbc.ConexionClases;
 import Models.Entidades.Enemigos.Bestia;
 import Models.Entidades.Enemigos.Demonio;
 import Models.Entidades.Enemigos.Enemigo;
@@ -26,16 +24,7 @@ public abstract class JuegoRPG {
     //atributos
 //    private static List<Jugador> clasesAElegir = new ArrayList<>();
 //    private static List<Enemigo> enemigos = new ArrayList<>();
-    private static List<Jugador> clasesAElegir;
-
-    static {
-        try {
-            clasesAElegir = ConexionClases.traerClases();
-        } catch (ConexionException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    private static List<Jugador> clasesAElegir = GestoraEntidadesYaCargadas.jugadores();
     private static List<Enemigo> enemigos = GestoraEntidadesYaCargadas.enemigos(); // ESTOS DOS ATRIBUTOS SON LOS QUE VAMOS A USAR, LOS DE ARRIBA SON DE PRUEBA
     private static Scanner sc = new Scanner(System.in); // el unico scanner que vamos a usar
 
@@ -66,9 +55,6 @@ public abstract class JuegoRPG {
     //Métod o principal, a partir de él se comienzan a llamar métodos. Lista las opciones incialmente disponibles.
     public static void inicioJuego()
     {
-        //Esto lo voy a comentar en testeos, voy a hardcodear un array de jugadores y enemigos
-
-//        testJugadoresYEnemigos(); //agrega a los listados de clase los jugadores y enemigos que creé de prueba
 
         int opcion;
         Jugador jugadorElegido;
@@ -282,9 +268,4 @@ public abstract class JuegoRPG {
             }
         } while (true) ;
     }
-
-
-
-
-
 }
