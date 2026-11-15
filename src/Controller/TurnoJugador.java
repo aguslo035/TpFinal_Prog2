@@ -22,7 +22,6 @@ public abstract class TurnoJugador {
     //Muestra las opciones que tiene el jugador en su turno. Realiza acciones según su decisión. Devuelve texto de acorde a la acción realizada.
     public static String menuAtaque(Jugador jugador, Enemigo enemigo) //este se llama en turno usuario, así que ya se sabe qué entidad es cada uno (por eso especifico Jugador y Enemigo)
     {
-        System.out.println("\nINICIO TURNO JUGADOR\n");
         boolean continuar = false; //cambia al tomar acción que finalize el turno
         int decision;
         DanioOcasionado danioRealizado; //recibe daño realizado a escudo y vida enemiga
@@ -62,12 +61,11 @@ public abstract class TurnoJugador {
                     System.out.println(enemigo.toString()); //TODO: hay que modificar el toString de Entidad para mostrar todas las habilidades tambien.
                     break; // todo se pone verde no azul ajdja
                 default: //creo que porque uso el intellijet en blanco el color mío es azul
-                    System.out.println("Por favor elija una de las opciones.");
+                    System.out.println("Por favor elija una de las opciones.\n");
                     break;
             }
         }
 
-        System.out.println("\nFINAL TURNO JUGADOR\n");
         return resultadoAccion; //ej resultado: "X ataca a Y por 123 de daño!"
     }
 

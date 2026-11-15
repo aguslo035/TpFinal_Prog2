@@ -76,7 +76,7 @@ public abstract class JuegoRPG {
                     //menu admin
                     break;
                 default:
-                    System.out.println("Elija una opción valida.");
+                    System.out.println("Elija una opción valida.\n");
                     break;
             }
         }
@@ -228,10 +228,9 @@ public abstract class JuegoRPG {
     //Menú para que el usuario elija la clase/personaje que desea usar. Devuelve el personaje elegido.
     public static Jugador menuEleccionClase() //todo: una vez esté hecho el toString en "GestoraEntidadesYaCargadas" lo completo
     {
-        System.out.println("\n==PERSONAJES DISPONIBLES==\n\n");
+        System.out.println("\n==PERSONAJES DISPONIBLES==\n");
         String clasesDisponibles = GestoraEntidadesYaCargadas.listarPersonajes(clasesAElegir);
         System.out.println(clasesDisponibles);
-        System.out.println("\n");
 
         int cantClases = clasesAElegir.size();
 
@@ -241,12 +240,12 @@ public abstract class JuegoRPG {
         {
             int decision = elegirOpcion();
 
-            if (cantClases >= decision)
+            if (decision < cantClases && decision >= 0)
             {
                 return jugadorElegido = clasesAElegir.get(decision);
             }else
             {
-                System.out.println("Por favor elija una de las opciones.\n\n");
+                System.out.println("Por favor elija una de las opciones.\n");
             }
         }
     }
@@ -256,12 +255,12 @@ public abstract class JuegoRPG {
         int decision;
 
         do {
-            System.out.println("\nSeleccione una de las opciones: ");
+            System.out.println("Seleccione una de las opciones: ");
             try {
                 decision = sc.nextInt();
                 return decision;
             } catch (InputMismatchException e) {
-                System.out.println("Ingrese un valor valido.\n"); //e.get message no te tira el texto gigante? -> e.getMessage() devuelve "null" como texto, lo saqué
+                System.out.println("\nIngrese un valor valido.\n"); //e.get message no te tira el texto gigante? -> e.getMessage() devuelve "null" como texto, lo saqué
             } finally {
                 sc.nextLine();
             }

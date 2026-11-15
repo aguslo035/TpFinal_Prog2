@@ -161,8 +161,6 @@ public abstract class Entidad implements IHabilidad {
 
     public DanioOcasionado atacar(Entidad objetivo)
     {
-        System.out.println("\nAhora mismo está atacando "+ this.nombre + "\n");
-
         return objetivo.recibirDanio(this.ataque);
         //recibir danio es cuando recibe danio en su vida, pero igual, que este aca o en recibir danio es lo mismo. Una de las dos se tiene que encargar
         // de tomar en cuenta el escudo. O el atacante o el que lo recibe, por eso digo que en mi opinion da igual donde se tenga en cuenta
@@ -175,8 +173,6 @@ public abstract class Entidad implements IHabilidad {
         DanioOcasionado resultado; //declaro el objeto que voy a devolver
 
         int danioARealizar = danio - this.escudo; //Del daño entrante, se quita la cantidad de escudo que se tiene. Si el escudo es superior, "danioARealizar" es negativo.
-
-        System.out.println("\nDanio que recibe "+ this.nombre + " es de "+ danioARealizar + "\n");
 
         if(danioARealizar < 0) { //ocurre si el escudo es mayor al ataque
             setEscudo(danioARealizar * (-1)); //Le coloca el nuevo escudo calculado a la entidad. *-1 porque el parametro debe ser positivo.

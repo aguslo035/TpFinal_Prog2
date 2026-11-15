@@ -14,46 +14,36 @@ public abstract class TurnoEnemigo {
     //Gestiona la acción tomada por el enemigo. Devuelve un String describiendole al usuario la acción realizada.
     public static String accionEnemiga(Jugador jugador, Enemigo enemigo)
     {
-        System.out.println("\nINICIO ACCION ENEMIGA\n");
         DanioOcasionado danioRealizado;
-        System.out.println("\nEsto es inmediatamente después de danioRealizado a ver si es el problema\n");
         int aux; //recibe un número para mostrar después (por ej, vida/maná curada)
         String resultadoAccion = null; //inicializo en null para que java no se queje
 
         EAccionEnemigo decisionTomada = enemigo.elegirAccion();
-        System.out.println("\nEsto es inmediatamente después de que el enemigo tome la decisión a ver si es el problema\n");
 
         boolean continuar = false;
 
         while (!continuar)
         {
-            System.out.println("\nAcabo de entrar al while del !continuar del turnoenemigo a ver si es el problema\n");
             switch (decisionTomada) //si alguna vez agregamos una acción nueva enemiga, hay que agregar otro switch
             {
                 case ATACAR:
-                    System.out.println("\nentré a switch atacar de enemigo\n");
                     danioRealizado = enemigo.atacar(jugador);
                     resultadoAccion = GestorDeTextoDeCombate.ataque(enemigo, jugador, danioRealizado);
-                    System.out.println("\nestoy por settear el continuar en true del ataque enemigo\n");
                     continuar = true;
                     break;
                 case USAR_HABILIDAD:
-                    System.out.println("\nEntré al caso de usar habilidad.\n");
                     resultadoAccion = ataqueConHabilidad(jugador, enemigo);
                     if (resultadoAccion == null) //ocurre si el enemigo elije usar una habilidad pero no tiene maná suficiente para ninguna. Lo obliga a atacar.
                     {
-                        System.out.println("\nEl muchacho no tiene maná para sus habilidades, entro en el if y ataca.\n");
                         decisionTomada = EAccionEnemigo.ATACAR;
-                    }else
+                    }else //si pudo usar una habilidad, se procede a terminar el loop y finalizar el turno
                     {
-                        System.out.println("\nEl enemigo decidió usar una habilidad\n");
                         continuar = true;
                     }
                     break;
             }
         }
 
-        System.out.println("\nFIN ACCION ENEMIGA\n");
         return resultadoAccion;
     }
 

@@ -13,8 +13,6 @@ public abstract class GestorDeTextoDeCombate {
 
         logicaAtaqueAVidaOEscudo(sb, danio);
 
-        System.out.println("\nTEST: el daño realizado es, al escudo "+ danio.getDanioAlEscudo()+"y a la vida: "+ danio.getDanioALaVida());
-
         return sb.toString();
     }
 
@@ -51,22 +49,22 @@ public abstract class GestorDeTextoDeCombate {
 
     private static String ataqueAEscudo(DanioOcasionado danio)
     {
-        return ", dañando su escudo por "+ danio.getDanioAlEscudo() +" de daño!";
+        return ", dañando su escudo por "+ danio.getDanioAlEscudo() +" de daño!\n";
     }
 
     private static String ataqueDaniaVida(DanioOcasionado danio)
     {
-        return ", quitandole "+ danio.getDanioALaVida() + " de vida!";
+        return ", quitandole "+ danio.getDanioALaVida() + " de vida!\n";
     }
 
     private static String ataqueRompeEscudoYDania(DanioOcasionado danio)
     {
-        return ", rompiendole el escudo por "+ danio.getDanioAlEscudo() +" de daño... Recibe "+ danio.getDanioALaVida() + " de daño a su vida.";
+        return ", rompiendole el escudo por "+ danio.getDanioAlEscudo() +" de daño... Recibe "+ danio.getDanioALaVida() + " de daño a su vida.\n";
     }
 
     private static String ataqueRompeEscudo(DanioOcasionado danio)
     {
-        return ", rompiendo su escudo por "+ danio.getDanioAlEscudo() + " de daño!";
+        return ", rompiendo su escudo por "+ danio.getDanioAlEscudo() + " de daño!\n";
     }
 
     ///Los siguientes métodos son llamados por una habilidad para describir su acción en una ronda.
@@ -126,7 +124,7 @@ public abstract class GestorDeTextoDeCombate {
     //Devuelve un string con datos relevantes de la entidad recibida.
     public static String mostrarEstado(Entidad entidadRecibida)
     {
-        String texto = entidadRecibida.getNombre() +  "| Escudo Restante: "+ entidadRecibida.getEscudo() + " | Vida Restante: "+ entidadRecibida.getVidaActual() + "| Maná restante: "+ entidadRecibida.getManaActual();
+        String texto = entidadRecibida.getNombre() +  " | Escudo Restante: "+ entidadRecibida.getEscudo() + " | Vida Restante: "+ entidadRecibida.getVidaActual() + "| Maná restante: "+ entidadRecibida.getManaActual();
 
         return texto; //quedaría ejemplo: Guerrero Tomás | Escudo restante: 30 | Vida Restante: 10 | Maná restante: 5
     }
