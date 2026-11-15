@@ -150,9 +150,6 @@ public abstract class TurnoJugador {
         return accionRealizada;
     }
 
-    //este conviene esté en BatallaPorTurnos
-    //
-
     //Consiste de un menú con las opcioens disponibles en el turno del usuario. Lo devuelve como String.
     public static String mostrarOpcionesCombate()
     {

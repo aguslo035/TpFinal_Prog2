@@ -17,14 +17,18 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-//eventualmente le quiero agregar el MenuAdmin
+//La clase principal del juego. A partir de ella se llaman todos los métodos.
 public abstract class JuegoRPG {
 
+    //atributos
     private static List<Jugador> clasesAElegir = new ArrayList<>();
     private static List<Enemigo> enemigos = new ArrayList<>();
 
     private static Scanner sc = new Scanner(System.in);
 
+    //métodos
+
+    //Es un métod o prueba. Eliminar después y descomentar el inicio de .inicioJuego(). Carga en el array de clase personajes y enemigos.
     public static void testJugadoresYEnemigos()
     {
         Guerrero clase1 = new Guerrero(1, "Emma el Guerrero", 100, 100, 100, 100, 20, 100, TipoArma.ESPADA);
@@ -46,7 +50,7 @@ public abstract class JuegoRPG {
         enemigos.add(enemigo3);
     }
 
-
+    //Métod o principal, a partir de él se comienzan a llamar métodos. Lista las opciones incialmente disponibles.
     public static void inicioJuego()
     {
         //Esto lo voy a comentar en testeos, voy a hardcodear un array de jugadores y enemigos
@@ -84,7 +88,7 @@ public abstract class JuegoRPG {
         }
     }
 
-    //va a batallar contra todos los enemigos que se han importado
+    //Representa una partida una vez elegido personaje. Mantiene anotado cuántos enemigos hay y cuántos faltan para la victoria.
     public static void aventura(Jugador jugadorElegido, List<Enemigo> enemigos)
     {
         System.out.println(historiaInicial(jugadorElegido));
@@ -93,7 +97,7 @@ public abstract class JuegoRPG {
         int cantidadDeBatallas = enemigos.size();
         int enemigoActual = 0;
 
-        while(enemigoActual < cantidadDeBatallas)
+        while(enemigoActual < cantidadDeBatallas) //La aventura continúa mientras se tengan enemigos.
         {
             System.out.println(encuentroEnemigo(jugadorElegido, enemigos.get(enemigoActual))); //Texto de encuentro.
             ganar = BatallaPorTurnos.combateEntreEntidades(jugadorElegido, enemigos.get(enemigoActual)); //Ocurre batalla
@@ -102,7 +106,7 @@ public abstract class JuegoRPG {
             {
                 System.out.println(recolectarRecompensa(jugadorElegido));
                 enemigoActual++; //avanzamos al siguiente enemigo
-            }else
+            }else //se perdió
             {
                 System.out.println(derrotaJugador(jugadorElegido));
                 sc.nextLine(); //esto le da una pausa al jugador antes de que se cierre el juego.
@@ -118,6 +122,7 @@ public abstract class JuegoRPG {
         System.exit(0);
     }
 
+    //Texto que representa el final de la partida por victoria. Se devuelve como String.
     public static String victoriaAnteLosMonstruos(Jugador jugadorElegido)
     {
         StringBuilder sb = new StringBuilder();
@@ -129,6 +134,7 @@ public abstract class JuegoRPG {
         return sb.toString();
     }
 
+    //Texto que representa el final de la partida por derrota. Se devuelve como String.
     public static String derrotaJugador(Jugador jugadorElegido)
     {
         StringBuilder sb = new StringBuilder();
@@ -140,11 +146,7 @@ public abstract class JuegoRPG {
         return sb.toString();
     }
 
-    //Estoy tan embolado de modularizar tanto que simplemente voy a crear un objeto del item que elija y agregarselo al inventario
-    //Está mal porque por cada item que agregemos hay que modificar este método
-    //Pero modularizé tanto que me marié y esto requiere de una solución más compleja (pensé que cada enemigo dropeaba un item y me hacía la vida fácil, pero lo habíamos cambiado para que el usuario elija de los items que existen)
-    //Por si te importa el problema específico, lo que se me ocurría al darme cuenta que los enemigos no dropeaban items, era poner un listado de todos los items hasta ahora en un atributo de esta misma clase, y acceder a ella según lo que quiere el usuario (ej si quiere poción de vida o maná, se accede al indice del array de items disponibles y se agrega a su inventario). El problema es que si se agregan 2 pociones de vida, se está agregando la misma poción de vida. Si se usa se usan todas entonces.
-    //Para simplemente ignorar todo, hardcodié que cada vez que se toma una decisión, se crea un nuevo objeto del item que eligió.
+    //Indica un listado de los items existentes. Una vez se elije uno, se agrega al inventario, y se indica qué es eligió devolviendo un String.
     public static String recolectarRecompensa(Jugador jugadorElegido)
     {
         System.out.println(jugadorElegido.getNombre() + " ha vencido al rival... ¡Ahora procede a recolectar el tesoro!\n");
@@ -180,6 +182,7 @@ public abstract class JuegoRPG {
         return accionRealizada;
     }
 
+    //Devuelve como String los items habilitados como recompensa.
     public static String recompensasDisponibles()
     {
         StringBuilder sb = new StringBuilder();
@@ -191,9 +194,7 @@ public abstract class JuegoRPG {
         return sb.toString();
     }
 
-
-
-
+    //Devuelve texto introductorio de un combate.
     public static String encuentroEnemigo(Jugador jugadorElegido, Enemigo enemigo)
     {
         StringBuilder sb = new StringBuilder();
@@ -204,6 +205,7 @@ public abstract class JuegoRPG {
         return sb.toString();
     }
 
+    //Devuelve un String indicando el principio de la historia.
     public static String historiaInicial (Jugador jugadorElegido)
     {
         StringBuilder sb = new StringBuilder();
@@ -214,6 +216,7 @@ public abstract class JuegoRPG {
         return sb.toString();
     }
 
+    //Devuelve como String las opciones del menú principal.
     public static String menuOpciones()
     {
         StringBuilder sb = new StringBuilder();
@@ -228,7 +231,7 @@ public abstract class JuegoRPG {
     }
 
     //Menú para que el usuario elija la clase/personaje que desea usar. Devuelve el personaje elegido.
-    public static Jugador menuEleccionClase() //todo: una vez esté hecho el toString en "GestoraEntidadesYaCargadas" lo completo
+    public static Jugador menuEleccionClase()
     {
         System.out.println("\n==PERSONAJES DISPONIBLES==\n");
         String clasesDisponibles = GestoraEntidadesYaCargadas.listarPersonajes(clasesAElegir);

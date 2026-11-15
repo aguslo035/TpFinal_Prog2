@@ -6,14 +6,13 @@ public interface IItem {
 
     //Todos los items son utilizables y definen su propio comportamiento. Llaman a metodos de jugador. Devuelven la cantidad de un valor que hayan modificado.
     int utilizar(Jugador jugador);
-    //le cambié el nombre porque no todo item se va a consumir
-    //lo cambié de void a int porque necesito devuelva la cantidad afectada, si es que hubo afectación
 
-    String verEstadisticasItem(); //sería el toString de los items
+    //Es básicamente un toString de los items
+    String verEstadisticasItem();
 
-    //Necesito que cada item construya su propio texto de relleno, sino termino agregando muchos IFs en TurnoJugador
+    //Cada item construye su propio texto de relleno para mostrarle al jugador lo que se realizó.
     String describirComportamiento(Jugador usuario, int cantidad);
 
-    //Necesito que cada item me pueda dar su propio nombre
+    //Cada item debe sí o sí poder entregar su propio nombre.
     String getNombre();
 }
