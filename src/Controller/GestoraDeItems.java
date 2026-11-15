@@ -78,6 +78,11 @@ public class GestoraDeItems<T extends IItem> {
         return sb.toString();
     }
 
+    public int obtenerTamanio()
+    {
+        return elementos.size();
+    }
+
     //A partir del item que se le entregue, devuelve texto indicandole al usuario que se agregó ese item.
     public String textoDeAgregado (T itemAgregado)
     {

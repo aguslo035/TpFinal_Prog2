@@ -2,6 +2,7 @@ package Models.Entidades.JugadoresClases;
 
 import Controller.GestoraDeItems;
 import Enumerator.ETipoArma;
+import Exception.Juego.IndiceInvalidoException;
 import Interface.IItem;
 import Models.Entidades.Entidad;
 //import Models.Items.Pociones.Pocion;
@@ -48,7 +49,10 @@ public abstract class Jugador extends Entidad {
     }
 
     public void eliminarItem(int indice)
+            throws IndiceInvalidoException
     {
+        if(indice < 0 || indice >= inventario.obtenerTamanio())
+            throw new IndiceInvalidoException(indice);
         inventario.eliminarElemento(indice);
     }
 
@@ -74,7 +78,11 @@ public abstract class Jugador extends Entidad {
 
     ///métodos
     public int utilizarItem(int indice)
+        throws IndiceInvalidoException
     {
+        if(indice < 0 || indice >= inventario.obtenerTamanio())
+            throw new IndiceInvalidoException(indice);
+
         return inventario.obtenerElemento(indice).utilizar(this);
     }
 
