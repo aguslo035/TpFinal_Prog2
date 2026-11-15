@@ -13,10 +13,6 @@ import java.util.Scanner;
 
 public abstract class TurnoJugador {
 
-    //scanner
-    private static final Scanner sc = new Scanner(System.in);//SIEMPRE se utiliza el scanner en el main con el metodo elegirOpcion()
-    //cómo que en el main?
-
     //métodos
 
     //Muestra las opciones que tiene el jugador en su turno. Realiza acciones según su decisión. Devuelve texto de acorde a la acción realizada.
@@ -161,11 +157,5 @@ public abstract class TurnoJugador {
                 .append("3. Inspeccionar Enemigo.\n");
 
         return sb.toString();
-    }
-
-    //Cierra el scanner.
-    public static void cerrarScanner()
-    {
-        sc.close();
     }
 }
