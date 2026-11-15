@@ -11,13 +11,13 @@ import java.util.Objects;
 
 public abstract class Jugador extends Entidad {
 
-    //atributos
+    ///atributos
     private static int idAux = 0;
     private final int id;
     private final TipoArma tipoArma;
     private GestoraDeItems<IItem> inventario;
 
-    //constructores
+    ///constructores
     public Jugador(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma) {
         super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo);
         this.tipoArma = tipoArma;
@@ -35,7 +35,7 @@ public abstract class Jugador extends Entidad {
         inventario = new GestoraDeItems();
     } // lo mismo de la id que enemigo, para que no se repita al traerlos de la base de datos
 
-    //getters y setters
+    ///getters y setters
     public int getId() {
         return id;
     }
@@ -74,12 +74,11 @@ public abstract class Jugador extends Entidad {
         return inventario.contarElementos();
     }
 
-    //métodos
+    ///métodos
     public int utilizarItem(int indice)
     {
         return inventario.obtenerElemento(indice).utilizar(this);
     }
-
 
 
     //equals y hashcode

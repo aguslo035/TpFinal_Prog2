@@ -9,11 +9,11 @@ import java.util.Random;
 
 public final class Arquero extends Jugador{
 
-
+    ///atributos
     private double probabilidadCritica; // debe ser con probabilidad, de 0 hasta 1
-    private static final Random random = new Random();
-    // lo mismo que en enemigo con el numero random, se usara nextDouble() que es un numero random entre 0 y 1
+    private static final Random random = new Random(); // lo mismo que en enemigo con el numero random, se usara nextDouble() que es un numero random entre 0 y 1
 
+    ///Constructores
     public Arquero(String nombre, int vidaActual, int vidaMaxima, int manaActual, int manaMaximo, int ataque, int escudo, TipoArma tipoArma, double probabilidadCritica) {
         super(nombre, vidaActual, vidaMaxima, manaActual, manaMaximo, ataque, escudo, tipoArma);
         this.probabilidadCritica = probabilidadCritica;
@@ -26,6 +26,7 @@ public final class Arquero extends Jugador{
         this.agregarHabilidad(new FlechaCertera("Flecha certera", "una flecha directa al punto débil", this.getManaMaximo() / 4, this.getAtaque(), 2));
     }
 
+    ///getter y setters
     public double getProbabilidadCritica() {
         return probabilidadCritica;
     }
@@ -34,6 +35,9 @@ public final class Arquero extends Jugador{
         this.probabilidadCritica = probabilidadCritica;
     }
 
+    ////Métodos
+
+    //El e
     @Override
     public DanioOcasionado atacar(Entidad objetivo) {
         int danioARealizar = getAtaque();

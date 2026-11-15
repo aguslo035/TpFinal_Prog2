@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class Entidad implements IHabilidad {
 
-    //atributos
+    ///atributos
     private String nombre;
     private int vidaActual;
     private int vidaMaxima;
@@ -21,7 +21,7 @@ public abstract class Entidad implements IHabilidad {
     private int escudo;
     private List<Habilidad> habilidades;
 
-    //constructor
+    ///constructor
     public Entidad(String nombre, int vidaActual, int vidaMaxima,
                    int manaActual, int manaMaximo, int ataque,
                    int escudo) {
@@ -36,7 +36,7 @@ public abstract class Entidad implements IHabilidad {
         habilidades = new ArrayList<>(); // Las habilidades son especificas de cada clase/enemigo. Se llena la lista con sus respectivas habildades en sus constructores
     }
 
-    //getters y setters
+    ///getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -114,7 +114,7 @@ public abstract class Entidad implements IHabilidad {
         this.habilidades = habilidades;
     }
 
-    //Métodos
+    ///Métodos
 
     @Override
     //Verifica que existe el hechizo que se quiere utilizar + que se tenga maná y lo utiliza en contra del objetivo. Devuelve el daño realizado a la vida.
@@ -132,11 +132,13 @@ public abstract class Entidad implements IHabilidad {
         return habilidadAUsar.usar(this, objetivo);
     }
 
-    public int contarHabilidades() //lo necesito para un método en turnoJugador
+    //Cuenta las habilidades disponibles de una entidad. Es requerido en TurnoJugador.
+    public int contarHabilidades()
     {
         return habilidades.size();
     }
 
+    //Enumera en un string las habilidades disponibles para una entidad.
     @Override
     public String verHabilidades() {
 
@@ -154,28 +156,26 @@ public abstract class Entidad implements IHabilidad {
         return sb.toString();
     }
 
-
+    //Agrega una habilidad al listado de habilidades. Devuelve true si se pudo.
     public boolean agregarHabilidad(Habilidad habilidad) {
         return habilidades.add(habilidad);
     }
 
+    //Es el método_ de ataque normal de una entidad. Devuelve DanioOcasioando, que toma nota del daño hecho al escudo y a la vida (+ si un ataque rompió escudo).
     public DanioOcasionado atacar(Entidad objetivo)
     {
-        return objetivo.recibirDanio(this.ataque);
-        //recibir danio es cuando recibe danio en su vida, pero igual, que este aca o en recibir danio es lo mismo. Una de las dos se tiene que encargar
-        // de tomar en cuenta el escudo. O el atacante o el que lo recibe, por eso digo que en mi opinion da igual donde se tenga en cuenta
-        // lo importante es que este en alguno de los dos
+        return objetivo.recibirDanio(this.ataque); // Como es un ataque normal, el danio ocasionado es solo el atributo de ataque.
     }
 
-    //Recibe una cantidad de daño. Resta el daño contra el escudo y vida de la entidad (primero se daña al escudo, después a la vida). El métod o devuelve un objeto que contiene datos sobre el daño ocasionado al escudo y a la vida.
+    //Recibe una cantidad de daño. Resta el daño contra el escudo y vida de la entidad (primero se daña al escudo, después a la vida). Se devuelve un objeto que contiene datos sobre el daño ocasionado al escudo y a la vida.
     public DanioOcasionado recibirDanio(int danio)
     {
         DanioOcasionado resultado; //declaro el objeto que voy a devolver
 
         int danioARealizar = danio - this.escudo; //Del daño entrante, se quita la cantidad de escudo que se tiene. Si el escudo es superior, "danioARealizar" es negativo.
 
-        if(danioARealizar < 0) { //ocurre si el escudo es mayor al ataque
-            setEscudo(danioARealizar * (-1)); //Le coloca el nuevo escudo calculado a la entidad. *-1 porque el parametro debe ser positivo.
+        if(danioARealizar < 0) { //ocurre si el escudo es mayor al ataque. "danioARealizar" es el nuevo valor del escudo.
+            setEscudo(danioARealizar * (-1)); //Le coloca el nuevo escudo a la entidad. *-1 porque por el cálculo "danioARealizar" es negativa.
             return resultado = new DanioOcasionado(danio, 0, false); //se devuelve el daño realizado al escudo
         }
 
@@ -184,11 +184,11 @@ public abstract class Entidad implements IHabilidad {
             return resultado = new DanioOcasionado(danio, 0, true); //Este ataque rompe el escudo
         }
 
-        //Se prosigue si el daño supera al escudo
+        //Se llega a este punto del método_ solo si el daño supera al escudo (y se empieza a quitar vida).
 
         setVidaActual(this.vidaActual-danioARealizar); //El ataque calculado le quita vida a la entidad
 
-        if (this.escudo > 0) //El primer ataque que sobrepase al escudo (si no se dio el caso de arriba) entra en este if. Significa que el ataque realizado rompe el escudo (leer el else).
+        if (this.escudo > 0) //El primer ataque que sobrepase al escudo (si no se dio el caso específico de arriba) entra en este if. Significa que el ataque realizado rompe el escudo (leer el else).
         {
             resultado = new DanioOcasionado(this.escudo, danioARealizar, true);
             setEscudo(0);
@@ -240,6 +240,7 @@ public abstract class Entidad implements IHabilidad {
         return false;
     }
 
+    //toString
     @Override
     public String toString() {
         return "Entidad{" +
