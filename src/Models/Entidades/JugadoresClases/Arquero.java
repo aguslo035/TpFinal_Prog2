@@ -37,7 +37,7 @@ public final class Arquero extends Jugador{
 
     ////Métodos
 
-    //El e
+    //El ataque normal del arquero difiere al del padre ya que puede ocasionar un golpe crítico. Lo toma en cuenta y devuelve el daño causado a la vida y/o escudo.
     @Override
     public DanioOcasionado atacar(Entidad objetivo) {
         int danioARealizar = getAtaque();

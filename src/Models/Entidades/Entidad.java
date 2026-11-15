@@ -240,11 +240,10 @@ public abstract class Entidad implements IHabilidad {
         return false;
     }
 
-    //toString
+    //toString (después cada entidad agrega a este toString)
     @Override
     public String toString() {
-        return "Entidad{" +
-                "nombre='" + nombre + '\'' +
+        return "nombre='" + nombre + '\'' +
                 ", vidaActual=" + vidaActual +
                 ", vidaMaxima=" + vidaMaxima +
                 ", manaActual=" + manaActual +

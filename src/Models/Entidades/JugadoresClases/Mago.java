@@ -15,7 +15,6 @@ public final class Mago extends Jugador{
     }
 
     //toString
-
     @Override
     public String toString() {
         return "Mago{"+ super.toString()+ "}";

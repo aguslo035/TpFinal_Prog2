@@ -106,4 +106,14 @@ public abstract class Enemigo extends Entidad {
         return Objects.hashCode(id);
     }
 
+    ///toString
+
+    @Override
+    public String toString() {
+        return "Enemigo{"+
+                "id=" + id +
+                ", "+ super.toString() +
+                ", Habilidades: " + this.verHabilidades() +
+                '}';
+    }
 }
