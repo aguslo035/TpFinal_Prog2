@@ -160,7 +160,7 @@ public abstract class Entidad implements IHabilidad {
 
     public DanioOcasionado atacar(Entidad objetivo)
     {
-        return recibirDanio(this.ataque);
+        return objetivo.recibirDanio(this.ataque);
         //recibir danio es cuando recibe danio en su vida, pero igual, que este aca o en recibir danio es lo mismo. Una de las dos se tiene que encargar
         // de tomar en cuenta el escudo. O el atacante o el que lo recibe, por eso digo que en mi opinion da igual donde se tenga en cuenta
         // lo importante es que este en alguno de los dos
@@ -195,16 +195,6 @@ public abstract class Entidad implements IHabilidad {
         }else //una vez el escudo este en 0, solamente se ataca a la vida
         {
             return resultado = new DanioOcasionado(0, danioARealizar, false);
-        }
-    }
-
-    public boolean isEscudoRoto() {
-        if(this.escudo >= 1)
-        {
-            return false;
-        }else
-        {
-            return true;
         }
     }
 

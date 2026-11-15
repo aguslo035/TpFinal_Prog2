@@ -13,6 +13,8 @@ public abstract class GestorDeTextoDeCombate {
 
         logicaAtaqueAVidaOEscudo(sb, danio);
 
+        System.out.println("\nTEST: el daño realizado es, al escudo "+ danio.getDanioAlEscudo()+"y a la vida: "+ danio.getDanioALaVida());
+
         return sb.toString();
     }
 
