@@ -28,7 +28,6 @@ public abstract class BatallaPorTurnos {
                 ronda = 1; //lo setteo a 1 para el siguiente combate
                 return true;
             }
-
             ronda++;
         }
 

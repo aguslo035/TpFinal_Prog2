@@ -29,7 +29,4 @@ public final class FlechaCertera extends HabilidadDanio{
 
         return danioRealizado;
     }
-
-
-
 }

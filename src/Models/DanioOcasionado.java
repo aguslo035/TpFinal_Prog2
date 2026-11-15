@@ -1,6 +1,7 @@
 package Models;
 
-//Representa el daño que recibe una entidad a sus atributos por cualquier ataque. Existe para que la gestora muestre correctamente lo que ocurre en un turno.
+//Representa el daño que recibe una entidad a sus atributos por cualquier ataque.
+// Existe para que la gestora muestre correctamente lo que ocurre en un turno.
 public class DanioOcasionado {
 
     ///atributos
