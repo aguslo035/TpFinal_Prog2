@@ -7,28 +7,26 @@ import Models.GestorDeTextoDeCombate;
 
 public final class RoboDeVida extends HabilidadDanio{
 
-    //creemoslo nosotros por defecto a las habilidades, para ir poniendola en los personajes/enemigos
-
-    //Cuando se agregue esta habilidad a los personajes, que solamente se llama "Robo de Vida" exactamente
-    //Tuve que hacer lógica en turno jugador usando exactamente ese nombre
-
-
+    ///Constructor
     public RoboDeVida(String nombre, String descripcion, int costoMana, int danio) {
         super(nombre, descripcion, costoMana, danio);
     }
 
-    //metodos
+    ///metodos
+
+    //Se llama cuando se ha verificado puede usarse una habilidad. Devuelve el daño ocasionado al escudo y/o la vida.
     @Override
     public DanioOcasionado usar(Entidad usuario, Entidad objetivo)
     {
         int danioARealizarDeHabilidad = this.getDanio();
 
         DanioOcasionado danioRealizado = objetivo.recibirDanio(danioARealizarDeHabilidad);
-        usuario.curar(danioARealizarDeHabilidad);
+        usuario.curar(danioARealizarDeHabilidad); //esta habilidad cura al usuario la misma cantidad que el daño que hizo
 
         return danioRealizado;
     }
 
+    //Describe en un String lo que realizó la habilidad en una ronda y lo devuelve.
     @Override
     public String describirComportamiento(Entidad origen, Entidad destino, DanioOcasionado danio) {
         return GestorDeTextoDeCombate.ataqueHabilidadConCura(origen, destino, getNombre(), danio);

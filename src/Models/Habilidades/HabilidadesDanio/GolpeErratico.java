@@ -6,12 +6,11 @@ import Models.Entidades.Entidad;
 import Models.GestorDeTextoDeCombate;
 
 public final class GolpeErratico extends HabilidadDanio {
-    private int danioFijo;
 
-    //creemoslo nosotros por defecto a las habilidades, para ir poniendola en los personajes/enemigos
-    //mando números random en todas las habilidades (y te dejo esta nota en todas para que no se pierda)
+    ///Atributos
+    private int danioFijo; //sería un "daño extra"
 
-
+    ///Constructor
     public GolpeErratico(String nombre, String descripcion, int costoMana, int danio, int danioFijo) {
         super(nombre, descripcion, costoMana, danio);
         this.danioFijo = danioFijo;
@@ -36,8 +35,6 @@ public final class GolpeErratico extends HabilidadDanio {
 
         return danioRealizado;
     }
-
-
 
     //toString reformateado (no llamo al super) por el tema de que el daño es 0
     @Override

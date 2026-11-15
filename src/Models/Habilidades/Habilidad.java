@@ -6,19 +6,19 @@ import Models.Entidades.Entidad;
 
 public abstract class Habilidad {
 
-    //atributos
+    ///atributos
     private String nombre;
     private String descripcion;
     private int costoMana;
 
-    //constructor
+    ///constructor
     public Habilidad(String nombre, String descripcion, int costoMana) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.costoMana = costoMana;
     }
 
-    //getters y setters
+    ///getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -43,7 +43,7 @@ public abstract class Habilidad {
         this.costoMana = costoMana;
     }
 
-    //Métodos
+    ///Métodos
 
     //Indica true si tiene maná suficiente para usar la habilidad. False en caso contrario.
     public boolean sePuedeUsar(Entidad origen)
@@ -59,7 +59,7 @@ public abstract class Habilidad {
     //Su razón de existir es para evitar poner muchos ifs en Gestor De Texto De Combate describiendo qué nombre poner de la habilidad por ejemplo.
     public abstract String describirComportamiento(Entidad origen, Entidad destino, DanioOcasionado danio);
 
-    //toString
+    ///toString
     @Override
     public String toString() {
         return "Habilidad: " +

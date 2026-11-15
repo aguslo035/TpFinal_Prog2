@@ -70,7 +70,7 @@ public class GestoraDeItems<T extends IItem> {
         for (T t : elementos)
         {
             sb.append("#"+ i + " - "); //quedaría ej "#0 - Poción de Vida -> 10 HP+"
-            sb.append(t.toString())
+            sb.append(t.verEstadisticasItem())
                     .append("\n");
             i++;
         }

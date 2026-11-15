@@ -4,17 +4,17 @@ import Interface.IItem;
 
 public abstract class Pocion implements IItem {
 
-    //atributos
+    ///atributos
     private String nombre;
     private int cantidad;
 
-    //constructor
+    ///constructor
     public Pocion(String nombre, int cantidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
     }
 
-    //getters y setters
+    ///getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -31,7 +31,7 @@ public abstract class Pocion implements IItem {
         this.cantidad = cantidad;
     }
 
-    //toString
+    ///toString
     @Override
     public String toString() {
         return nombre + " -> " + cantidad;
