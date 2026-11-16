@@ -75,9 +75,6 @@ public abstract class JuegoRPG {
                     sc.close();
                     System.exit(0); //sale del programa. el "0" indica que es un cierre normal
                     break;
-                case 3:
-                    //menu admin
-                    break;
                 default:
                     System.out.println("Elija una opción valida.\n");
                     break;
@@ -222,7 +219,6 @@ public abstract class JuegoRPG {
         sb.append("INICIO\n\n");
         sb.append("1. JUGAR\n");
         sb.append("2. SALIR\n");
-        sb.append("3. MENU ADMIN\n");
 
         return sb.toString();
     }
