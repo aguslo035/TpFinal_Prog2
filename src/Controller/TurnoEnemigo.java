@@ -1,6 +1,7 @@
 package Controller;
 
 import Enumerator.EAccionEnemigo;
+import Exception.Juego.IndiceInvalidoException;
 import Exception.Juego.ManaInsuficienteException;
 import Models.DanioOcasionado;
 import Models.Entidades.Enemigos.Enemigo;
@@ -48,6 +49,7 @@ public abstract class TurnoEnemigo {
 
     //Gestiona el ataque en caso de que el enemigo pueda y quiera usar una habilidad. Devuelve un String describiendo qué ocurrió al realizarla.
     public static String ataqueConHabilidad(Jugador jugador, Enemigo enemigo)
+
     {
         String resultadoAccion = null;
 
@@ -64,6 +66,9 @@ public abstract class TurnoEnemigo {
             }
         } catch (ManaInsuficienteException e) { //no puede pasar nunca porque el enemigo solo tiene acceso a las habilidades para las que tiene maná. Igual le agrego el mensaje
             System.out.println(e.getMessage() + " El enemigo utilizó una habilidad sin maná."); //^ dije no puede pasar nunca y pasó igual lol
+        } catch (IndiceInvalidoException e)
+        {
+            System.out.println(e.getMessage() + " El enemigo utilizó una habilidad fuera del indice.");
         }
 
         return resultadoAccion;
