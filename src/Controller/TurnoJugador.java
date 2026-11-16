@@ -6,10 +6,6 @@ import Models.DanioOcasionado;
 import Models.GestorDeTextoDeCombate;
 import Models.Entidades.Enemigos.Enemigo;
 import Models.Entidades.JugadoresClases.Jugador;
-import Models.Habilidades.Habilidad;
-
-import java.util.Scanner;
-
 
 public abstract class TurnoJugador {
 
@@ -21,7 +17,6 @@ public abstract class TurnoJugador {
         boolean continuar = false; //cambia al tomar acción que finalize el turno
         int decision;
         DanioOcasionado danioRealizado; //recibe daño realizado a escudo y vida enemiga
-        int aux; //recibe un número para mostrar después (ej, cuánto se curó de vida o maná)
         String resultadoAccion = null; //lo igualo a null para que java no se queje
 
         while (!continuar)
@@ -54,7 +49,7 @@ public abstract class TurnoJugador {
                     }
                     break;
                 case 3: //descubrí que poniendo "todo" el texto se pone todo azul parece útil
-                    System.out.println(enemigo.toString()); //TODO: hay que modificar el toString de Entidad para mostrar todas las habilidades tambien.
+                    System.out.println(enemigo.toString());
                     break; // todo se pone verde no azul ajdja
                 default: //creo que porque uso el intellijet en blanco el color mío es azul
                     System.out.println("Por favor elija una de las opciones.\n");
@@ -65,7 +60,9 @@ public abstract class TurnoJugador {
         return resultadoAccion; //ej resultado: "X ataca a Y por 123 de daño!"
     }
 
-    //Lista todas las habilidades del jugador y una opción para volver al menú de ataque. Una vez el usuario tome una opción valida, devuelve un String indicando la elección realizada (que se realizó el ataque o se volvió al menú).
+    //Lista todas las habilidades del jugador y una opción para volver al menú de ataque.
+    // Una vez el usuario tome una opción valida, devuelve un String indicando la elección realizada
+    // (que se realizó el ataque o se volvió al menú).
     public static String menuHabilidad(Jugador jugador, Enemigo enemigo)
     {
         boolean continuar = false;
@@ -84,7 +81,7 @@ public abstract class TurnoJugador {
 
             decision = JuegoRPG.elegirOpcion();
 
-            if (decision == i)
+            if (decision == i) // i = .size para volver
             {
                 accionRealizada = "VOLVER";
                 continuar = true;
@@ -92,14 +89,14 @@ public abstract class TurnoJugador {
             {
                 try {
                     danioRealizado = jugador.usarHabilidad(decision, enemigo);
-                    //lo siguiente solo ocurre si no ocurrió una exception (elige opción valida)
-                    accionRealizada = jugador.getHabilidades().get(decision).describirComportamiento(jugador, enemigo, danioRealizado); //puede que esté mal que se busque la misma habilidad 2 veces, pero el .usarHabilidad del jugador en la linea de arriba hace la verificación de que tiene maná para usarla
+                    accionRealizada = jugador.getHabilidades().get(decision).describirComportamiento(jugador, enemigo, danioRealizado);
+                    // si no sucede ninguna excepcion, se puede continuar
                     continuar = true;
                 } catch (IndiceInvalidoException e) {
                     System.out.println(e.getMessage() + " Elija una opción valida de las mostradas.");
                 } catch (ManaInsuficienteException e)
                 {
-                    System.out.println("Mana insuficiente.");
+                    System.out.println(e.getMessage());
                 }
             }
 
@@ -125,7 +122,7 @@ public abstract class TurnoJugador {
 
             decision = JuegoRPG.elegirOpcion();
 
-            if (decision == i)
+            if (decision == i) // i = .size para volver
             {
                 accionRealizada = "VOLVER";
                 continuar = true;

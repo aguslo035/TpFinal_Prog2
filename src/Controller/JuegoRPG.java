@@ -23,10 +23,8 @@ import java.util.Scanner;
 public abstract class JuegoRPG {
 
     //atributos
-//    private static List<Jugador> clasesAElegir = new ArrayList<>();
-//    private static List<Enemigo> enemigos = new ArrayList<>();
     private static List<Jugador> clasesAElegir = GestoraEntidadesYaCargadas.jugadores();
-    private static List<Enemigo> enemigos = GestoraEntidadesYaCargadas.enemigos(); // ESTOS DOS ATRIBUTOS SON LOS QUE VAMOS A USAR, LOS DE ARRIBA SON DE PRUEBA
+    private static List<Enemigo> enemigos = GestoraEntidadesYaCargadas.enemigos();
     private static Scanner sc = new Scanner(System.in); // el unico scanner que vamos a usar en todo el proyecto
 
     //métodos
@@ -101,6 +99,11 @@ public abstract class JuegoRPG {
         System.out.println(victoriaAnteLosMonstruos(jugadorElegido));
         sc.nextLine(); //esto le da una pausa al jugador antes de que se cierre el juego.
         sc.close();
+        try {
+            Conexion.closeConnection();
+        } catch (ConexionException e) {
+            System.out.println(e.getMessage());
+        }
         System.exit(0);
     }
 
@@ -110,7 +113,7 @@ public abstract class JuegoRPG {
         StringBuilder sb = new StringBuilder();
 
         sb.append("\n"+ jugadorElegido.getNombre() + " ha derrotado a todos los enemigos en su camino.\n");
-        sb.append("Ha demostrado ser uno de los mejores "+ jugadorElegido.getClass().toString() + "s de todos los tiempos...\n\n");
+        sb.append("Ha demostrado ser uno de los mejores "+ jugadorElegido.getClass().getSimpleName() + "s de todos los tiempos...\n\n");
         sb.append("FIN DEL JUEGO. VICTORIA.\n");
 
         return sb.toString();
@@ -158,6 +161,7 @@ public abstract class JuegoRPG {
                     break;
                 default:
                     System.out.println("Elija una opción valida.\n\n");
+                    break;
             }
         }
 
@@ -169,9 +173,9 @@ public abstract class JuegoRPG {
     {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("\n==Items Disponibles==\n\n");
+        sb.append("\n==Items Disponibles==\n");
         sb.append("1. Pocion de vida.\n");
-        sb.append("2. Pocion de maná\n\n");
+        sb.append("2. Pocion de maná\n");
 
         return sb.toString();
     }

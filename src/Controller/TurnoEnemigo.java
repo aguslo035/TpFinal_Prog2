@@ -15,7 +15,6 @@ public abstract class TurnoEnemigo {
     public static String accionEnemiga(Jugador jugador, Enemigo enemigo)
     {
         DanioOcasionado danioRealizado;
-        int aux; //recibe un número para mostrar después (por ej, vida/maná curada)
         String resultadoAccion = null; //inicializo en null para que java no se queje
 
         EAccionEnemigo decisionTomada = enemigo.elegirAccion();
@@ -24,7 +23,7 @@ public abstract class TurnoEnemigo {
 
         while (!continuar)
         {
-            switch (decisionTomada) //si alguna vez agregamos una acción nueva enemiga, hay que agregar otro switch
+            switch (decisionTomada) //si alguna vez agregamos una acción nueva enemiga, hay que agregar otro switch y actualizar su enum
             {
                 case ATACAR:
                     danioRealizado = enemigo.atacar(jugador);
@@ -47,7 +46,8 @@ public abstract class TurnoEnemigo {
         return resultadoAccion;
     }
 
-    //Gestiona el ataque en caso de que el enemigo pueda y quiera usar una habilidad. Devuelve un String describiendo qué ocurrió al realizarla.
+    //Gestiona el ataque en caso de que el enemigo pueda y quiera usar una habilidad.
+    // Devuelve un String describiendo qué ocurrió al realizarla.
     public static String ataqueConHabilidad(Jugador jugador, Enemigo enemigo)
 
     {
@@ -55,17 +55,18 @@ public abstract class TurnoEnemigo {
 
         try{
             Habilidad habilidadElegida = enemigo.elegirHabilidadAUsar(); //A partir de un array de habilidades para las cuales el enemigo tiene maná para usar, elige una aleatoriamente.
+
             if (habilidadElegida == null) //En caso de no tener maná suficiente para ninguna habilidad, habilidadElegida es null
             {
-                resultadoAccion = null;
+                return resultadoAccion;
             }else
             {
                 int pos = enemigo.getHabilidades().indexOf(habilidadElegida); //busco la posición de la habilidad que eligió
-                DanioOcasionado danioRealizado = enemigo.usarHabilidad(pos, jugador);
+                DanioOcasionado danioRealizado = enemigo.usarHabilidad(pos, jugador); // se le pasa su indice y el jugador a atacar
                 resultadoAccion = habilidadElegida.describirComportamiento(enemigo, jugador, danioRealizado);
             }
-        } catch (ManaInsuficienteException e) { //no puede pasar nunca porque el enemigo solo tiene acceso a las habilidades para las que tiene maná. Igual le agrego el mensaje
-            System.out.println(e.getMessage() + " El enemigo utilizó una habilidad sin maná."); //^ dije no puede pasar nunca y pasó igual lol
+        } catch (ManaInsuficienteException e) {
+            System.out.println(e.getMessage() + " El enemigo utilizó una habilidad sin maná.");
         } catch (IndiceInvalidoException e)
         {
             System.out.println(e.getMessage() + " El enemigo utilizó una habilidad fuera del indice.");
