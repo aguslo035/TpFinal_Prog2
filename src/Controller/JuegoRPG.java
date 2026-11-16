@@ -27,35 +27,12 @@ public abstract class JuegoRPG {
 //    private static List<Enemigo> enemigos = new ArrayList<>();
     private static List<Jugador> clasesAElegir = GestoraEntidadesYaCargadas.jugadores();
     private static List<Enemigo> enemigos = GestoraEntidadesYaCargadas.enemigos(); // ESTOS DOS ATRIBUTOS SON LOS QUE VAMOS A USAR, LOS DE ARRIBA SON DE PRUEBA
-    private static Scanner sc = new Scanner(System.in); // el unico scanner que vamos a usar
+    private static Scanner sc = new Scanner(System.in); // el unico scanner que vamos a usar en todo el proyecto
 
     //métodos
-
-    //Es un métod o prueba. Eliminar después y descomentar el inicio de .inicioJuego(). Carga en el array de clase personajes y enemigos.
-//    public static void testJugadoresYEnemigos()
-//    {
-//        Guerrero clase1 = new Guerrero(1, "Emma el Guerrero", 100, 100, 100, 100, 20, 100, ETipoArma.ESPADA);
-//        Mago clase2 = new Mago(2, "Lucre la Maga", 100, 100, 100, 100, 15, 100, ETipoArma.BASTON);
-//        Arquero clase3 = new Arquero(3, "Legolas el Arquero", 100, 100, 100, 100, 20, 80, ETipoArma.ARCO, 0.50);
-//        Guerrero clase4 = new Guerrero(4, "Goku", 10000, 10000, 10000, 10000, 2000, 10000, ETipoArma.NINGUNA);
-//
-//        clasesAElegir.add(clase1);
-//        clasesAElegir.add(clase2);
-//        clasesAElegir.add(clase3);
-//        clasesAElegir.add(clase4);
-//
-//        Bestia enemigo1 = new Bestia(1, "Firulais la Bestia", 50, 50, 60, 60, 10, 40);
-//        Orco enemigo2 = new Orco(2, "Bernard el Orco", 60, 60 , 70, 70, 20, 30);
-//        Demonio enemigo3 = new Demonio(3, "Adrian el Rey Demonio", 70, 70, 80, 80, 25, 40);
-//
-//        enemigos.add(enemigo1);
-//        enemigos.add(enemigo2);
-//        enemigos.add(enemigo3);
-//    }
-
     //Métod o principal, a partir de él se comienzan a llamar métodos. Lista las opciones incialmente disponibles.
     public static void inicioJuego()
-            throws ConexionException {
+    {
 
         int opcion;
         Jugador jugadorElegido;
@@ -74,7 +51,11 @@ public abstract class JuegoRPG {
                     break;
                 case 2:
                     sc.close();
-                    Conexion.closeConnection();
+                    try {
+                        Conexion.closeConnection();
+                    } catch (ConexionException e) {
+                        System.out.println(e.getMessage());
+                    }
                     System.exit(0); //sale del programa. el "0" indica que es un cierre normal
                     break;
                 default:
@@ -107,6 +88,11 @@ public abstract class JuegoRPG {
                 System.out.println(derrotaJugador(jugadorElegido));
                 sc.nextLine(); //esto le da una pausa al jugador antes de que se cierre el juego.
                 sc.close();
+                try {
+                    Conexion.closeConnection();
+                } catch (ConexionException e) {
+                    System.out.println(e.getMessage());
+                }
                 System.exit(0);
             }
         }
@@ -266,4 +252,26 @@ public abstract class JuegoRPG {
             }
         } while (true) ;
     }
+
+    //Es un métod o prueba. Eliminar después y descomentar el inicio de .inicioJuego(). Carga en el array de clase personajes y enemigos.
+//    public static void testJugadoresYEnemigos()
+//    {
+//        Guerrero clase1 = new Guerrero(1, "Emma el Guerrero", 100, 100, 100, 100, 20, 100, ETipoArma.ESPADA);
+//        Mago clase2 = new Mago(2, "Lucre la Maga", 100, 100, 100, 100, 15, 100, ETipoArma.BASTON);
+//        Arquero clase3 = new Arquero(3, "Legolas el Arquero", 100, 100, 100, 100, 20, 80, ETipoArma.ARCO, 0.50);
+//        Guerrero clase4 = new Guerrero(4, "Goku", 10000, 10000, 10000, 10000, 2000, 10000, ETipoArma.NINGUNA);
+//
+//        clasesAElegir.add(clase1);
+//        clasesAElegir.add(clase2);
+//        clasesAElegir.add(clase3);
+//        clasesAElegir.add(clase4);
+//
+//        Bestia enemigo1 = new Bestia(1, "Firulais la Bestia", 50, 50, 60, 60, 10, 40);
+//        Orco enemigo2 = new Orco(2, "Bernard el Orco", 60, 60 , 70, 70, 20, 30);
+//        Demonio enemigo3 = new Demonio(3, "Adrian el Rey Demonio", 70, 70, 80, 80, 25, 40);
+//
+//        enemigos.add(enemigo1);
+//        enemigos.add(enemigo2);
+//        enemigos.add(enemigo3);
+//    }
 }

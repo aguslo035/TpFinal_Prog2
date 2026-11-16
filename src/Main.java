@@ -14,16 +14,10 @@ import Models.Entidades.JugadoresClases.Guerrero;
 import Models.Entidades.JugadoresClases.Mago;
 
 void main() {
-
-    try {
         
         JuegoRPG.inicioJuego();
          /*JuegoRpg, la partida completa,
         batallaPorTurnos, un combate que tiene turno del jugador y turno del enemigo*/
-
-    } catch (ConexionException e) {
-        System.out.println(e.getMessage());
-    }
 
     /*Guerrero clase1 = new Guerrero(1, "Emma el Guerrero", 100, 100, 100, 100, 20, 100, ETipoArma.ESPADA);
     Mago clase2 = new Mago(2, "Lucre la Maga", 100, 100, 100, 100, 15, 100, ETipoArma.BASTON);
