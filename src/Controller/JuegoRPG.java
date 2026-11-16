@@ -1,6 +1,7 @@
 package Controller;
 
 import Enumerator.ETipoArma;
+import Exception.Conexion.ConexionException;
 import Jdbc.Conexion;
 import Models.Entidades.Enemigos.Bestia;
 import Models.Entidades.Enemigos.Demonio;
@@ -54,7 +55,7 @@ public abstract class JuegoRPG {
 
     //Métod o principal, a partir de él se comienzan a llamar métodos. Lista las opciones incialmente disponibles.
     public static void inicioJuego()
-    {
+            throws ConexionException {
 
         int opcion;
         Jugador jugadorElegido;
@@ -73,6 +74,7 @@ public abstract class JuegoRPG {
                     break;
                 case 2:
                     sc.close();
+                    Conexion.closeConnection();
                     System.exit(0); //sale del programa. el "0" indica que es un cierre normal
                     break;
                 default:
