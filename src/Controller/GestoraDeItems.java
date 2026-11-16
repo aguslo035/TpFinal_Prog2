@@ -86,7 +86,7 @@ public class GestoraDeItems<T extends IItem> {
     //A partir del item que se le entregue, devuelve texto indicandole al usuario que se agregó ese item.
     public String textoDeAgregado (T itemAgregado)
     {
-        return "Se ha agregado "+ itemAgregado.getClass() + " a su inventario.";
+        return "Se ha agregado "+ itemAgregado.getClass().getSimpleName() + " a su inventario.";
     }
 }
 

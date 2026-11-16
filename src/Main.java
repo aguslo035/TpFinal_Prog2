@@ -35,13 +35,13 @@ void main() {
     Demonio enemigo3 = new Demonio(3, "Adrian el Rey Demonio", 70, 70, 80, 80, 25, 40);
 
     try {
-        ConexionClases.crearTablaClases();
+        //ConexionClases.crearTablaClases();
         ConexionClases.importarClase(clase1);
         ConexionClases.importarClase(clase2);
         ConexionClases.importarClase(clase3);
         ConexionClases.importarClase(clase4);
 
-        ConexionEnemigos.crearTablaEnemigos();
+        //ConexionEnemigos.crearTablaEnemigos();
         ConexionEnemigos.importarEnemigo(enemigo1);
         ConexionEnemigos.importarEnemigo(enemigo2);
         ConexionEnemigos.importarEnemigo(enemigo3);
