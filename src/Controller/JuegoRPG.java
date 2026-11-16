@@ -25,6 +25,7 @@ public abstract class JuegoRPG {
     //atributos
     private static List<Jugador> clasesAElegir = GestoraEntidadesYaCargadas.jugadores();
     private static List<Enemigo> enemigos = GestoraEntidadesYaCargadas.enemigos();
+
     private static Scanner sc = new Scanner(System.in); // el unico scanner que vamos a usar en todo el proyecto
 
     //métodos
@@ -75,8 +76,9 @@ public abstract class JuegoRPG {
         while(enemigoActual < cantidadDeBatallas) //La aventura continúa mientras se tengan enemigos.
         {
             System.out.println(encuentroEnemigo(jugadorElegido, enemigos.get(enemigoActual))); //Texto de encuentro.
+            //todo batalla por turno
             ganar = BatallaPorTurnos.combateEntreEntidades(jugadorElegido, enemigos.get(enemigoActual)); //Ocurre batalla
-
+            //todo batalla por turno ^^
             if(ganar)
             {
                 System.out.println(recolectarRecompensa(jugadorElegido));

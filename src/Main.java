@@ -1,28 +1,59 @@
 import Controller.JuegoRPG;
-import Enumerator.ETipoArma;
-import Exception.Conexion.ConexionException;
-import java.sql.*;
-
-import Jdbc.Conexion;
-import Jdbc.ConexionClases;
-import Jdbc.ConexionEnemigos;
-import Models.Entidades.Enemigos.Bestia;
-import Models.Entidades.Enemigos.Demonio;
-import Models.Entidades.Enemigos.Orco;
-import Models.Entidades.JugadoresClases.Arquero;
-import Models.Entidades.JugadoresClases.Guerrero;
-import Models.Entidades.JugadoresClases.Mago;
-
 void main() {
-        
         JuegoRPG.inicioJuego();
-         /*JuegoRpg, la partida completa,
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*JuegoRpg, la partida completa,
         batallaPorTurnos, un combate que tiene turno del jugador y turno del enemigo*/
 
     /*Guerrero clase1 = new Guerrero(1, "Emma el Guerrero", 100, 100, 100, 100, 20, 100, ETipoArma.ESPADA);
     Mago clase2 = new Mago(2, "Lucre la Maga", 100, 100, 100, 100, 15, 100, ETipoArma.BASTON);
     Arquero clase3 = new Arquero(3, "Legolas el Arquero", 100, 100, 100, 100, 20, 80, ETipoArma.ARCO, 0.50);
     Guerrero clase4 = new Guerrero(4, "Goku", 10000, 10000, 10000, 10000, 2000, 10000, ETipoArma.NINGUNA);
+    Guerrero clase5 = new Guerrero(4, "Goku2", 10000, 10000, 10000, 10000, 2000, 10000, ETipoArma.NINGUNA);
+
 
     Bestia enemigo1 = new Bestia(1, "Firulais la Bestia", 50, 50, 60, 60, 10, 40);
     Orco enemigo2 = new Orco(2, "Bernard el Orco", 60, 60 , 70, 70, 20, 30);
@@ -34,6 +65,7 @@ void main() {
         ConexionClases.importarClase(clase2);
         ConexionClases.importarClase(clase3);
         ConexionClases.importarClase(clase4);
+        ConexionClases.importarClase(clase5);
 
         //ConexionEnemigos.crearTablaEnemigos();
         ConexionEnemigos.importarEnemigo(enemigo1);
@@ -42,4 +74,3 @@ void main() {
     } catch (ConexionException e) {
         System.out.println(e.getMessage());
     }*/
-}

@@ -37,7 +37,6 @@ public abstract class GestoraEntidadesYaCargadas {
         } catch (ConexionException e) {
             System.out.println(e.getMessage());
         }
-
         return enemigos;
     }
 
