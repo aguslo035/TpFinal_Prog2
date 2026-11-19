@@ -29,4 +29,6 @@ public final class PocionVida extends Pocion{
     public String describirComportamiento(Jugador usuario, int cantidad) { //no usa su propia cantidad, porque puede ser menor si se excede.
         return GestorDeTextoDeCombate.utilizacionItemDeRecuperarHP(usuario, getNombre(), cantidad);
     }
+
+    //draw.io
 }

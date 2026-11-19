@@ -4,7 +4,6 @@ import Exception.Conexion.ConexionException;
 import Jdbc.ConexionClases;
 import Jdbc.ConexionEnemigos;
 import Models.Entidades.Enemigos.Enemigo;
-import Models.Entidades.Entidad;
 import Models.Entidades.JugadoresClases.Jugador;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 //Obtiene las entidades ya cargadas en la base de datos.
 public abstract class GestoraEntidadesYaCargadas {
 
-    //metodos
+    ///metodos
 
     //Intenta obtener y devolver el listado de jugadores dentro de la base de datos.
     public static List<Jugador> jugadores(){
@@ -56,4 +55,6 @@ public abstract class GestoraEntidadesYaCargadas {
 
         return sb.toString();
     }
+
+
 }
